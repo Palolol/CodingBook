@@ -7,99 +7,16 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <h1>Tutorial: Building the Assignment</h1>
-      <nav>
-        <a href="#overview">Overview</a>
-        <a href="#lessons">Lessons</a>
-        <a href="#assignment">Assignment</a>
-        <a href="#quiz">Quiz</a>
-        <a href="#resources">Resources</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <section id="overview">
-      <h2>Overview</h2>
-      <p>This tutorial walks you through the assignment step-by-step with short lessons, code samples, and a small quiz to check understanding.</p>
-    </section>
-
-    <section id="lessons">
-      <h2>Lessons</h2>
-      <article class="lesson">
-        <h3>Lesson 1 — Problem Breakdown</h3>
-        <p>Read the assignment carefully, identify inputs/outputs, and break the problem into small functions.</p>
-      </article>
-      <article class="lesson">
-        <h3>Lesson 2 — Implementation Plan</h3>
-        <p>Create a simple plan, write pseudocode, then implement and test incrementally.</p>
-      </article>
-      <article class="lesson">
-        <h3>Lesson 3 — Testing & Edge Cases</h3>
-        <p>Write tests for normal and edge inputs. Consider invalid input handling and performance.</p>
-      </article>
-    </section>
-
-    <section id="assignment">
-      <h2>Assignment</h2>
-      <p>Implement the required functionality described by your instructor. Use the lessons above as a guide. A typical deliverable contains:</p>
-      <ul>
-        <li>Source code with clear function boundaries</li>
-        <li>README describing how to run and test</li>
-        <li>Small set of tests or example inputs/outputs</li>
-      </ul>
-      <h3>Starter Checklist</h3>
-      <ol>
-        <li>Read the problem statement.</li>
-        <li>Write pseudocode.</li>
-        <li>Implement core functions.</li>
-        <li>Run simple tests.</li>
-        <li>Refactor and document.</li>
-      </ol>
-    </section>
-
-    <section id="quiz">
-      <h2>Quick Quiz</h2>
-      <form id="quiz-form">
-        <div class="q">
-          <label>1) What is the first step when you start the assignment?</label>
-          <select name="q1">
-            <option value="a">Start coding immediately</option>
-            <option value="b">Read and break down the problem</option>
-            <option value="c">Write tests last</option>
-          </select>
-        </div>
-
-        <div class="q">
-          <label>2) Which is important for correctness?</label>
-          <select name="q2">
-            <option value="a">Ignoring edge cases</option>
-            <option value="b">Adding docs only</option>
-            <option value="c">Testing with representative inputs</option>
-          </select>
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
-      <div id="quiz-result" aria-live="polite"></div>
-    </section>
-
-    <section id="resources">
-      <h2>Resources</h2>
-      <ul>
-        <li><a href="https://developer.mozilla.org/">MDN Web Docs</a></li>
-        <li><a href="https://www.freecodecamp.org/">freeCodeCamp</a></li>
-        <li>Include course-specific links here.</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">Tutorial generated for the assignment — customize content as needed.</div>
-  </footer>
-
+  <form id="contact-form">
+  <input type="text" name="username" placeholder="Your Name" required>
+  <textarea name="user-message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+<div id="contact-status"></div>
+<h2>History Of Message</h2>
+<div id="message-history">
+  <p>Loading past messages...</p>
+</div>
   <script src="js/script.js"></script>
 </body>
 </html>
