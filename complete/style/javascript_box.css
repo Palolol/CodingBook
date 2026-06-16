@@ -1,0 +1,99 @@
+.javascript_container {
+    width: 100%;
+    min-height: 500px;
+    background-color: rgba(255, 251, 56, 1);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.javascript_container .image_section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 30px 16px;
+    box-sizing: border-box;
+}
+
+.javascript_logo {
+    width: 200px;
+    height: 200px;
+    max-width: 100%;
+}
+
+.javascript_title {
+    font-size: 45px;
+    font-weight: bold;
+    color: black;
+}
+
+.javascript_Des {
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
+}
+
+.javascript_container .option_flexbox {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px;
+    box-sizing: border-box;
+}
+
+.javascript_container .option_section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 220px;
+}
+
+.javascript_Op_1 {
+    padding: 20px 8px;
+    background: rgba(230, 215, 0, 1);
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.javascript_Op_2 {
+    padding: 20px 8px;
+    background: rgba(255, 238, 0, 1);
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.javascript_Op_3 {
+    padding: 20px 8px;
+    background: rgba(255, 243, 69, 1);
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.javascript_Op_4 {
+    padding: 20px 8px;
+    background: rgba(255, 246, 122, 1);
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}

@@ -1,0 +1,99 @@
+.css_container {
+    width: 100%;
+    min-height: 500px;
+    background-color: rgba(0, 77, 193, 1);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.css_container .option_flexbox {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px;
+    box-sizing: border-box;
+}
+
+.css_container .option_section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 220px;
+}
+
+.css_container .image_section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 30px 16px;
+    box-sizing: border-box;
+}
+
+.css_logo {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+}
+
+.css_title {
+    font-size: 45px;
+    font-weight: bold;
+    color: white;
+}
+
+.css_Des {
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+}
+
+.css_Op_1 {
+    padding: 20px 8px;
+    background: rgba(0, 90, 225, 1);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.css_Op_2 {
+    padding: 20px 8px;
+    background: rgba(45, 129, 255, 1);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.css_Op_3 {
+    padding: 20px 8px;
+    background: rgba(102, 163, 255, 1);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.css_Op_4 {
+    padding: 20px 8px;
+    background: rgba(175, 207, 255, 1);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}

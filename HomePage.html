@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebBooks.com</title>
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/html_box.css">
+    <link rel="stylesheet" href="style/css_box.css">
+    <link rel="stylesheet" href="style/javascript_box.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/final_box.css">
+    <link rel="stylesheet" href="style/container.css">
+    <link rel="stylesheet" href="style/responsive.css">
+    <link rel="stylesheet" href="style/global.css">
+    <link rel="icon" type="image/png" href="assets/image.png" />
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="navigation_bar">
+            <ul>
+                <li><a href="Homepage.html">HOME</a></li>
+                <li><a href="about.html"></a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="header_page">
+            <div class="web_books">Web Books</div>
+            <div class="header_description">Learn and Practice</div>
+
+            <div class="search_bar">
+                <h2>Add Food</h2>
+
+                <input type="text" id="foodInput" placeholder="Enter Food name">
+
+                <button onclick="addFood()">Add</button>
+
+                <br><br>
+
+                <input type="text" id="searchInput" placeholder="Search Food">
+
+                <ul id="foodList"></ul>
+            </div>
+        </div>
+
+        <div class="html_container">
+            <div class="image_section">
+                <img class="html_logo" src="assets/images/html_logo.png" alt="HTML LOGO">
+                <div class="title">HTML</div>
+                <div class="html_Des">The language for building web pages</div>
+            </div>
+            <div class="option_flexbox">
+                <div class="option_section">
+                    <button class="Op_1">About HTML</button>
+                    <button class="Op_2">Video Tutorials</button>
+                    <button class="Op_3">Learning Path</button>
+                    <button class="Op_4">Exercises</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="css_container">
+            <div class="option_flexbox">
+                <div class="option_section">
+                    <button class="css_Op_1">About CSS</button>
+                    <button class="css_Op_2">Video Tutorials</button>
+                    <button class="css_Op_3">Learning Path</button>
+                    <button class="css_Op_4">Exercises</button>
+                </div>
+            </div>
+            <div class="image_section">
+                <img class="css_logo" src="assets/images/css_logo.png" alt="CSS LOGO">
+                <div class="css_title">CSS</div>
+                <div class="css_Des">The language for styling web pages</div>
+            </div>
+        </div>
+
+        <div class="javascript_container">
+            <div class="image_section">
+                <img class="javascript_logo" src="assets/images/javascript_logo.png" alt="JavaScript LOGO">
+                <div class="javascript_title">JavaScript</div>
+                <div class="javascript_Des">The language for programming web pages</div>
+            </div>
+            <div class="option_flexbox">
+                <div class="option_section">
+                    <button class="javascript_Op_1">About JavaScript</button>
+                    <button class="javascript_Op_2">Video Tutorials</button>
+                    <button class="javascript_Op_3">Learning Path</button>
+                    <button class="javascript_Op_4">Exercises</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="final_box">
+            <div class="title_container">
+                <div class="final_test">Final Test</div>
+                <div class="Show_skill">Show us your skills</div>
+            </div>
+            <div class="test_container">
+                <div class="qcm_container">
+                    <div class="qcm">QCM</div>
+                    <button class="choose">Choose the correct answer</button>
+                </div>
+                <div class="qna_container">
+                    <div class="qna">Q&amp;A</div>
+                    <button class="answer">Answer the question</button>
+                </div>
+                <div class="project_container">
+                    <div class="project">Small Project</div>
+                    <button class="create">Start to build!</button>
+                </div>
+            </div>
+            <div class="fare_well_container">
+                <div class="finished">Finished all the tests?</div>
+                <div class="congratulation">Congratulations! You are now ready to be a web developer.</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer_content">
+                <div class="WB">WB</div>
+                <div class="content_flex">
+                    <div class="footer_box">
+                        <div class="about_us">About Us</div>
+                        <div class="about_us_des">We created this website for beginner coder who interested in web
+                            developing.</div>
+                        <div class="contact">Contact</div>
+                        <div class="contact_des">
+                            <div class="phone">Phone: +855 12345678</div>
+                            <div class="email">Email: webbooksupport@gmail.com</div>
+                            <div class="meta">Meta: Web-Books</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Donate_box">
+                <div class="donation">Wanted to support us?</div>
+                <div class="donate_subtext">Every contribution helps us grow</div>
+                <button class="Donate_btn">Donate</button>
+                <div class="social_links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">in</a>
+                    <a href="#" title="YouTube">▶</a>
+                    <a href="#" title="Email">✉</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer_bottom">
+            © 2025 Web Books · All rights reserved · Made for beginner web developers
+        </div>
+
+    </div>
+
+    <script>
+        let foods = [];
+
+        function addFood() {
+            const input = document.getElementById("foodInput");
+
+            if (input.value.trim() === "") {
+                return;
+            }
+
+            foods.push(input.value);
+
+            input.value = "";
+
+            renderFoods(foods);
+        }
+
+        function renderFoods(data) {
+            const list = document.getElementById("foodList");
+
+            list.innerHTML = "";
+
+            data.forEach(food => {
+                const li = document.createElement("li");
+
+                li.textContent = food;
+
+                list.appendChild(li);
+            });
+        }
+
+        document.getElementById("searchInput")
+            .addEventListener("input", function () {
+
+                const keyword = this.value.toLowerCase();
+
+                const filtered = foods.filter(food =>
+                    food.toLowerCase().includes(keyword)
+                );
+
+                renderFoods(filtered);
+            });
+    </script>
+</body>
+
+</html>

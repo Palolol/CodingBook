@@ -1,0 +1,99 @@
+.html_container {
+    width: 100%;
+    min-height: 500px;
+    background-color: rgba(253, 118, 0, 1);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.html_container .image_section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 30px 16px;
+    box-sizing: border-box;
+}
+
+.html_logo {
+    width: 200px;
+    height: 200px;
+    max-width: 100%;
+}
+
+.title {
+    font-size: 45px;
+    font-weight: bold;
+    color: white;
+}
+
+.html_Des {
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+}
+
+.html_container .option_flexbox {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px;
+    box-sizing: border-box;
+}
+
+.html_container .option_section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 220px;
+}
+
+.Op_1 {
+    padding: 20px 8px;
+    background: rgba(234, 137, 0, 1);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.Op_2 {
+    padding: 20px 8px;
+    background: rgba(255, 159, 25, 1);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.Op_3 {
+    padding: 20px 8px;
+    background: rgba(254, 191, 102, 1);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.Op_4 {
+    padding: 20px 8px;
+    background: rgba(255, 217, 164, 1);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}

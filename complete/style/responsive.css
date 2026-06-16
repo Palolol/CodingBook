@@ -1,0 +1,19 @@
+@media (max-width: 650px) {
+    .web_books          { font-size: 36px; }
+    .header_description { font-size: 18px; }
+    .html_container .image_section,
+    .html_container .option_flexbox,
+    .css_container  .image_section,
+    .css_container  .option_flexbox,
+    .javascript_container .image_section,
+    .javascript_container .option_flexbox { width: 100%; }
+    .html_container .option_section,
+    .css_container  .option_section,
+    .javascript_container .option_section { max-width: 300px; }
+    .title, .css_title, .javascript_title { font-size: 32px; }
+    .final_test     { font-size: 28px; }
+    .test_container { flex-direction: column; align-items: center; }
+    .footer     { flex-direction: column; padding: 20px; }
+    .Donate_box { width: 100%; border-left: none; border-top: 2px solid rgba(255,255,255,0.15); padding: 20px 0; align-self: auto; }
+    .footer_box { padding-left: 0; border-left: none; }
+}

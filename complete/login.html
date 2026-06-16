@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - WebBooks</title>
+    <link rel="icon" type="image/png" href="assets/image.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style/login.css">
+</head>
+
+<body>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <div class="login-wrapper">
+
+        <!-- Left Branding -->
+        <div class="login-branding">
+            <div class="brand-content">
+                <div class="brand-logo">
+                    <div class="brand-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h1>Web<span>Books</span></h1>
+                </div>
+                <p class="brand-tagline">Learn. Practice. Build.</p>
+                <div class="brand-features">
+                    <div class="feature">
+                        <i class="fas fa-code"></i>
+                        <span>HTML, CSS & JavaScript</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Video Tutorials</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-trophy"></i>
+                        <span>Tests & Exercises</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-road"></i>
+                        <span>Guided Learning Path</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Form Side -->
+        <div class="login-form-side">
+
+            <!-- Tabs -->
+            <div class="tabs-wrapper">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('login')">Sign In</button>
+                    <button class="tab" onclick="switchTab('register')">Create Account</button>
+                </div>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <div class="form-container active" id="loginForm">
+                <div class="form-header">
+                    <div class="mobile-logo">
+                        <div class="brand-icon-sm">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h2>Web<span>Books</span></h2>
+                    </div>
+                    <h1>Welcome Back</h1>
+                    <p>Sign in to continue learning</p>
+                </div>
+
+                <form onsubmit="handleLogin(event)">
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <input type="email" id="loginEmail" placeholder="Email address" autocomplete="email">
+                    </div>
+                    <span class="hint" id="loginEmailHint"></span>
+
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <input type="password" id="loginPassword" placeholder="Password"
+                            autocomplete="current-password">
+                        <button type="button" class="toggle-password" onclick="togglePass('loginPassword', this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="hint" id="loginPasswordHint"></span>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-link" onclick="switchTab('forgot'); return false;">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                </form>
+            </div>
+
+            <!-- REGISTER FORM -->
+            <div class="form-container" id="registerForm">
+                <div class="form-header">
+                    <div class="mobile-logo">
+                        <div class="brand-icon-sm">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h2>Web<span>Books</span></h2>
+                    </div>
+                    <h1>Create Account</h1>
+                    <p>Start your web development journey</p>
+                </div>
+
+                <form onsubmit="handleRegister(event)">
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <input type="text" id="regUsername" placeholder="Username">
+                    </div>
+                    <span class="hint" id="regUsernameHint"></span>
+
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <input type="email" id="regEmail" placeholder="Email address" autocomplete="email">
+                    </div>
+                    <span class="hint" id="regEmailHint"></span>
+
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <input type="password" id="regPassword" placeholder="Password (min 6 characters)"
+                            oninput="updateStrength()" autocomplete="new-password">
+                        <button type="button" class="toggle-password" onclick="togglePass('regPassword', this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="hint" id="regPasswordHint"></span>
+
+                    <!-- Password Strength -->
+                    <div class="strength-row" id="strengthRow">
+                        <div class="strength-seg" id="s1"></div>
+                        <div class="strength-seg" id="s2"></div>
+                        <div class="strength-seg" id="s3"></div>
+                        <span class="strength-label" id="strengthLabel"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <input type="password" id="regConfirm" placeholder="Confirm password"
+                            autocomplete="new-password">
+                    </div>
+                    <span class="hint" id="regConfirmHint"></span>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+            </div>
+
+            <!-- FORGOT PASSWORD FORM -->
+            <div class="form-container" id="forgotForm">
+                <div class="form-header">
+                    <div class="mobile-logo">
+                        <div class="brand-icon-sm">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h2>Web<span>Books</span></h2>
+                    </div>
+                    <h1>Reset Password</h1>
+                    <p>Enter your email to receive a reset link</p>
+                </div>
+
+                <form onsubmit="handleForgot(event)">
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <input type="email" id="forgotEmail" placeholder="Email address">
+                    </div>
+                    <span class="hint" id="forgotEmailHint"></span>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Reset Link
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <a href="#" onclick="switchTab('login'); return false;">
+                        <i class="fas fa-arrow-left"></i> Back to Sign In
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Firebase v8 Compat SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- Your files -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/login-app.js"></script>
+
+</body>
+
+</html>

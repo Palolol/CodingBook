@@ -1,259 +1,407 @@
-# CodingBook
-# Vanilla Contact Form Project with Local Storage
+# 📚 WebBooks
 
-A lightweight, asynchronous contact form system built using pure, vanilla frontend technologies (HTML/CSS/JS) and a lightweight Node.js backend. This project stores text data locally in a structured JSON file without requiring a heavyweight database engine like MongoDB or MySQL.
+> A web-based learning platform for beginner web developers.
+> Learn HTML, CSS, and JavaScript through tutorials, videos, exercises, and tests.
 
 ---
 
-## 📂 Project Directory Structure
+## 🌐 Live Preview
 
-Ensure your workspace directory tree is organized exactly like this before launching the script:
-
-```text
-├── index.html
-├── server.js
-├── css/
-│   └── styles.css
-└── js/
-    └── script.js
+```
+http://localhost:3000
 ```
 
 ---
 
-## 💻 Source Code Components
+## ✨ Features
 
-### 1. Frontend Interface (`index.html`)
-The structure of your application features a standard accessible text input field, a textarea block, and a reactive history layout anchor below the submission buttons.
+- 🔐 **Firebase Authentication** — Register, Login, Logout, Forgot Password
+- 👤 **User Profile** — Edit name, phone, bio, location (saved to Firestore)
+- 🔍 **Smart Search Bar** — Search tutorials, videos, exercises by keyword
+- 📂 **Sidebar Navigation** — Browse all topics from any page
+- 🔔 **Notifications** — Bell icon in navbar
+- 📱 **Fully Responsive** — Works on mobile, tablet, and desktop
+- 🎨 **Dark Theme** — Clean dark UI inspired by modern platforms
+- 🧠 **Password Strength Meter** — Live feedback while registering
+- 🔑 **Session Persistence** — Stay logged in after page refresh
+- 🏆 **Final Tests** — QCM, Q&A, and Small Project challenges
+
+---
+
+## 🗂️ Project Structure
+
+```
+webbooks/
+│
+├── 📄 homepage.html          # Main page (protected)
+├── 📄 profile.html           # User profile page (protected)
+├── 📄 login.html             # Login / Register / Forgot Password
+├── 📄 about.html             # About page
+├── 📄 contact.html           # Contact page
+│
+├── 📁 tutorials/             # Individual tutorial pages
+│   ├── html-intro.html
+│   ├── html-elements.html
+│   ├── html-forms.html
+│   ├── html-semantic.html
+│   ├── html-links.html
+│   ├── html-images.html
+│   ├── html-lists.html
+│   ├── html-tables.html
+│   ├── html-headings.html
+│   ├── html-paragraphs.html
+│   ├── html-attributes.html
+│   ├── html-media.html
+│   ├── css-intro.html
+│   ├── css-selectors.html
+│   ├── css-colors.html
+│   ├── css-box-model.html
+│   ├── css-fonts.html
+│   ├── css-flexbox.html
+│   ├── css-grid.html
+│   ├── css-positioning.html
+│   ├── css-animations.html
+│   ├── css-responsive.html
+│   ├── css-variables.html
+│   ├── css-borders.html
+│   ├── css-display.html
+│   ├── js-intro.html
+│   ├── js-variables.html
+│   ├── js-datatypes.html
+│   ├── js-functions.html
+│   ├── js-conditions.html
+│   ├── js-loops.html
+│   ├── js-arrays.html
+│   ├── js-objects.html
+│   ├── js-dom.html
+│   ├── js-events.html
+│   ├── js-fetch.html
+│   ├── js-es6.html
+│   ├── js-storage.html
+│   └── js-errors.html
+│
+├── 📁 videos/                # Video tutorial pages
+│   ├── html-course.html
+│   ├── css-course.html
+│   ├── js-course.html
+│   ├── flexbox.html
+│   ├── grid.html
+│   └── dom.html
+│
+├── 📁 exercises/             # Practice exercise pages
+│   ├── html-exercises.html
+│   ├── css-exercises.html
+│   └── js-exercises.html
+│
+├── 📁 paths/                 # Learning path pages
+│   ├── html-path.html
+│   ├── css-path.html
+│   ├── js-path.html
+│   └── full-path.html
+│
+├── 📁 tests/                 # Final test pages
+│   ├── qcm.html
+│   ├── qna.html
+│   └── project.html
+│
+├── 📁 style/                 # CSS stylesheets
+│   ├── navbar.css
+│   ├── login.css
+│   ├── profile.css
+│   ├── header.css
+│   ├── html_box.css
+│   ├── css_box.css
+│   ├── javascript_box.css
+│   ├── final_box.css
+│   ├── footer.css
+│   ├── container.css
+│   ├── responsive.css
+│   └── global.css
+│
+├── 📁 js/                    # JavaScript files
+│   ├── firebase-config.js
+│   ├── db.js
+│   ├── auth.js
+│   ├── auth-guard.js
+│   ├── login-app.js
+│   ├── profile-page.js
+│   └── navbar.js
+│
+├── 📁 assets/                # Static assets
+│   ├── image.png
+│   └── images/
+│       ├── html_logo.png
+│       ├── css_logo.png
+│       └── javascript_logo.png
+│
+├── 📄 server.js
+├── 📄 package.json
+└── 📄 README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v16 or higher
+- [npm](https://www.npmjs.com/)
+- A [Firebase](https://firebase.google.com/) project
+
+---
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/webbooks.git
+cd webbooks
+```
+
+---
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3. Setup Firebase
+
+#### Step 1 — Create a Firebase Project
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Click **Add Project** and follow the steps
+
+#### Step 2 — Enable Authentication
+1. Firebase Console → **Authentication** → **Get Started**
+2. Enable **Email/Password** provider
+
+#### Step 3 — Enable Firestore
+1. Firebase Console → **Firestore Database** → **Create Database**
+2. Start in **test mode**
+
+#### Step 4 — Get Your Config
+1. Firebase Console → **Project Settings** → **Your Apps** → **Web App**
+2. Copy the `firebaseConfig` object
+
+#### Step 5 — Paste into `js/firebase-config.js`
+
+```javascript
+const firebaseConfig = {
+    apiKey:            "YOUR_API_KEY",
+    authDomain:        "YOUR_PROJECT.firebaseapp.com",
+    databaseURL:       "YOUR_DATABASE_URL",
+    projectId:         "YOUR_PROJECT_ID",
+    storageBucket:     "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId:             "YOUR_APP_ID"
+};
+```
+
+---
+
+### 4. Start the Server
+
+```bash
+# Production
+npm start
+
+# Development (auto-restart)
+npm run dev
+```
+
+---
+
+### 5. Open in Browser
+
+```
+http://localhost:3000
+```
+
+---
+
+## 🔑 Authentication Flow
+
+```
+User visits any page
+        │
+        ▼
+  Firebase checks session
+        │
+   ┌────┴────────┐
+   │             │
+Logged in    Not logged in
+   │             │
+   ▼             ▼
+Homepage     login.html
+ loads           │
+                 ├── Login     → homepage.html
+                 ├── Register  → homepage.html
+                 └── Forgot    → Reset email sent
+```
+
+---
+
+## 📜 Script Load Order
 
 ```html
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Tutorial Website - Assignment</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  
-  <form id="contact-form">
-    <input type="text" name="username" placeholder="Your Name" required>
-    <textarea name="user-message" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-  
-  <div id="contact-status"></div>
+<!-- 1. Firebase SDKs (must be first) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-  <h2>History Of Message</h2>
-  <div id="message-history">
-    <p>Loading past messages...</p>
-  </div>
-
-  <script src="js/script.js"></script>
-</body>
-</html>
-```
-
-### 2. Layout Styles (`css/styles.css`)
-Applies standard Flexbox grid variables to force input layouts instantly into a tidy single column.
-
-```css
-#contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 400px;
-}
-
-input, textarea, button {
-  padding: 8px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-#message-history {
-  max-width: 400px;
-  margin-top: 15px;
-}
-```
-
-### 3. Application Scripting (`js/script.js`)
-Captures data without triggering browser reloads, manages JSON transfers, and refreshes the user display context automatically.
-
-```javascript
-document.addEventListener('DOMContentLoaded', () => {
-  const contactForm = document.getElementById('contact-form');
-  const statusDiv = document.getElementById('contact-status');
-  const historyDiv = document.getElementById('message-history');
-
-  // Function to pull messages from server and build HTML elements
-  async function loadMessageHistory() {
-    if (!historyDiv) return;
-    try {
-      const response = await fetch('http://localhost:3000/messages');
-      const messages = await response.json();
-
-      if (messages.length === 0) {
-        historyDiv.innerHTML = '<p>No messages sent yet.</p>';
-        return;
-      }
-
-      // Render out each message card cleanly
-      historyDiv.innerHTML = messages.map(msg => `
-        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 8px; border-radius: 4px;">
-          <strong>${msg.name}</strong> 
-          <small style="color: gray;">(${new Date(msg.timestamp).toLocaleTimeString()})</small>
-          <p style="margin: 4px 0 0 0;">${msg.message}</p>
-        </div>
-      `).join('');
-    } catch (error) {
-      historyDiv.innerHTML = '<p style="color: red;">Could not load history.</p>';
-    }
-  }
-
-  // 1. Automatically load history as soon as the browser tab opens
-  loadMessageHistory();
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault(); // Stop page reload
-
-      const formData = new FormData(contactForm);
-      const payload = {
-        name: formData.get('username'),
-        message: formData.get('user-message')
-      };
-
-      try {
-        const response = await fetch('http://localhost:3000/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        const data = await response.json();
-        statusDiv.textContent = data.message;
-        statusDiv.style.color = 'green';
-        contactForm.reset(); 
-
-        // 2. Instantly update the history list on screen after sending
-        loadMessageHistory();
-
-      } catch (error) {
-        statusDiv.textContent = 'Server error. Try again later.';
-        statusDiv.style.color = 'red';
-      }
-    });
-  }
-});
-```
-
-### 4. Backend Server (`server.js`)
-Configures an HTTP communication wrapper to handle browser preflights (CORS), process inputs stream-by-stream, append histories safely, and boot up your local system browser automatically.
-
-```javascript
-const http = require('http');
-const fs = require('fs'); 
-const path = require('path');
-const { exec } = require('child_process'); 
-
-const filePath = path.join(__dirname, 'messages.json');
-
-const server = http.createServer((req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS'); 
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    res.writeHead(200);
-    res.end();
-    return;
-  }
-
-  if (req.method === 'POST' && req.url === '/contact') {
-    let body = '';
-
-    req.on('data', chunk => { body += chunk.toString(); });
-
-    req.on('end', () => {
-      try {
-        const newMessage = JSON.parse(body);
-        newMessage.timestamp = new Date().toISOString(); 
-
-        let messagesList = [];
-        if (fs.existsSync(filePath)) {
-          const fileData = fs.readFileSync(filePath, 'utf8');
-          messagesList = fileData ? JSON.parse(fileData) : [];
-        }
-
-        messagesList.push(newMessage);
-        fs.writeFileSync(filePath, JSON.stringify(messagesList, null, 2), 'utf8');
-
-        console.log('Saved to messages.json:', newMessage);
-
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: `Thanks ${newMessage.name}! Message saved.` }));
-
-      } catch (error) {
-        console.error('Error saving data:', error);
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: 'Internal server error.' }));
-      }
-    });
-  } 
-  else if (req.method === "GET" && req.url === '/messages') {
-    if (fs.existsSync(filePath)) {
-      const fileData = fs.readFileSync(filePath, 'utf8');
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(fileData || '[]');
-    } else {
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify([]));
-    }
-  } 
-  else {
-    res.writeHead(404);
-    res.end();
-  }
-});
-
-server.listen(3000, () => {
-  console.log('Backend server running at http://localhost:3000');
-  
-  const htmlPath = path.join(__dirname, 'index.html');
-  
-  const startCommand = process.platform === 'darwin' ? `open "${htmlPath}"` :
-                       process.platform === 'win32' ? `start "" "${htmlPath}"` :
-                       `xdg-open "${htmlPath}"`;
-                       
-  exec(startCommand);
-});
+<!-- 2. App scripts (order matters) -->
+<script src="js/firebase-config.js"></script>
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/profile-page.js"></script>  <!-- profile.html only -->
+<script src="js/navbar.js"></script>
 ```
 
 ---
 
-## 🚀 Execution Instructions
+## 🔒 Firestore Data Structure
 
-1. Ensure [Node.js](https://nodejs.org) is installed.
-2. Open your operating system terminal inside the root project workspace folder.
-3. Boot up the server script:
-   ```bash
-   node server.js
-   ```
-4. The backend server will initialize, bind to port `3000`, and immediately invoke your native system browser to load the frontend interface.
+```
+Firestore Database
+└── users/
+    └── {uid}
+        ├── uid:        string
+        ├── username:   string
+        ├── email:      string
+        ├── phone:      string
+        ├── bio:        string
+        ├── location:   string
+        ├── createdAt:  timestamp
+        └── updatedAt:  timestamp
+```
 
 ---
 
-## 💾 Data Architecture Blueprint (`messages.json`)
-The script manages persistent arrays behind the scenes. Here is how your `messages.json` file formats itself upon runtime submissions:
+## 🔍 Search Bar
 
-```json
-[
-  {
-    "name": "Jane Doe",
-    "message": "Hello! Testing out my local storage architecture system.",
-    "timestamp": "2026-05-29T10:32:00.000Z"
+| Input | Result |
+|-------|--------|
+| `html` | All HTML tutorials |
+| `css flex` | CSS Flexbox |
+| `video` | All video courses |
+| `loop` | JavaScript Loops |
+| `form` | HTML Forms |
+| `test` | QCM, Q&A, Project |
+
+### Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `Ctrl + K` | Focus search |
+| `/` | Focus search |
+| `↑` `↓` | Navigate results |
+| `Enter` | Open result |
+| `Escape` | Close search |
+
+---
+
+## 🛠️ API Endpoints
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/` | Redirect to login |
+| GET | `/login` | Login page |
+| GET | `/homepage` | Homepage |
+| GET | `/profile` | Profile page |
+| GET | `/about` | About page |
+| GET | `/contact` | Contact page |
+| GET | `/api/health` | Health check |
+| GET | `/api/status` | Server status |
+
+---
+
+## 🧰 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| HTML5 | Page structure |
+| CSS3 | Styling and animations |
+| JavaScript ES6+ | Client-side logic |
+| Firebase Auth | User authentication |
+| Firestore | User profile database |
+| Express.js | Static file server |
+| Node.js | Server runtime |
+| Font Awesome 6 | Icons |
+| Google Fonts | Roboto font |
+
+---
+
+## 📱 Responsive Breakpoints
+
+| Breakpoint | Layout |
+|------------|--------|
+| > 900px | Full desktop |
+| 768px — 900px | Tablet |
+| < 768px | Mobile |
+| < 480px | Small mobile |
+
+---
+
+## 🐛 Common Issues
+
+### Page redirects to login when already logged in
+Make sure Firebase SDKs load before `firebase-config.js`
+
+### Profile dropdown does not navigate
+Make sure `navbar.js` is the last script loaded
+
+### Hamburger does not open sidebar
+Make sure `<aside id="sidebar">` exists in your HTML
+
+### Firestore permission denied
+Set Firestore rules:
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == uid;
+    }
   }
-]
+}
 ```
 
+### Profile not saving
+Make sure `updateUserProfile` exists in `db.js`
+
+---
+
+## 👥 Contributing
+
+1. Fork the repository
+2. Create a branch: `git checkout -b feature/your-feature`
+3. Commit: `git commit -m "Add your feature"`
+4. Push: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+MIT License — Copyright (c) 2025 WebBooks
+
+---
+
+## 📞 Contact
+
+| Channel | Details |
+|---------|---------|
+| Email | webbooksupport@gmail.com |
+| Phone | +855 12345678 |
+| Meta | Web-Books |
+
+---
+
+<div align="center">
+  Made with ❤️ for beginner web developers · © 2025 WebBooks
+</div>
