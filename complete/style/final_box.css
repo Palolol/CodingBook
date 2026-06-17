@@ -97,3 +97,35 @@
     text-align: center;
     margin-top: 10px;
 }
+
+.choose,
+.answer,
+.create {
+    margin-top: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: rgba(101, 67, 33, 1);
+    width: 250px;
+    height: 50px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    max-width: 90vw;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.choose:hover,
+.answer:hover,
+.create:hover {
+    background-color: rgba(124, 87, 45, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.choose:active,
+.answer:active,
+.create:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

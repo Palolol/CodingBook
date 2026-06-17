@@ -28,6 +28,27 @@ async function sendPasswordReset(email) {
     await fbAuth.sendPasswordResetEmail(email);
 }
 
+async function handleForgot(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("forgotEmail").value.trim();
+    const hint = document.getElementById("forgotEmailHint");
+
+    hint.textContent = "";
+
+    try {
+        await sendPasswordReset(email);
+
+        hint.textContent = "Password reset email sent successfully.";
+    } catch (error) {
+        console.error(error);
+
+        hint.textContent = getAuthErrorMessage(error);
+    }
+}
+
+window.handleForgot = handleForgot;
+
 function onAuthStateChange(onSignedIn, onSignedOut) {
     fbAuth.onAuthStateChanged(async (user) => {
         if (user) {

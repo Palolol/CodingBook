@@ -54,46 +54,72 @@
     font-weight: bold;
 }
 
-.css_Op_1 {
+.css_Op_1,
+.css_Op_2,
+.css_Op_3,
+.css_Op_4 {
+    position: relative;
+    overflow: hidden;
     padding: 20px 8px;
-    background: rgba(0, 90, 225, 1);
     color: white;
     border: none;
     border-radius: 10px;
     font-weight: bold;
     width: 100%;
     cursor: pointer;
+    transition: color 0.35s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.css_Op_1::before,
+.css_Op_2::before,
+.css_Op_3::before,
+.css_Op_4::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: white;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: -1;
+}
+
+.css_Op_1:hover,
+.css_Op_2:hover,
+.css_Op_3:hover,
+.css_Op_4:hover {
+    color: rgba(0, 90, 225, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(0, 60, 160, 1), 0 8px 14px rgba(0, 0, 0, 0.25);
+}
+
+.css_Op_1:hover::before,
+.css_Op_2:hover::before,
+.css_Op_3:hover::before,
+.css_Op_4:hover::before {
+    transform: scaleX(1);
+}
+
+.css_Op_1:active,
+.css_Op_2:active,
+.css_Op_3:active,
+.css_Op_4:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 0 rgba(0, 60, 160, 1);
+}
+
+.css_Op_1 {
+    background: rgba(0, 90, 225, 1);
 }
 
 .css_Op_2 {
-    padding: 20px 8px;
     background: rgba(45, 129, 255, 1);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    width: 100%;
-    cursor: pointer;
 }
 
 .css_Op_3 {
-    padding: 20px 8px;
     background: rgba(102, 163, 255, 1);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    width: 100%;
-    cursor: pointer;
 }
 
 .css_Op_4 {
-    padding: 20px 8px;
     background: rgba(175, 207, 255, 1);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    width: 100%;
-    cursor: pointer;
 }

@@ -97,3 +97,64 @@
     width: 100%;
     cursor: pointer;
 }
+
+.Op_1,
+.Op_2,
+.Op_3,
+.Op_4 {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.35s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.Op_1::before,
+.Op_2::before,
+.Op_3::before,
+.Op_4::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: white;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: -1;
+}
+
+.Op_1:hover::before,
+.Op_2:hover::before,
+.Op_3:hover::before,
+.Op_4:hover::before {
+    transform: scaleX(1);
+}
+
+.Op_1:hover {
+    color: rgba(234, 137, 0, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(180, 105, 0, 1), 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.Op_2:hover {
+    color: rgba(255, 159, 25, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(200, 120, 10, 1), 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.Op_3:hover {
+    color: rgba(254, 191, 102, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(200, 145, 70, 1), 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.Op_4:hover {
+    color: rgba(255, 217, 164, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(210, 170, 120, 1), 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.Op_1:active,
+.Op_2:active,
+.Op_3:active,
+.Op_4:active {
+    transform: translateY(0);
+}

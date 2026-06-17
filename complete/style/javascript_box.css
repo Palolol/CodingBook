@@ -97,3 +97,64 @@
     width: 100%;
     cursor: pointer;
 }
+
+.javascript_Op_1,
+.javascript_Op_2,
+.javascript_Op_3,
+.javascript_Op_4 {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.35s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.javascript_Op_1::before,
+.javascript_Op_2::before,
+.javascript_Op_3::before,
+.javascript_Op_4::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: white;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: -1;
+}
+
+.javascript_Op_1:hover::before,
+.javascript_Op_2:hover::before,
+.javascript_Op_3:hover::before,
+.javascript_Op_4:hover::before {
+    transform: scaleX(1);
+}
+
+.javascript_Op_1:hover {
+    color: rgba(230, 215, 0, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(170, 160, 0, 1), 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.javascript_Op_2:hover {
+    color: rgba(255, 238, 0, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(190, 177, 0, 1), 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.javascript_Op_3:hover {
+    color: rgba(255, 243, 69, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(195, 185, 40, 1), 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.javascript_Op_4:hover {
+    color: rgba(255, 246, 122, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 0 rgba(200, 190, 90, 1), 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.javascript_Op_1:active,
+.javascript_Op_2:active,
+.javascript_Op_3:active,
+.javascript_Op_4:active {
+    transform: translateY(0);
+}
