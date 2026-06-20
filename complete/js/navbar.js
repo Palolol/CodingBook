@@ -40,13 +40,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Resolve a URL against the current page so root-relative paths like
+    // "/test/qcm.html" work on GitHub Pages (where the site lives under
+    // /CodingBook/) AND on a localhost dev server. Works at any folder depth.
+    function resolveUrl(url) {
+        if (!url || url === '#') return url;
+        if (!url.startsWith('/')) return url;            // already relative or absolute http(s)
+        // Strip leading "/" and resolve against the folder containing the current page.
+        var here = window.location.pathname;            // e.g. /CodingBook/test/qcm.html
+        var lastSlash = here.lastIndexOf('/');
+        var base = lastSlash >= 0 ? here.slice(0, lastSlash + 1) : '/';
+        return base + url.slice(1);
+    }
+
     if (sidebarLogout) {
         sidebarLogout.addEventListener('click', async (e) => {
             e.preventDefault();
             closeSidebar();
             try {
                 await logoutUser();
-                window.location.href = '/login.html';
+                window.location.href = resolveUrl('/login.html');
             } catch (err) {
                 console.error('Logout error:', err);
             }
@@ -112,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function handleLogoutClick() {
         try {
             await logoutUser();
-            window.location.href = '/login.html';
+            window.location.href = resolveUrl('/login.html');
         } catch (err) {
             console.error('Logout error:', err);
             alert('Failed to sign out.');
@@ -279,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 li.addEventListener('click', () => {
                     wrapperEl.classList.remove('active');
-                    if (item.url !== '#') window.location.href = item.url;
+                    if (item.url !== '#') window.location.href = resolveUrl(item.url);
                 });
 
                 resultsEl.appendChild(li);
