@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeQuest — Learn by Doing</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ── PARTIAL: html/topbar.html ── -->
+  <!-- ═══════════════════════════════════════════════════════
+  TOP BAR
+════════════════════════════════════════════════════════ -->
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-icon">⚡</div>
+    Code<span>Quest</span>
+  </div>
+
+  <div class="topbar-stats">
+    <div class="stat-pill streak" title="Day Streak">
+      <span class="icon">🔥</span>
+      <span class="streak-num" id="streak-stat">7</span>
+    </div>
+    <div class="stat-pill xp" title="Total XP">
+      <span class="icon">⭐</span>
+      <span class="xp-num" id="xp-stat">420</span>
+    </div>
+    <div class="stat-pill gems" title="Gems">
+      <span class="icon">💎</span>
+      <span class="gems-num">135</span>
+    </div>
+    <div class="stat-pill hearts" title="Hearts">
+      <span class="icon">❤️</span>
+      <span class="hearts-num" id="hearts-stat">4</span>
+    </div>
+    <div class="avatar" title="Profile">CQ</div>
+  </div>
+</div>
+
+
+  <!-- ── 3-COLUMN LAYOUT WRAPPER ── -->
+  <div class="app">
+
+    <!-- ── PARTIAL: html/sidebar.html ── -->
+    <!-- ═══════════════════════════════════════════════════════
+  LEFT SIDEBAR
+════════════════════════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-label">HTML Basics</div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-item active" onclick="loadLesson('tags', this)">
+      <div class="s-icon">🏷️</div>
+      Syntax
+      <span class="xp-badge">+7.5 XP</span>
+    </div>
+    <div class="sidebar-item active" onclick="loadLesson('tags', this)">
+      <div class="s-icon">🏷️</div>
+      Tags
+      <span class="xp-badge">+7.5 XP</span>
+    </div>
+    <div class="sidebar-item" onclick="loadLesson('elements', this)">
+      <div class="s-icon">📦</div>
+      Elements
+      <span class="xp-badge">+15 XP</span>
+    </div>
+    <div class="sidebar-item" onclick="loadLesson('attrs', this)">
+      <div class="s-icon">🔧</div>
+      Attributes
+      <span class="xp-badge">+15 XP</span>
+    </div>
+  </div>
+
+  <div class="sidebar-label">Practice</div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-item" onclick="showQuiz(this)">
+      <div class="s-icon">🧠</div>
+      HTML Quiz
+      <span class="xp-badge">+50 XP</span>
+    </div>
+  </div>
+
+  <div class="sidebar-label">Coming Soon</div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-item locked">
+      <div class="s-icon">🎨</div>
+      CSS Basics
+      <span class="xp-badge">+20 XP</span>
+    </div>
+    <div class="sidebar-item locked">
+      <div class="s-icon">⚡</div>
+      JavaScript
+      <span class="xp-badge">+25 XP</span>
+    </div>
+    <div class="sidebar-item locked">
+      <div class="s-icon">🗄️</div>
+      Databases
+      <span class="xp-badge">+30 XP</span>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- ── PARTIAL: html/main.html ── -->
+    <!-- ═══════════════════════════════════════════════════════
+  CENTRE: LESSON CONTENT
+════════════════════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- Progress header -->
+  <div class="lesson-header">
+    <div class="close-btn" onclick="closeLesson()" title="Back to home">✕</div>
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progress-bar"></div>
+    </div>
+    <span class="lesson-step-label" id="step-label">Step 1 / 4</span>
+  </div>
+
+  <!-- Scrollable lesson area -->
+  <div class="lesson-body" id="lesson-body">
+    <div class="lesson-title">HTML <span>Tags</span></div>
+
+    <!-- Core Concept -->
+    <div class="concept-box">
+      <h3>📖 Core Concept</h3>
+      <p>
+        HTML uses <strong>tags</strong> wrapped in angle brackets to
+        structure web pages. Every tag like <code>&lt;h1&gt;</code> or
+        <code>&lt;p&gt;</code> tells the browser how to display the
+        content inside it.
+      </p>
+      <p>
+        Most tags come in pairs — an <strong>opening tag</strong> and a
+        <strong>closing tag</strong> (with a <code>/</code> before the
+        name). The content lives between them.
+      </p>
+    </div>
+
+    <!-- Tip -->
+    <div class="tip-box">
+      <div class="tip-icon">💡</div>
+      <div>
+        <strong>Bugsy says:</strong>
+        Try editing the code below and clicking Run — watching it work
+        live is the best way to learn!
+      </div>
+    </div>
+
+    <!-- Code editor -->
+    <div class="editor-wrap">
+      <div class="editor-topbar">
+        <div class="e-dot r"></div>
+        <div class="e-dot y"></div>
+        <div class="e-dot g"></div>
+        <div class="editor-tabs">
+          <div class="e-tab active">index.html</div>
+        </div>
+        <button class="run-btn" onclick="runCode()">▶ Run Code</button>
+      </div>
+
+      <div class="editor-area">
+        <div class="code-pane">
+          <div class="line-nums" id="line-nums">
+            <span>1</span><span>2</span><span>3</span>
+            <span>4</span><span>5</span><span>6</span>
+          </div>
+          <textarea
+            class="code-input"
+            id="code-editor"
+            spellcheck="false"
+            oninput="updateLineNums()"
+          >
+&lt;h1&gt;Hello, World!&lt;/h1&gt;
+&lt;h2&gt;I am a sub-heading&lt;/h2&gt;
+&lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+&lt;strong&gt;Bold text here&lt;/strong&gt;
+&lt;em&gt;And italic text here&lt;/em&gt;</textarea>
+        </div>
+
+        <div class="preview-pane">
+          <div class="preview-label">🌐 Preview</div>
+          <iframe
+            id="preview-frame"
+            sandbox="allow-scripts allow-same-origin"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz -->
+    <div class="quiz-section" id="quiz-box">
+      <div class="quiz-question" id="quiz-q">
+        🧠 Which tag creates the <em>largest</em> heading on a page?
+      </div>
+      <div class="quiz-options" id="quiz-opts">
+        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;h6&gt;</div>
+        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;header&gt;</div>
+        <div class="quiz-opt" onclick="checkAnswer(this, true)">&lt;h1&gt;</div>
+        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;big&gt;</div>
+      </div>
+    </div>
+
+  </div><!-- /lesson-body -->
+</main>
+
+
+    <!-- ── PARTIAL: html/right-panel.html ── -->
+    <!-- ═══════════════════════════════════════════════════════
+  RIGHT PANEL
+════════════════════════════════════════════════════════ -->
+<aside class="right-panel">
+
+  <!-- Mascot -->
+  <div class="panel-card">
+    <div class="mascot">
+      <span class="mascot-body" id="mascot">🦎</span>
+      <div class="mascot-speech" id="mascot-speech">
+        Hi! I'm Bugsy — let's learn HTML together! 🚀
+      </div>
+    </div>
+  </div>
+
+  <!-- Level & XP -->
+  <div class="panel-card">
+    <div class="panel-title">Your Progress</div>
+    <div class="level-info">
+      <div class="level-badge">🌱</div>
+      <div class="level-meta">
+        <div class="level-name">Level 5 — Apprentice</div>
+        <div class="level-sub">HTML Beginner Path</div>
+      </div>
+    </div>
+    <div class="xp-bar-wrap">
+      <div class="xp-bar-fill" id="xp-bar" style="width: 62%"></div>
+    </div>
+    <div class="xp-text">420 / 680 XP to Level 6</div>
+  </div>
+
+  <!-- Streak -->
+  <div class="panel-card">
+    <div class="panel-title">Daily Streak</div>
+    <div class="streak-display">
+      <span class="streak-flame">🔥</span>
+      <div class="streak-count">7</div>
+      <div class="streak-label">days in a row!</div>
+      <div class="streak-days">
+        <div class="day-dot done"><span>M</span></div>
+        <div class="day-dot done"><span>T</span></div>
+        <div class="day-dot done"><span>W</span></div>
+        <div class="day-dot done"><span>T</span></div>
+        <div class="day-dot done"><span>F</span></div>
+        <div class="day-dot done"><span>S</span></div>
+        <div class="day-dot today"><span>S</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achievements -->
+  <div class="panel-card">
+    <div class="panel-title">Achievements</div>
+    <div class="achievement-list">
+
+      <div class="achievement">
+        <div class="ach-icon" style="background: rgba(255, 200, 0, 0.15)">🏆</div>
+        <div class="ach-info">
+          <div class="ach-name">First Lesson!</div>
+          <div class="ach-sub">Completed your first lesson</div>
+        </div>
+        <div class="ach-stars">★★★</div>
+      </div>
+
+      <div class="achievement">
+        <div class="ach-icon" style="background: rgba(255, 150, 0, 0.15)">🔥</div>
+        <div class="ach-info">
+          <div class="ach-name">Week Warrior</div>
+          <div class="ach-sub">7-day streak achieved</div>
+        </div>
+        <div class="ach-stars">★★★</div>
+      </div>
+
+      <div class="achievement ach-locked">
+        <div class="ach-icon" style="background: rgba(206, 130, 255, 0.15)">💎</div>
+        <div class="ach-info">
+          <div class="ach-name">CSS Master</div>
+          <div class="ach-sub">Complete CSS unit</div>
+        </div>
+        <div class="ach-stars">☆☆☆</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="panel-card">
+    <div class="panel-title">Leaderboard</div>
+    <div class="leaderboard-list">
+
+      <div class="lb-row">
+        <div class="lb-rank gold">🥇</div>
+        <div class="lb-avatar" style="background: linear-gradient(135deg, #ff9600, #ffc800)">AX</div>
+        <div class="lb-name">alexcodes</div>
+        <div class="lb-xp">1,840 XP</div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-rank silver">🥈</div>
+        <div class="lb-avatar" style="background: linear-gradient(135deg, #1cb0f6, #ce82ff)">JL</div>
+        <div class="lb-name">jayla_dev</div>
+        <div class="lb-xp">1,560 XP</div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-rank bronze">🥉</div>
+        <div class="lb-avatar" style="background: linear-gradient(135deg, #58cc02, #1cb0f6)">KM</div>
+        <div class="lb-name">km_learns</div>
+        <div class="lb-xp">980 XP</div>
+      </div>
+
+      <div class="lb-row me">
+        <div class="lb-rank" style="color: var(--green)">4</div>
+        <div class="lb-avatar" style="background: linear-gradient(135deg, var(--purple), var(--blue))">CQ</div>
+        <div class="lb-name" style="color: var(--green)">You</div>
+        <div class="lb-xp">420 XP</div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-rank">5</div>
+        <div class="lb-avatar" style="background: linear-gradient(135deg, #ff4b4b, #ff9600)">RT</div>
+        <div class="lb-name">ritchie_t</div>
+        <div class="lb-xp">385 XP</div>
+      </div>
+
+    </div>
+  </div>
+
+</aside>
+
+
+  </div><!-- /app -->
+
+  <!-- ── PARTIAL: html/feedback.html ── -->
+  <!-- ═══════════════════════════════════════════════════════
+  FEEDBACK TOAST (fixed bottom)
+════════════════════════════════════════════════════════ -->
+<div class="feedback-bar" id="feedback-bar">
+  <div class="fb-content">
+    <div class="fb-icon" id="fb-icon">✅</div>
+    <div>
+      <div class="fb-msg" id="fb-msg">Brilliant! 🎉</div>
+      <div class="fb-sub" id="fb-sub">+15 XP earned!</div>
+    </div>
+  </div>
+  <button class="fb-btn" id="fb-btn" onclick="closeFeedback()">
+    Continue →
+  </button>
+</div>
+
+<!-- XP floating pop -->
+<div class="xp-pop" id="xp-pop">+5 XP ⭐</div>
+
+
+  <!-- ── SCRIPTS (order matters) ── -->
+  <script src="js/state.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/lessons.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>

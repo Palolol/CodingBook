@@ -1,4 +1,4 @@
-# 📚 WebBooks
+# 📚 CodingBooks
 
 > A web-based learning platform for beginner web developers.
 > Learn HTML, CSS, and JavaScript through tutorials, videos, exercises, and tests.
@@ -388,7 +388,7 @@ Make sure `updateUserProfile` exists in `db.js`
 
 ## 📄 License
 
-MIT License — Copyright (c) 2025 WebBooks
+MIT License — Copyright (c) 2025 CodingBooks
 
 ---
 
@@ -398,10 +398,10 @@ MIT License — Copyright (c) 2025 WebBooks
 |---------|---------|
 | Email | webbooksupport@gmail.com |
 | Phone | +855 12345678 |
-| Meta | Web-Books |
+| Meta | CodingBooks |
 
 ---
 
 <div align="center">
-  Made with ❤️ for beginner web developers · © 2025 WebBooks
+  Made with ❤️ for beginner web developers · © 2025 CodingBooks
 </div>
