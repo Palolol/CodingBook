@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Elements & Tags - CodingBooks</title>
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="style/tutorial.css">
+    <link rel="icon" type="image/png" href="../assets/image.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+        </div>
+        <div class="nav-center">
+            <div class="search-results-wrapper">
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" id="navSearchInput" placeholder="Search topics..."
+                            autocomplete="off">
+                    </div>
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-dropdown" id="navSearchDropdown">
+                    <ul id="navSearchResults"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle"><i
+                    class="fas fa-search"></i></button>
+            <button class="nav-icon-btn"><i class="fas fa-bell"></i><span class="notification-badge">3</span></button>
+            <div class="profile-wrapper">
+                <div class="avatar" id="userAvatar">?</div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-header">
+                        <div class="avatar-large" id="userAvatarLarge">?</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="userName">Loading...</div>
+                            <div class="profile-email" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <a href="../profile.html" class="profile-item"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#" class="profile-item logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign
+                        Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <div class="sidebar-label">Main</div>
+                <a href="../homepage.html" class="sidebar-link"><i class="fas fa-home"></i> Home</a>
+                <a href="../profile.html" class="sidebar-link"><i class="fas fa-user"></i> My Profile</a>
+            </div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-section">
+                <div class="sidebar-label"><span class="label-dot" style="background:#e44d26;"></span> HTML</div>
+                <a href="html-intro.html" class="sidebar-link"><i class="fas fa-book"></i> Introduction</a>
+                <a href="html-elements.html" class="sidebar-link active"><i class="fas fa-code"></i> Elements & Tags</a>
+                <a href="html-headings.html" class="sidebar-link"><i class="fas fa-heading"></i> Headings</a>
+            </div>
+        </div>
+    </aside>
+
+    
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack"><i class="fas fa-arrow-left"></i></button>
+            <div class="search-form" style="flex:1;">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..."
+                        autocomplete="off">
+                </div>
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="tutorial-container">
+        <nav class="breadcrumb">
+            <a href="../homepage.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>HTML</span>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">HTML Elements & Tags</span>
+        </nav>
+
+        <h1 class="tutorial-title">HTML Elements & Tags</h1>
+        <p class="tutorial-subtitle">
+            រៀនអំពី HTML Elements និង Tags ផ្សេងៗ<br>
+            ▷ ស្វែងយល់អំពី opening tag និង closing tag<br>
+            ▷ Empty elements (self-closing tags)<br>
+            ▷ Common HTML elements
+        </p>
+
+        <div class="tutorial-content">
+            <h2>What is an HTML Element?</h2>
+            <p class="justify">
+                <span class="khmer">HTML Element គឺជា building blocks នៃ webpage មួយ។</span><br><br>
+                An HTML element is defined by an <span class="keyword">opening tag</span>,
+                some content, and a <span class="keyword">closing tag</span>.
+            </p>
+
+            <h2>Example</h2>
+            <pre><code>&lt;tagname&gt;Content goes here...&lt;/tagname&gt;</code></pre>
+
+            <h2>Common HTML Elements</h2>
+            <pre><code>&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;a href="..."&gt;This is a link&lt;/a&gt;
+&lt;img src="..." alt="..."&gt;
+&lt;ul&gt;
+  &lt;li&gt;List item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+
+        <main class="lesson-main">
+            <div class="lesson-header">
+                <div class="close-btn" onclick="closeLesson()" title="Back">✕</div>
+                <div class="progress-wrap">
+                    <div class="progress-fill" id="progress-bar"></div>
+                </div>
+                <span class="lesson-step-label" id="step-label">Step 2 / 4</span>
+            </div>
+
+            <div class="lesson-body">
+                <div class="lesson-title">HTML <span>Elements</span></div>
+
+                <div class="concept-box">
+                    <h3>📖 Core Concept</h3>
+                    <p>Every HTML element has 3 parts: <strong>opening tag</strong>, <strong>content</strong>, and
+                        <strong>closing tag</strong>.</p>
+                    <p>Some elements like <code>&lt;br&gt;</code> and <code>&lt;img&gt;</code> are
+                        <strong>self-closing</strong> and don't need a closing tag.</p>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-icon">💡</div>
+                    <div><strong>Tip:</strong> Always close your tags properly to avoid browser errors!</div>
+                </div>
+
+                <div class="editor-wrap">
+                    <div class="editor-topbar">
+                        <div class="e-dot r"></div>
+                        <div class="e-dot y"></div>
+                        <div class="e-dot g"></div>
+                        <div class="editor-tabs">
+                            <div class="e-tab active">elements.html</div>
+                        </div>
+                        <button class="run-btn" onclick="runCode()">▶ Run Code</button>
+                    </div>
+                    <div class="editor-area">
+                        <div class="code-pane">
+                            <div class="line-nums" id="line-nums"></div>
+                            <textarea class="code-input" id="code-editor" spellcheck="false" oninput="updateLineNums()">&lt;h1&gt;Welcome!&lt;/h1&gt;
+&lt;p&gt;This is my first HTML page.&lt;/p&gt;
+&lt;img src="https://via.placeholder.com/150" alt="Sample"&gt;
+&lt;br&gt;
+&lt;a href="#"&gt;Click me!&lt;/a&gt;</textarea>
+                        </div>
+                        <div class="preview-pane">
+                            <div class="preview-label">🌐 Preview</div>
+                            <iframe id="preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">🧠 Which HTML element does NOT need a closing tag?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;div&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;p&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, true)">&lt;img&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;span&gt;</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="tutorial-nav">
+            <a href="html-intro.html" class="prev-btn"><i class="fas fa-arrow-left"></i> HTML Introduction</a>
+            <a href="html-headings.html" class="next-btn">Next: HTML Headings <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-guard.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="js/tutorial.js"></script>
+</body>
+
+</html>

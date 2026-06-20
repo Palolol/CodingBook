@@ -1,8 +1,6 @@
 const fs = require('fs');
 
-/*
-✔ You can delete this comment or keep it
-*/
+
 
 const readme = `
 

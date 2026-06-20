@@ -1,6 +1,4 @@
-/* ─────────────────────────────────────────
-   firebase-config.js
-───────────────────────────────────────── */
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCcnsuSBew33eOOSOEos0oVmYQ-Iq_43sw",

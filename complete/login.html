@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - WebBooks</title>
+    <title>Login - CodingBooks</title>
     <link rel="icon" type="image/png" href="assets/image.png" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -13,19 +13,19 @@
 
 <body>
 
-    <!-- Loading Overlay -->
+    
     <div id="loading" class="loading-overlay">
         <div class="loading-spinner">
             <i class="fas fa-spinner fa-spin"></i>
         </div>
     </div>
 
-    <!-- Toast -->
+    
     <div id="toast" class="toast"></div>
 
     <div class="login-wrapper">
 
-        <!--ផ្ទាំងខាងឆ្វេង -->
+        
         <div class="login-branding">
             <div class="brand-content">
                 <div class="brand-logo">
@@ -56,10 +56,10 @@
             </div>
         </div>
 
-        <!--ផ្ទាំងខាងស្តាំ-->
+        
         <div class="login-form-side">
 
-            <!--tab sign-ing and create account-->
+            
             <div class="tabs-wrapper">
                 <div class="tabs">
                     <button class="tab active" onclick="switchTab('login')">Sign In</button>
@@ -67,14 +67,14 @@
                 </div>
             </div>
 
-            <!--login-->
+            
             <div class="form-container active" id="loginForm">
                 <div class="form-header">
                     <div class="mobile-logo">
                         <div class="brand-icon-sm">
                             <i class="fas fa-book-open"></i>
                         </div>
-                        <h2>Web<span>Books</span></h2>
+                        <h2>Coding<span>Books</span></h2>
                     </div>
                     <h1>Welcome Back</h1>
                     <p>Sign in to continue learning</p>
@@ -118,14 +118,14 @@
                 </form>
             </div>
 
-            <!--register-->
+            
             <div class="form-container" id="registerForm">
                 <div class="form-header">
                     <div class="mobile-logo">
                         <div class="brand-icon-sm">
                             <i class="fas fa-book-open"></i>
                         </div>
-                        <h2>Web<span>Books</span></h2>
+                        <h2>Coding<span>Books</span></h2>
                     </div>
                     <h1>Create Account</h1>
                     <p>Start your web development journey</p>
@@ -160,7 +160,7 @@
                     </div>
                     <span class="hint" id="regPasswordHint"></span>
 
-                    <!-- Password Strength -->
+                    
                     <div class="strength-row" id="strengthRow">
                         <div class="strength-seg" id="s1"></div>
                         <div class="strength-seg" id="s2"></div>
@@ -183,14 +183,14 @@
                 </form>
             </div>
 
-            <!--forgot password?-->
+            
             <div class="form-container" id="forgotForm">
                 <div class="form-header">
                     <div class="mobile-logo">
                         <div class="brand-icon-sm">
                             <i class="fas fa-book-open"></i>
                         </div>
-                        <h2>Web<span>Books</span></h2>
+                        <h2>Coding<span>Books</span></h2>
                     </div>
                     <h1>Reset Password</h1>
                     <p>Enter your email to receive a reset link</p>
@@ -220,12 +220,12 @@
         </div>
     </div>
 
-    <!-- Firebase v8 Compat SDKs -->
+    
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-    <!-- Your files -->
+    
     <script src="js/firebase-config.js"></script>
     <script src="js/db.js"></script>
     <script src="js/auth.js"></script>

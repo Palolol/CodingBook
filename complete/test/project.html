@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small Project - CodingBooks</title>
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="style/tests.css">
+    <link rel="icon" type="image/png" href="../assets/image.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+        </div>
+        <div class="nav-center">
+            <div class="search-results-wrapper">
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" id="navSearchInput" placeholder="Search..."
+                            autocomplete="off">
+                    </div>
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-dropdown" id="navSearchDropdown">
+                    <ul id="navSearchResults"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle"><i
+                    class="fas fa-search"></i></button>
+            <button class="nav-icon-btn"><i class="fas fa-bell"></i><span class="notification-badge">3</span></button>
+            <div class="profile-wrapper">
+                <div class="avatar" id="userAvatar">?</div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-header">
+                        <div class="avatar-large" id="userAvatarLarge">?</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="userName">Loading...</div>
+                            <div class="profile-email" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <a href="../profile.html" class="profile-item"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#" class="profile-item logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign
+                        Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <div class="sidebar-label">Main</div>
+                <a href="../homepage.html" class="sidebar-link"><i class="fas fa-home"></i> Home</a>
+            </div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-section">
+                <div class="sidebar-label"><span class="label-dot" style="background:#9c27b0;"></span> Final Tests</div>
+                <a href="qcm.html" class="sidebar-link"><i class="fas fa-question-circle"></i> QCM</a>
+                <a href="qna.html" class="sidebar-link"><i class="fas fa-comments"></i> Q&A</a>
+                <a href="project.html" class="sidebar-link active"><i class="fas fa-project-diagram"></i> Small
+                    Project</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Search -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack"><i class="fas fa-arrow-left"></i></button>
+            <div class="search-form" style="flex:1;">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..."
+                        autocomplete="off">
+                </div>
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="test-container">
+        <nav class="breadcrumb">
+            <a href="../homepage.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Final Test</span>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">Small Project</span>
+        </nav>
+
+        <!-- Hero -->
+        <div class="project-hero">
+            <div class="project-hero-icon"><i class="fas fa-rocket"></i></div>
+            <h2>Build a Profile Card</h2>
+            <p>
+                Complete the tasks below to build a responsive profile card using HTML and CSS.
+                Check each task as you finish it. Use the live editor to write and preview your code!
+            </p>
+        </div>
+
+        <!-- Tasks -->
+        <div class="project-tasks" id="taskList">
+            <div class="project-task" onclick="toggleTask(0)">
+                <div class="task-check">✓</div>
+                <div class="task-title">1. Create the HTML structure</div>
+                <div class="task-desc">Add a container div, avatar image, name, and bio paragraph.</div>
+            </div>
+            <div class="project-task" onclick="toggleTask(1)">
+                <div class="task-check">✓</div>
+                <div class="task-title">2. Add CSS styling</div>
+                <div class="task-desc">Style the card with background color, border radius, and padding.</div>
+            </div>
+            <div class="project-task" onclick="toggleTask(2)">
+                <div class="task-check">✓</div>
+                <div class="task-title">3. Center the card</div>
+                <div class="task-desc">Use Flexbox to center the card on the page.</div>
+            </div>
+            <div class="project-task" onclick="toggleTask(3)">
+                <div class="task-check">✓</div>
+                <div class="task-title">4. Add hover effect</div>
+                <div class="task-desc">Add a hover effect that lifts the card with a shadow.</div>
+            </div>
+        </div>
+
+        <!-- Code Editor -->
+        <div class="project-editor-wrap">
+            <div class="editor-topbar">
+                <div class="e-dot r"></div>
+                <div class="e-dot y"></div>
+                <div class="e-dot g"></div>
+                <div class="editor-tabs">
+                    <div class="e-tab active" onclick="switchCodeTab('html')">index.html</div>
+                    <div class="e-tab" onclick="switchCodeTab('css')">style.css</div>
+                </div>
+                <button class="run-btn" onclick="runProject()">▶ Run Code</button>
+            </div>
+
+            <div class="project-editor-area">
+                <div class="code-pane">
+                    <div class="line-nums" id="line-nums"></div>
+
+                    <div class="code-tab-content active" id="tab-html">
+                        <textarea class="code-input" id="code-html" spellcheck="false" oninput="updateLineNums()">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="card"&gt;
+    &lt;img class="avatar"
+      src="https://i.pravatar.cc/150?img=3"
+      alt="Avatar"&gt;
+    &lt;h2 class="name"&gt;John Doe&lt;/h2&gt;
+    &lt;p class="bio"&gt;Web Developer &amp; Designer&lt;/p&gt;
+    &lt;div class="skills"&gt;
+      &lt;span&gt;HTML&lt;/span&gt;
+      &lt;span&gt;CSS&lt;/span&gt;
+      &lt;span&gt;JavaScript&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                    </div>
+
+                    <div class="code-tab-content" id="tab-css">
+                        <textarea class="code-input" id="code-css" spellcheck="false" oninput="updateLineNums()">body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f4ff;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #3ea6ff;
+    margin-bottom: 16px;
+}
+
+.name {
+    margin: 0 0 8px;
+    color: #222;
+}
+
+.bio {
+    color: #666;
+    margin: 0 0 16px;
+}
+
+.skills {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.skills span {
+    background: #e8f4ff;
+    color: #3ea6ff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}</textarea>
+                    </div>
+                </div>
+
+                <div class="preview-pane">
+                    <div class="preview-label">🌐 Live Preview</div>
+                    <iframe id="preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="submit-section" id="submitSection">
+            <h3>🎉 Finished your project?</h3>
+            <p>Make sure all 4 tasks are checked before submitting!</p>
+            <button class="btn-submit" id="submitBtn" onclick="submitProject()" disabled>
+                <i class="fas fa-paper-plane"></i> Submit Project
+            </button>
+        </div>
+
+        <!-- Completion -->
+        <div class="completion-card" id="completionCard">
+            <div class="completion-icon">🏆</div>
+            <h2>Project Complete!</h2>
+            <p>Congratulations! You've built your first profile card!</p>
+            <a href="../homepage.html" class="btn-home">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+
+        <div class="test-nav">
+            <a href="qna.html" class="test-prev"><i class="fas fa-arrow-left"></i> Q&A</a>
+            <a href="../homepage.html" class="test-next">Finish <i class="fas fa-check"></i></a>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-guard.js"></script>
+    <script src="../js/navbar.js"></script>
+
+    <script>
+        /* ═══════════════════════════════════════════
+           PROJECT LOGIC
+        ═══════════════════════════════════════════ */
+
+        const tasks = [false, false, false, false];
+
+        // Run on load
+        document.addEventListener('DOMContentLoaded', () => {
+            runProject();
+            updateLineNums();
+        });
+
+        // Toggle task completion
+        function toggleTask(index) {
+            tasks[index] = !tasks[index];
+            const taskEl = document.querySelectorAll('.project-task')[index];
+            taskEl.classList.toggle('done', tasks[index]);
+
+            // Check if all done
+            const allDone = tasks.every(t => t);
+            document.getElementById('submitBtn').disabled = !allDone;
+        }
+
+        // Switch code tabs
+        function switchCodeTab(tab) {
+            document.querySelectorAll('.e-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.code-tab-content').forEach(c => c.classList.remove('active'));
+
+            if (tab === 'html') {
+                document.querySelectorAll('.e-tab')[0].classList.add('active');
+                document.getElementById('tab-html').classList.add('active');
+            } else {
+                document.querySelectorAll('.e-tab')[1].classList.add('active');
+                document.getElementById('tab-css').classList.add('active');
+            }
+            updateLineNums();
+        }
+
+        // Run code in preview
+        function runProject() {
+            const htmlCode = document.getElementById('code-html').value;
+            const cssCode = document.getElementById('code-css').value;
+            const frame = document.getElementById('preview-frame');
+
+            const fullHtml = `<!DOCTYPE html>
+<html>
+<head>
+    <style>${cssCode}</style>
+</head>
+<body>
+    ${extractBody(htmlCode)}
+</body>
+</html>`;
+
+            frame.srcdoc = fullHtml;
+        }
+
+        function extractBody(html) {
+            const match = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+            return match ? match[1] : html;
+        }
+
+        // Update line numbers
+        function updateLineNums() {
+            const lineNums = document.getElementById('line-nums');
+            const activeTab = document.querySelector('.code-tab-content.active textarea');
+            if (!lineNums || !activeTab) return;
+
+            const lines = activeTab.value.split('\n').length;
+            lineNums.innerHTML = '';
+            for (let i = 1; i <= lines; i++) {
+                lineNums.innerHTML += `<span>${i}</span>`;
+            }
+        }
+
+        // Submit project
+        function submitProject() {
+            document.getElementById('submitSection').style.display = 'none';
+            document.getElementById('completionCard').classList.add('show');
+
+            // Confetti effect
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                position: fixed;
+                width: 10px;
+                height: 10px;
+                background: hsl(${Math.random() * 360}, 80%, 60%);
+                border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+                top: -10px;
+                left: ${Math.random() * 100}vw;
+                z-index: 9999;
+                animation: fall ${2 + Math.random() * 3}s linear forwards;
+            `;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        // Add confetti animation
+        const style = document.createElement('style');
+        style.textContent = `
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(${360 + Math.random() * 720}deg);
+                opacity: 0;
+            }
+        }
+    `;
+        document.head.appendChild(style);
+    </script>
+
+</body>
+
+</html>

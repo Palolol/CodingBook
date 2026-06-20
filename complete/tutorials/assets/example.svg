@@ -1,0 +1,73 @@
+<svg width="800" height="450" xmlns="http://www.w3.org/2000/svg">
+
+  <style>
+    .tag { font-family: monospace; font-size: 18px; }
+    .html { fill: #e34c26; font-weight: bold; }
+    .head { fill: #f39c12; }
+    .body { fill: #2ecc71; }
+    .text { fill: #3498db; }
+    .attr { fill: #9b59b6; }
+  </style>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#111827"/>
+
+  <!-- DOCTYPE -->
+  <text x="40" y="50" class="tag text">
+    &lt;!DOCTYPE html&gt;
+    <title>Declares HTML5 document type</title>
+  </text>
+
+  <!-- html -->
+  <text x="40" y="90" class="tag html">
+    &lt;html&gt;
+    <title>Root element of the HTML page</title>
+  </text>
+
+  <!-- head -->
+  <text x="80" y="130" class="tag head">
+    &lt;head&gt;
+    <title>Contains meta info like title, links, scripts</title>
+  </text>
+
+  <!-- title -->
+  <text x="120" y="170" class="tag text">
+    &lt;title&gt;Home Page&lt;/title&gt;
+    <title>Title shown in browser tab</title>
+  </text>
+
+  <!-- /head -->
+  <text x="80" y="210" class="tag head">
+    &lt;/head&gt;
+  </text>
+
+  <!-- body -->
+  <text x="80" y="250" class="tag body">
+    &lt;body&gt;
+    <title>Main visible content of the webpage</title>
+  </text>
+
+  <!-- h1 -->
+  <text x="120" y="290" class="tag html">
+    &lt;h1&gt;GreatX Center&lt;/h1&gt;
+    <title>Main heading (largest title on page)</title>
+  </text>
+
+  <!-- paragraph -->
+  <text x="120" y="330" class="tag text">
+    &lt;p&gt;Paragraph&lt;/p&gt;
+    <title>Represents a paragraph of text</title>
+  </text>
+
+  <!-- /body -->
+  <text x="80" y="370" class="tag body">
+    &lt;/body&gt;
+  </text>
+
+  <!-- /html -->
+  <text x="40" y="410" class="tag html">
+    &lt;/html&gt;
+    <title>Ends the HTML document</title>
+  </text>
+
+</svg>

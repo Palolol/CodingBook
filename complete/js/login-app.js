@@ -1,10 +1,8 @@
-/* ─────────────────────────────────────────
-   login-app.js — UI logic for login page
-───────────────────────────────────────── */
 
-/* ── Tab Switching ── */
+
+
 function switchTab(tab) {
-    // Update tab buttons (only login and register tabs)
+    
     document.querySelectorAll('.tab').forEach((t, i) => {
         t.classList.toggle('active',
             (i === 0 && tab === 'login') ||
@@ -12,7 +10,7 @@ function switchTab(tab) {
         );
     });
 
-    // Show correct form
+    
     document.getElementById('loginForm').classList.toggle('active', tab === 'login');
     document.getElementById('registerForm').classList.toggle('active', tab === 'register');
     document.getElementById('forgotForm').classList.toggle('active', tab === 'forgot');
@@ -20,12 +18,12 @@ function switchTab(tab) {
     clearAllHints();
 }
 
-/* ── Loading ── */
+
 function setLoading(active) {
     document.getElementById('loading').classList.toggle('active', active);
 }
 
-/* ── Hints / Validation ── */
+
 function setHint(id, message, isError = true) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -63,7 +61,7 @@ function markError(inputId, hintId, message) {
     setHint(hintId, message);
 }
 
-/* ── Password Toggle ── */
+
 function togglePass(inputId, btn) {
     const input = document.getElementById(inputId);
     const icon = btn.querySelector('i');
@@ -76,7 +74,7 @@ function togglePass(inputId, btn) {
     }
 }
 
-/* ── Password Strength ── */
+
 function updateStrength() {
     const password = document.getElementById('regPassword').value;
     const segments = ['s1', 's2', 's3'].map(id => document.getElementById(id));
@@ -109,7 +107,7 @@ function updateStrength() {
     clearHint('regPasswordHint');
 }
 
-/* ── Toast ── */
+
 let toastTimer;
 
 function showToast(message, type = 'success') {
@@ -120,7 +118,7 @@ function showToast(message, type = 'success') {
     toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
 }
 
-/* ── Register ── */
+
 async function handleRegister(event) {
     event.preventDefault();
     clearAllHints();
@@ -169,7 +167,7 @@ async function handleRegister(event) {
     }
 }
 
-/* ── Login ── */
+
 async function handleLogin(event) {
     event.preventDefault();
     clearAllHints();
@@ -206,7 +204,7 @@ async function handleLogin(event) {
     }
 }
 
-/* ── Forgot Password ── */
+
 async function handleForgot(event) {
     event.preventDefault();
     clearAllHints();
@@ -233,14 +231,14 @@ async function handleForgot(event) {
     }
 }
 
-/* ── Auth State (redirect if already logged in) ── */
+
 onAuthStateChange(
     (user, profile) => {
-        // Already logged in → go to homepage
+        
         window.location.href = 'homepage.html';
     },
     () => {
-        // Not logged in → stay on login page, show login tab
+        
         switchTab('login');
     }
 );

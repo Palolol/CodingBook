@@ -1,7 +1,7 @@
 {
-    "name": "webbooks",
+    "name": "codingbooks",
     "version": "1.0.0",
-    "description": "WebBooks - Learn and Practice Web Development",
+    "description": "CodingBooks - Learn and Practice Web Development",
     "main": "server.js",
     "scripts": {
         "start": "node server.js",

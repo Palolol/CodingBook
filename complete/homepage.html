@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebBooks.com</title>
+    <title>CodingBooks.com</title>
     <link rel="stylesheet" href="style/header.css">
     <link rel="stylesheet" href="style/html_box.css">
     <link rel="stylesheet" href="style/css_box.css">
@@ -22,9 +22,9 @@
 
 <body>
 
-    <!-- ============ NAVBAR ============ -->
+    
     <nav class="navbar">
-        <!-- ឆ្វេង -->
+        
         <div class="nav-left">
             <button class="hamburger" title="Menu">
                 <i class="fas fa-bars"></i>
@@ -37,7 +37,7 @@
             </a>
         </div>
 
-        <!-- កណ្តាល (Search) -->
+        
         <div class="nav-center">
             <div class="search-results-wrapper">
                 <div class="search-form">
@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <!-- ស្តាំ -->
+        
         <div class="nav-right">
             <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle" title="Search">
                 <i class="fas fa-search"></i>
@@ -65,7 +65,7 @@
                 <span class="notification-badge">3</span>
             </button>
 
-            <!-- Profile Dropdown -->
+            
             <div class="profile-wrapper">
                 <div class="avatar" id="userAvatar" title="Profile">?</div>
                 <div class="profile-dropdown" id="profileDropdown">
@@ -98,209 +98,212 @@
         </div>
     </nav>
 
-        <!-- ============ SIDEBAR ============ -->
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <a href="homepage.html" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="logo-text">Coding<span>Books</span></div>
-                </a>
-                <button class="sidebar-close" id="sidebarClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        
-            <div class="sidebar-content">
-        
-                <!-- Navigation​​ គោល -->
-                <div class="sidebar-section">
-                    <div class="sidebar-label">Main</div>
-                    <a href="homepage.html" class="sidebar-link active">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                    <a href="profile.html" class="sidebar-link">
-                        <i class="fas fa-user"></i> My Profile
-                    </a>
-                    <a href="about.html" class="sidebar-link">
-                        <i class="fas fa-info-circle"></i> About Us
-                    </a>
-                    <a href="contact.html" class="sidebar-link">
-                        <i class="fas fa-envelope"></i> Contact
-                    </a>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="homepage.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
                 </div>
-        
-                <div class="sidebar-divider"></div>
-        
-                <!-- ផ្នែក HTML-->
-                <div class="sidebar-section">
-                    <div class="sidebar-label">
-                        <span class="label-dot" style="background:#e44d26;"></span> HTML
-                    </div>
-                    <a href="tutorials/html-intro.html" class="sidebar-link">
-                        <i class="fas fa-book"></i> Introduction
-                    </a>
-                    <a href="tutorials/html-elements.html" class="sidebar-link">
-                        <i class="fas fa-code"></i> Elements & Tags
-                    </a>
-                    <a href="tutorials/html-forms.html" class="sidebar-link">
-                        <i class="fas fa-file-alt"></i> Forms
-                    </a>
-                    <a href="tutorials/html-semantic.html" class="sidebar-link">
-                        <i class="fas fa-sitemap"></i> Semantic HTML
-                    </a>
-                    <a href="videos/html-course.html" class="sidebar-link">
-                        <i class="fas fa-play-circle"></i> Video Course
-                    </a>
-                    <a href="exercises/html-exercises.html" class="sidebar-link">
-                        <i class="fas fa-dumbbell"></i> Exercises
-                    </a>
-                    <a href="paths/html-path.html" class="sidebar-link">
-                        <i class="fas fa-road"></i> Learning Path
-                    </a>
-                </div>
-        
-                <div class="sidebar-divider"></div>
-        
-                <!-- ផ្នែក CSS -->
-                <div class="sidebar-section">
-                    <div class="sidebar-label">
-                        <span class="label-dot" style="background:#2965f1;"></span> CSS
-                    </div>
-                    <a href="tutorials/css-intro.html" class="sidebar-link">
-                        <i class="fas fa-book"></i> Introduction
-                    </a>
-                    <a href="tutorials/css-selectors.html" class="sidebar-link">
-                        <i class="fas fa-palette"></i> Selectors
-                    </a>
-                    <a href="tutorials/css-box-model.html" class="sidebar-link">
-                        <i class="fas fa-square"></i> Box Model
-                    </a>
-                    <a href="tutorials/css-flexbox.html" class="sidebar-link">
-                        <i class="fas fa-columns"></i> Flexbox
-                    </a>
-                    <a href="tutorials/css-grid.html" class="sidebar-link">
-                        <i class="fas fa-th"></i> Grid
-                    </a>
-                    <a href="tutorials/css-animations.html" class="sidebar-link">
-                        <i class="fas fa-magic"></i> Animations
-                    </a>
-                    <a href="tutorials/css-responsive.html" class="sidebar-link">
-                        <i class="fas fa-mobile-alt"></i> Responsive Design
-                    </a>
-                    <a href="videos/css-course.html" class="sidebar-link">
-                        <i class="fas fa-play-circle"></i> Video Course
-                    </a>
-                    <a href="exercises/css-exercises.html" class="sidebar-link">
-                        <i class="fas fa-dumbbell"></i> Exercises
-                    </a>
-                    <a href="paths/css-path.html" class="sidebar-link">
-                        <i class="fas fa-road"></i> Learning Path
-                    </a>
-                </div>
-        
-                <div class="sidebar-divider"></div>
-        
-                <!-- ផ្នែក JavaScript -->
-                <div class="sidebar-section">
-                    <div class="sidebar-label">
-                        <span class="label-dot" style="background:#f7df1e;"></span> JavaScript
-                    </div>
-                    <a href="tutorials/js-intro.html" class="sidebar-link">
-                        <i class="fas fa-book"></i> Introduction
-                    </a>
-                    <a href="tutorials/js-variables.html" class="sidebar-link">
-                        <i class="fas fa-js"></i> Variables
-                    </a>
-                    <a href="tutorials/js-functions.html" class="sidebar-link">
-                        <i class="fas fa-js"></i> Functions
-                    </a>
-                    <a href="tutorials/js-dom.html" class="sidebar-link">
-                        <i class="fas fa-js"></i> DOM
-                    </a>
-                    <a href="tutorials/js-events.html" class="sidebar-link">
-                        <i class="fas fa-mouse-pointer"></i> Events
-                    </a>
-                    <a href="tutorials/js-fetch.html" class="sidebar-link">
-                        <i class="fas fa-cloud"></i> Fetch / API
-                    </a>
-                    <a href="videos/js-course.html" class="sidebar-link">
-                        <i class="fas fa-play-circle"></i> Video Course
-                    </a>
-                    <a href="exercises/js-exercises.html" class="sidebar-link">
-                        <i class="fas fa-dumbbell"></i> Exercises
-                    </a>
-                    <a href="paths/js-path.html" class="sidebar-link">
-                        <i class="fas fa-road"></i> Learning Path
-                    </a>
-                </div>
-        
-                <div class="sidebar-divider"></div>
-        
-                <!-- ការធ្វើតេស្ត -->
-                <div class="sidebar-section">
-                    <div class="sidebar-label">
-                        <span class="label-dot" style="background:#9c27b0;"></span> Final Tests
-                    </div>
-                    <a href="tests/qcm.html" class="sidebar-link">
-                        <i class="fas fa-question-circle"></i> QCM
-                    </a>
-                    <a href="tests/qna.html" class="sidebar-link">
-                        <i class="fas fa-comments"></i> Q&A
-                    </a>
-                    <a href="tests/project.html" class="sidebar-link">
-                        <i class="fas fa-project-diagram"></i> Small Project
-                    </a>
-                </div>
-        
-                <div class="sidebar-divider"></div>
-        
-                <!-- បន្ថែម ប៉ុន្តែវានឹងមិនដំណើរការ  -->
-                <div class="sidebar-section">
-                    <div class="sidebar-label">More</div>
-                    <a href="paths/full-path.html" class="sidebar-link">
-                        <i class="fas fa-map"></i> Full Learning Path
-                    </a>
-                    <a href="#" class="sidebar-link" id="sidebarThemeToggle">
-                        <i class="fas fa-moon"></i> Dark Mode
-                        <span class="sidebar-toggle-pill active" id="themePill"></span>
-                    </a>
-                    <a href="#" class="sidebar-link" id="sidebarLogout">
-                        <i class="fas fa-sign-out-alt"></i> Sign Out
-                    </a>
-                </div>
-        
-            </div>
-        
-            <div class="sidebar-footer">
-                <div class="sidebar-footer-text">
-                    © 2025 WebBooks
-                </div>
-            </div>
-        </aside>
-
-    <!-- ប្រអប់ស្វែងរកដែលលេចឡើងនៅពេលស្វែងរកដែល យកតាម​​ Mobile Search Overlay -->
-    <div class="mobile-search-overlay" id="mobileSearchOverlay">
-        <button class="mobile-back-btn" id="mobileSearchBack">
-            <i class="fas fa-arrow-left"></i>
-        </button>
-        <div class="search-form">
-            <div class="search-input-wrapper">
-                <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search"
-                    autocomplete="off">
-            </div>
-            <button class="search-btn" title="Search">
-                <i class="fas fa-search"></i>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
             </button>
         </div>
+
+        <div class="sidebar-content">
+
+            
+            <div class="sidebar-section">
+                <div class="sidebar-label">Main</div>
+                <a href="homepage.html" class="sidebar-link active">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="profile.html" class="sidebar-link">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+                <a href="about.html" class="sidebar-link">
+                    <i class="fas fa-info-circle"></i> About Us
+                </a>
+                <a href="contact.html" class="sidebar-link">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#e44d26;"></span> HTML
+                </div>
+                <a href="tutorials/html-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="tutorials/html-elements.html" class="sidebar-link">
+                    <i class="fas fa-code"></i> Elements & Tags
+                </a>
+                <a href="tutorials/html-forms.html" class="sidebar-link">
+                    <i class="fas fa-file-alt"></i> Forms
+                </a>
+                <a href="tutorials/html-semantic.html" class="sidebar-link">
+                    <i class="fas fa-sitemap"></i> Semantic HTML
+                </a>
+                <a href="videos/html-course.html" class="sidebar-link">
+                    <i class="fas fa-play-circle"></i> Video Course
+                </a>
+                <a href="exercises/html-exercises.html" class="sidebar-link">
+                    <i class="fas fa-dumbbell"></i> Exercises
+                </a>
+                <a href="paths/html-path.html" class="sidebar-link">
+                    <i class="fas fa-road"></i> Learning Path
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#2965f1;"></span> CSS
+                </div>
+                <a href="tutorials/css-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="tutorials/css-selectors.html" class="sidebar-link">
+                    <i class="fas fa-palette"></i> Selectors
+                </a>
+                <a href="tutorials/css-box-model.html" class="sidebar-link">
+                    <i class="fas fa-square"></i> Box Model
+                </a>
+                <a href="tutorials/css-flexbox.html" class="sidebar-link">
+                    <i class="fas fa-columns"></i> Flexbox
+                </a>
+                <a href="tutorials/css-grid.html" class="sidebar-link">
+                    <i class="fas fa-th"></i> Grid
+                </a>
+                <a href="tutorials/css-animations.html" class="sidebar-link">
+                    <i class="fas fa-magic"></i> Animations
+                </a>
+                <a href="tutorials/css-responsive.html" class="sidebar-link">
+                    <i class="fas fa-mobile-alt"></i> Responsive Design
+                </a>
+                <a href="videos/css-course.html" class="sidebar-link">
+                    <i class="fas fa-play-circle"></i> Video Course
+                </a>
+                <a href="exercises/css-exercises.html" class="sidebar-link">
+                    <i class="fas fa-dumbbell"></i> Exercises
+                </a>
+                <a href="paths/css-path.html" class="sidebar-link">
+                    <i class="fas fa-road"></i> Learning Path
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#f7df1e;"></span> JavaScript
+                </div>
+                <a href="tutorials/js-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="tutorials/js-variables.html" class="sidebar-link">
+                    <i class="fas fa-js"></i> Variables
+                </a>
+                <a href="tutorials/js-functions.html" class="sidebar-link">
+                    <i class="fas fa-js"></i> Functions
+                </a>
+                <a href="tutorials/js-dom.html" class="sidebar-link">
+                    <i class="fas fa-js"></i> DOM
+                </a>
+                <a href="tutorials/js-events.html" class="sidebar-link">
+                    <i class="fas fa-mouse-pointer"></i> Events
+                </a>
+                <a href="tutorials/js-fetch.html" class="sidebar-link">
+                    <i class="fas fa-cloud"></i> Fetch / API
+                </a>
+                <a href="videos/js-course.html" class="sidebar-link">
+                    <i class="fas fa-play-circle"></i> Video Course
+                </a>
+                <a href="exercises/js-exercises.html" class="sidebar-link">
+                    <i class="fas fa-dumbbell"></i> Exercises
+                </a>
+                <a href="paths/js-path.html" class="sidebar-link">
+                    <i class="fas fa-road"></i> Learning Path
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#9c27b0;"></span> Final Tests
+                </div>
+                <a href="test/qcm.html" class="sidebar-link">
+                    <i class="fas fa-question-circle"></i> QCM
+                </a>
+                <a href="test/qna.html" class="sidebar-link">
+                    <i class="fas fa-comments"></i> Q&A
+                </a>
+                <a href="test/project.html" class="sidebar-link">
+                    <i class="fas fa-project-diagram"></i> Small Project
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            
+            <div class="sidebar-section">
+                <div class="sidebar-label">More</div>
+                <a href="paths/full-path.html" class="sidebar-link">
+                    <i class="fas fa-map"></i> Full Learning Path
+                </a>
+                <a href="#" class="sidebar-link" id="sidebarThemeToggle">
+                    <i class="fas fa-moon"></i> Dark Mode
+                    <span class="sidebar-toggle-pill active" id="themePill"></span>
+                </a>
+                <a href="#" class="sidebar-link" id="sidebarLogout">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </a>
+            </div>
+
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-footer-text">
+                © 2025 CodingBooks
+            </div>
+        </div>
+    </aside>
+
+    
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="search-form" style="flex:1;">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput"
+                        placeholder="Search tutorials, videos..." autocomplete="off">
+                </div>
+                <button class="search-btn" title="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
     </div>
 
-    <!-- Men Minea Part ធ្វើ Homepage interface -->
+    
     <div class="container">
         <div class="header_page">
-            <div class="web_books">Web Books</div>
+            <div class="web_books">Coding Books</div>
             <div class="header_description">Learn and Practice</div>
         </div>
 
@@ -312,10 +315,10 @@
             </div>
             <div class="option_flexbox">
                 <div class="option_section">
-                    <button class="Op_1">About HTML</button> <!-- Button Not Work -->
-                    <button class="Op_2">Video Tutorials</button> <!-- Button Not Work -->
-                    <button class="Op_3">Learning Path</button> <!-- Button Not Work -->
-                    <button class="Op_4">Exercises</button> <!-- Button Not Work -->
+                    <button class="Op_1" onclick="location.href='tutorials/html-intro.html'">About HTML</button> 
+                    <button class="Op_2">Video Tutorials</button> 
+                    <button class="Op_3">Learning Path</button> 
+                    <button class="Op_4">Exercises</button> 
                 </div>
             </div>
         </div>
@@ -323,10 +326,10 @@
         <div class="css_container">
             <div class="option_flexbox">
                 <div class="option_section">
-                    <button class="css_Op_1">About CSS</button> <!-- Button Not Work -->
-                    <button class="css_Op_2">Video Tutorials</button> <!-- Button Not Work -->
-                    <button class="css_Op_3">Learning Path</button> <!-- Button Not Work -->
-                    <button class="css_Op_4">Exercises</button> <!-- Button Not Work -->
+                    <button class="css_Op_1" onclick="location.href='tutorials/css-intro.html'">About CSS</button> 
+                    <button class="css_Op_2">Video Tutorials</button> 
+                    <button class="css_Op_3">Learning Path</button> 
+                    <button class="css_Op_4">Exercises</button> 
                 </div>
             </div>
             <div class="image_section">
@@ -344,15 +347,15 @@
             </div>
             <div class="option_flexbox">
                 <div class="option_section">
-                    <button class="javascript_Op_1">About JavaScript</button> <!-- Button Not Work -->
-                    <button class="javascript_Op_2">Video Tutorials</button> <!-- Button Not Work -->
-                    <button class="javascript_Op_3">Learning Path</button> <!-- Button Not Work -->
-                    <button class="javascript_Op_4">Exercises</button> <!-- Button Not Work -->
+                    <button class="javascript_Op_1" onclick="location.href='tutorials/js-intro.html'">About JavaScript</button> 
+                    <button class="javascript_Op_2">Video Tutorials</button> 
+                    <button class="javascript_Op_3">Learning Path</button> 
+                    <button class="javascript_Op_4">Exercises</button> 
                 </div>
             </div>
         </div>
 
-        <!-- ​​កណ្តាល -->
+        
         <div class="final_box">
             <div class="title_container">
                 <div class="final_test">Final Test</div>
@@ -360,16 +363,16 @@
             </div>
             <div class="test_container">
                 <div class="qcm_container">
-                    <div class="qcm">QCM</div>
-                    <button class="choose">Choose the correct answer</button> <!-- Button Not Work -->
+                    <div class="qcm" onclick="location.href='/test/qcm.html'" style="cursor:pointer;">QCM</div>
+                    <button class="choose" onclick="location.href='/test/qcm.html'">Choose the correct answer</button>
                 </div>
                 <div class="qna_container">
-                    <div class="qna">Q&amp;A</div>
-                    <button class="answer">Answer the question</button> <!-- Button Not Work -->
+                    <div class="qna" onclick="location.href='/test/qna.html'" style="cursor:pointer;">Q&amp;A</div>
+                    <button class="answer" onclick="location.href='/test/qna.html'">Answer the question</button>
                 </div>
                 <div class="project_container">
-                    <div class="project">Small Project</div>
-                    <button class="create">Start to build!</button> <!-- Button Not Work -->
+                    <div class="project" onclick="location.href='/test/project.html'" style="cursor:pointer;">Small Project</div>
+                    <button class="create" onclick="location.href='/test/project.html'">Start to build!</button>
                 </div>
             </div>
             <div class="fare_well_container">
@@ -377,8 +380,8 @@
                 <div class="congratulation">Congratulations! You are now ready to be a web developer.</div>
             </div>
         </div>
+
         
-        <!-- បាត -->
         <div class="footer">
             <div class="footer_content">
                 <div class="WB">WB</div>
@@ -391,7 +394,7 @@
                         <div class="contact_des">
                             <div class="phone">Phone: +855 12345678</div>
                             <div class="email">Email: webbooksupport@gmail.com</div>
-                            <div class="meta">Meta: Web-Books</div>
+                            <div class="meta">Meta: CodingBooks</div>
                         </div>
                     </div>
                 </div>
@@ -399,32 +402,32 @@
             <div class="Donate_box">
                 <div class="donation">Wanted to support us?</div>
                 <div class="donate_subtext">Every contribution helps us grow</div>
-                <button class="Donate_btn">Donate</button> <!-- Button Not Work -->
+                <button class="Donate_btn">Donate</button> 
                 <div class="social_links">
-                    <a href="#" title="Facebook">f</a> <!-- Button Not Work -->
-                    <a href="#" title="Instagram">in</a> <!-- Button Not Work -->
-                    <a href="#" title="YouTube">▶</a> <!-- Button Not Work -->
-                    <a href="#" title="Email">✉</a> <!-- Button Not Work -->
+                    <a href="#" title="Facebook">f</a> 
+                    <a href="#" title="Instagram">in</a> 
+                    <a href="#" title="YouTube">▶</a> 
+                    <a href="#" title="Email">✉</a> 
                 </div>
             </div>
         </div>
 
         <div class="footer_bottom">
-            © 2025 Web Books · All rights reserved · Made for beginner web developers
+            © 2025 Coding Books · All rights reserved · Made for beginner web developers
         </div>
     </div>
 
-    <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-<!-- App scripts (order matters!) -->
-<script src="js/firebase-config.js"></script>
-<script src="js/db.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/auth-guard.js"></script>
-<script src="js/navbar.js"></script>
+    
+    <script src="js/firebase-config.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 
 </html>

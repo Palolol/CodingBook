@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q&A Test - CodingBooks</title>
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="style/tests.css">
+    <link rel="icon" type="image/png" href="../assets/image.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+        </div>
+        <div class="nav-center">
+            <div class="search-results-wrapper">
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" id="navSearchInput" placeholder="Search..."
+                            autocomplete="off">
+                    </div>
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-dropdown" id="navSearchDropdown">
+                    <ul id="navSearchResults"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle"><i
+                    class="fas fa-search"></i></button>
+            <button class="nav-icon-btn"><i class="fas fa-bell"></i><span class="notification-badge">3</span></button>
+            <div class="profile-wrapper">
+                <div class="avatar" id="userAvatar">?</div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-header">
+                        <div class="avatar-large" id="userAvatarLarge">?</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="userName">Loading...</div>
+                            <div class="profile-email" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <a href="../profile.html" class="profile-item"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#" class="profile-item logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign
+                        Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <div class="sidebar-label">Main</div>
+                <a href="../homepage.html" class="sidebar-link"><i class="fas fa-home"></i> Home</a>
+            </div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-section">
+                <div class="sidebar-label"><span class="label-dot" style="background:#9c27b0;"></span> Final Tests</div>
+                <a href="qcm.html" class="sidebar-link"><i class="fas fa-question-circle"></i> QCM</a>
+                <a href="qna.html" class="sidebar-link active"><i class="fas fa-comments"></i> Q&A</a>
+                <a href="project.html" class="sidebar-link"><i class="fas fa-project-diagram"></i> Small Project</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Search -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack"><i class="fas fa-arrow-left"></i></button>
+            <div class="search-form" style="flex:1;">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..."
+                        autocomplete="off">
+                </div>
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="test-container">
+        <nav class="breadcrumb">
+            <a href="../homepage.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Final Test</span>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">Q&A - Written Answers</span>
+        </nav>
+
+        <h1 class="test-title">Q&A — Written Answers</h1>
+        <p class="test-subtitle">Write your answer in the box below each question, then click Check Answer.</p>
+
+        <div id="qna-container"></div>
+
+        <div class="test-nav">
+            <a href="qcm.html" class="test-prev"><i class="fas fa-arrow-left"></i> QCM</a>
+            <a href="project.html" class="test-next">Next: Small Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-guard.js"></script>
+    <script src="../js/navbar.js"></script>
+
+    <script>
+        const qnaData = [
+            {
+                question: "What is HTML and what is it used for?",
+                answer: "HTML (HyperText Markup Language) is the standard language used to create and structure web pages. It defines the content and layout of a webpage using elements like headings, paragraphs, links, images, and forms."
+            },
+            {
+                question: "Explain the difference between HTML, CSS, and JavaScript.",
+                answer: "HTML provides the structure and content of a web page. CSS handles the visual styling — colors, fonts, layout, and spacing. JavaScript adds interactivity and dynamic behavior — things like button clicks, animations, form validation, and data loading."
+            },
+            {
+                question: "What is the CSS Box Model? Name its 4 parts.",
+                answer: "The CSS Box Model describes how HTML elements are sized and spaced. Its 4 parts are: Content (the actual text/image), Padding (space inside the border), Border (the edge around the element), and Margin (space outside the border)."
+            },
+            {
+                question: "What is the DOM in JavaScript?",
+                answer: "The DOM (Document Object Model) is a programming interface for HTML documents. It represents the page as a tree of objects that JavaScript can use to find, change, add, or delete HTML elements and their attributes dynamically."
+            },
+            {
+                question: "What is the difference between flexbox and CSS grid?",
+                answer: "Flexbox is a one-dimensional layout system (works in a row OR column). It's great for aligning items in a single direction. CSS Grid is a two-dimensional layout system (rows AND columns at the same time). It's better for complex page layouts."
+            },
+            {
+                question: "What does 'responsive design' mean?",
+                answer: "Responsive design means creating web pages that automatically adapt their layout and content to fit different screen sizes — from small mobile phones to large desktop monitors. It uses techniques like media queries, flexible grids, and relative units."
+            }
+        ];
+
+        function renderQnA() {
+            const container = document.getElementById('qna-container');
+            container.innerHTML = '';
+
+            qnaData.forEach((q, i) => {
+                container.innerHTML += `
+                <div class="qna-question" id="qna-q-${i}">
+                    <div class="qna-q-header">
+                        <span class="qna-q-number">${i + 1}</span>
+                        <span class="qna-q-text">${q.question}</span>
+                    </div>
+                    <textarea class="qna-textarea" id="qna-input-${i}" placeholder="Type your answer here..."></textarea>
+                    <div class="qna-footer">
+                        <span class="qna-hint" id="qna-hint-${i}"></span>
+                        <button class="qna-check-btn" id="qna-btn-${i}" onclick="checkQnA(${i})">
+                            <i class="fas fa-check"></i> Check Answer
+                        </button>
+                    </div>
+                    <div class="qna-answer-box" id="qna-answer-${i}">
+                        <h4>✅ Model Answer:</h4>
+                        <p>${q.answer}</p>
+                    </div>
+                </div>`;
+            });
+        }
+
+        function checkQnA(index) {
+            const input = document.getElementById(`qna-input-${index}`);
+            const hint = document.getElementById(`qna-hint-${index}`);
+            const answerBox = document.getElementById(`qna-answer-${index}`);
+            const btn = document.getElementById(`qna-btn-${index}`);
+            const userAnswer = input.value.trim();
+
+            if (userAnswer.length < 10) {
+                hint.textContent = 'Please write at least 10 characters.';
+                hint.style.color = '#ff6b6b';
+                return;
+            }
+
+            // Simple keyword matching
+            const keywords = qnaData[index].answer.toLowerCase().split(/\s+/);
+            const userWords = userAnswer.toLowerCase().split(/\s+/);
+            const matches = userWords.filter(w => keywords.includes(w)).length;
+            const ratio = matches / keywords.length;
+
+            if (ratio > 0.3) {
+                hint.textContent = '✅ Good answer!';
+                hint.style.color = '#00cc66';
+                input.style.borderColor = '#00cc66';
+            } else {
+                hint.textContent = '📝 Check the model answer below.';
+                hint.style.color = '#ffaa00';
+                input.style.borderColor = '#ffaa00';
+            }
+
+            answerBox.classList.add('show');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-check-circle"></i> Answered';
+        }
+
+        renderQnA();
+    </script>
+
+</body>
+
+</html>

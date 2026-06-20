@@ -1,6 +1,4 @@
-/* ─────────────────────────────────────────
-   db.js — Firestore user profile operations
-───────────────────────────────────────── */
+
 
 const USERS_COLLECTION = 'users';
 

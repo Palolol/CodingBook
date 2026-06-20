@@ -1,6 +1,4 @@
-/* ─────────────────────────────────────────
-   auth.js — Firebase Authentication logic
-───────────────────────────────────────── */
+
 
 async function registerUser(username, email, password) {
     const credential = await fbAuth.createUserWithEmailAndPassword(email, password);

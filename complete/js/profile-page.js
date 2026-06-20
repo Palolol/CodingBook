@@ -1,8 +1,4 @@
-/* ─────────────────────────────────────────
-   profile-page.js
-   Handles Edit / Save profile on profile.html
-   Runs AFTER auth-guard.js populates the page
-───────────────────────────────────────── */
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -11,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const formActions = document.getElementById('formActions');
     const profileForm = document.getElementById('profileForm');
 
-    // These fields become editable on Edit click
+    
     const editableFields = ['inputName', 'inputPhone', 'inputBio', 'inputLocation'];
 
     if (!editBtn || !profileForm) return;
 
-    // ── Enable editing ──
+    
     editBtn.addEventListener('click', () => {
         editableFields.forEach(id => {
             const el = document.getElementById(id);
@@ -25,12 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (formActions) formActions.style.display = 'flex';
         editBtn.style.display = 'none';
 
-        // Focus on name field
+        
         const inputName = document.getElementById('inputName');
         if (inputName) inputName.focus();
     });
 
-    // ── Cancel editing ──
+    
     if (cancelBtn) {
         cancelBtn.addEventListener('click', () => {
             editableFields.forEach(id => {
@@ -40,12 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (formActions) formActions.style.display = 'none';
             editBtn.style.display = 'flex';
 
-            // Restore original values from cached data
+            
             restoreFormValues();
         });
     }
 
-    // ── Restore form from cached profile ──
+    
     function restoreFormValues() {
         const user = window._currentUser;
         const profile = window._currentProfile;
@@ -64,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputLocation) inputLocation.value = profile?.location || '';
     }
 
-    // ── Save profile ──
+    
     profileForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -84,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Show saving state
+        
         const saveBtn = profileForm.querySelector('.btn-save');
         if (saveBtn) {
             saveBtn.disabled = true;
@@ -92,10 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // Update Firebase Auth display name
+            
             await user.updateProfile({ displayName: newName });
 
-            // Update Firestore
+            
             await updateUserProfile(user.uid, {
                 username: newName,
                 phone,
@@ -103,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 location
             });
 
-            // Update cached profile
+            
             window._currentProfile = {
                 ...(window._currentProfile || {}),
                 username: newName,
@@ -112,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 location
             };
 
-            // Update all avatar letters & name on page
+            
             const firstLetter = newName.charAt(0).toUpperCase();
 
             const els = {
@@ -129,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (els.profileDisplayName) els.profileDisplayName.textContent = newName;
             if (els.userName) els.userName.textContent = newName;
 
-            // Disable fields again
+            
             editableFields.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.disabled = true;
@@ -150,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ── Success feedback ──
+    
     function showSaveSuccess() {
         const btn = document.getElementById('editToggleBtn');
         if (!btn) return;

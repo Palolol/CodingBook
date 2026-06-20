@@ -1,4 +1,4 @@
-/* ============ PROFILE PAGE ============ */
+
 .profile-container {
     min-height: 100vh;
     background: #0f0f0f;
@@ -178,7 +178,7 @@
     background: #65b8ff;
 }
 
-/* --- Stats --- */
+
 .profile-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -217,7 +217,7 @@
     color: #aaa;
 }
 
-/* --- Responsive --- */
+
 @media (max-width: 600px) {
     .profile-top {
         flex-direction: column;

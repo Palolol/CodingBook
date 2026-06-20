@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TUTORIAL TITLE}} - CodingBooks</title>
+
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="style/tutorial.css">
+    <link rel="icon" type="image/png" href="../assets/image.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" title="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <div class="search-results-wrapper">
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" id="navSearchInput" placeholder="Search topics..."
+                            autocomplete="off">
+                    </div>
+                    <button class="search-btn" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="search-dropdown" id="navSearchDropdown">
+                    <ul id="navSearchResults"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle" title="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="nav-icon-btn" title="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+
+            <div class="profile-wrapper">
+                <div class="avatar" id="userAvatar" title="Profile">?</div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-header">
+                        <div class="avatar-large" id="userAvatarLarge">?</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="userName">Loading...</div>
+                            <div class="profile-email" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <a href="../profile.html" class="profile-item">
+                        <i class="fas fa-user"></i> My Profile
+                    </a>
+                    <a href="#" class="profile-item logout" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════ SIDEBAR ═══════════ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <div class="sidebar-label">Main</div>
+                <a href="../homepage.html" class="sidebar-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="../profile.html" class="sidebar-link">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#e44d26;"></span> HTML
+                </div>
+                <a href="html-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="html-elements.html" class="sidebar-link">
+                    <i class="fas fa-code"></i> Elements & Tags
+                </a>
+                <!-- Add more links -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Search -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="search-form" style="flex:1;">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..."
+                        autocomplete="off">
+                </div>
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ TUTORIAL CONTENT ═══════════ -->
+    <div class="tutorial-container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="../homepage.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>HTML</span>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">{{TUTORIAL TITLE}}</span>
+        </nav>
+
+        <!-- Title -->
+        <h1 class="tutorial-title">{{TUTORIAL TITLE}}</h1>
+        <p class="tutorial-subtitle">{{Brief description here}}</p>
+
+        <!-- Content -->
+        <div class="tutorial-content">
+
+            <h2>Introduction</h2>
+            <p>Your tutorial content goes here...</p>
+
+            <h2>Example</h2>
+            <pre><code class="language-html">
+&lt;!-- Your code example --&gt;
+            </code></pre>
+
+            <h2>Try It Yourself</h2>
+            <p>Practice exercise...</p>
+
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="tutorial-nav">
+            <a href="#" class="prev-btn">
+                <i class="fas fa-arrow-left"></i> Previous
+            </a>
+            <a href="#" class="next-btn">
+                Next <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- ═══════════ SCRIPTS (note ../) ═══════════ -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-guard.js"></script>
+    <script src="../js/navbar.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCM Test - CodingBooks</title>
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="style/tests.css">
+    <link rel="icon" type="image/png" href="../assets/image.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+        </div>
+        <div class="nav-center">
+            <div class="search-results-wrapper">
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" id="navSearchInput" placeholder="Search..."
+                            autocomplete="off">
+                    </div>
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-dropdown" id="navSearchDropdown">
+                    <ul id="navSearchResults"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle"><i
+                    class="fas fa-search"></i></button>
+            <button class="nav-icon-btn"><i class="fas fa-bell"></i><span class="notification-badge">3</span></button>
+            <div class="profile-wrapper">
+                <div class="avatar" id="userAvatar">?</div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-header">
+                        <div class="avatar-large" id="userAvatarLarge">?</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="userName">Loading...</div>
+                            <div class="profile-email" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <a href="../profile.html" class="profile-item"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#" class="profile-item logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign
+                        Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <div class="sidebar-label">Main</div>
+                <a href="../homepage.html" class="sidebar-link"><i class="fas fa-home"></i> Home</a>
+            </div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-section">
+                <div class="sidebar-label"><span class="label-dot" style="background:#9c27b0;"></span> Final Tests</div>
+                <a href="qcm.html" class="sidebar-link active"><i class="fas fa-question-circle"></i> QCM</a>
+                <a href="qna.html" class="sidebar-link"><i class="fas fa-comments"></i> Q&A</a>
+                <a href="project.html" class="sidebar-link"><i class="fas fa-project-diagram"></i> Small Project</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Search -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack"><i class="fas fa-arrow-left"></i></button>
+            <div class="search-form" style="flex:1;">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..."
+                        autocomplete="off">
+                </div>
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="test-container">
+        <nav class="breadcrumb">
+            <a href="../homepage.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Final Test</span>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">QCM - Multiple Choice</span>
+        </nav>
+
+        <h1 class="test-title">QCM — Multiple Choice</h1>
+        <p class="test-subtitle">Choose the correct answer for each question. Test your knowledge!</p>
+
+        <!-- Score Header -->
+        <div class="score-header">
+            <div class="score-left">
+                <div class="score-circle" id="scoreCircle">
+                    <div class="score-circle-inner" id="scorePercent">0%</div>
+                </div>
+                <div class="score-text">
+                    <h3>Your Score</h3>
+                    <p id="scoreStatus">Answer all 10 questions</p>
+                </div>
+            </div>
+            <div class="score-stats">
+                <div class="score-stat correct">
+                    <span class="num" id="correctCount">0</span>
+                    <span class="label">Correct</span>
+                </div>
+                <div class="score-stat wrong">
+                    <span class="num" id="wrongCount">0</span>
+                    <span class="label">Wrong</span>
+                </div>
+                <div class="score-stat total">
+                    <span class="num" id="totalCount">10</span>
+                    <span class="label">Total</span>
+                </div>
+            </div>
+            <button class="btn-reset" onclick="resetQuiz()">
+                <i class="fas fa-redo"></i> Reset
+            </button>
+        </div>
+
+        <!-- Questions Container -->
+        <div id="quiz-container"></div>
+
+        <!-- Navigation -->
+        <div class="test-nav">
+            <a href="../homepage.html" class="test-prev"><i class="fas fa-arrow-left"></i> Home</a>
+            <a href="qna.html" class="test-next">Next: Q&A <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-guard.js"></script>
+    <script src="../js/navbar.js"></script>
+
+    <script>
+        /* ═══════════════════════════════════════════
+           QCM DATA & LOGIC
+        ═══════════════════════════════════════════ */
+
+        const quizData = [
+            {
+                question: "What does HTML stand for?",
+                options: [
+                    "Hyper Text Pre Language",
+                    "Hyper Text Markup Language",
+                    "High Tech Modern Language",
+                    "Home Tool Markup Language"
+                ],
+                correct: 1,
+                explanation: "HTML stands for HyperText Markup Language — the standard language for creating web pages."
+            },
+            {
+                question: "Which tag is used for the largest heading?",
+                options: ["<heading>", "<h6>", "<h1>", "<head>"],
+                correct: 2,
+                explanation: "<h1> defines the largest heading. <h6> is the smallest."
+            },
+            {
+                question: "Which CSS property changes text color?",
+                options: ["font-color", "text-color", "color", "foreground"],
+                correct: 2,
+                explanation: "The 'color' property sets the text color in CSS."
+            },
+            {
+                question: "What does CSS stand for?",
+                options: [
+                    "Cascading Style Sheets",
+                    "Creative Style System",
+                    "Computer Style Sheet",
+                    "Colorful Style Sheets"
+                ],
+                correct: 0,
+                explanation: "CSS = Cascading Style Sheets. It styles HTML elements."
+            },
+            {
+                question: "Which symbol starts a CSS class selector?",
+                options: ["#", ".", "@", "&"],
+                correct: 1,
+                explanation: "A dot (.) starts a class selector. Example: .my-class {}"
+            },
+            {
+                question: "Which JavaScript method prints to the console?",
+                options: ["print()", "console.log()", "echo()", "document.write()"],
+                correct: 1,
+                explanation: "console.log() outputs messages to the browser console."
+            },
+            {
+                question: "Which HTML tag creates a hyperlink?",
+                options: ["<link>", "<a>", "<href>", "<url>"],
+                correct: 1,
+                explanation: "The <a> tag (anchor) creates hyperlinks with the href attribute."
+            },
+            {
+                question: "Which CSS display value makes an element invisible but keeps its space?",
+                options: ["none", "hidden", "collapse", "invisible"],
+                correct: 1,
+                explanation: "display: hidden hides the element but keeps its space in the layout."
+            },
+            {
+                question: "Which keyword declares a constant variable in JavaScript?",
+                options: ["var", "let", "const", "define"],
+                correct: 2,
+                explanation: "const declares a variable that cannot be reassigned."
+            },
+            {
+                question: "What does DOM stand for in JavaScript?",
+                options: [
+                    "Document Object Model",
+                    "Data Object Management",
+                    "Digital Output Mode",
+                    "Display Object Method"
+                ],
+                correct: 0,
+                explanation: "DOM = Document Object Model. It's how JavaScript accesses and manipulates HTML."
+            }
+        ];
+
+        let score = 0;
+        let answered = 0;
+        const total = quizData.length;
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizData.forEach((q, i) => {
+                const letters = ['A', 'B', 'C', 'D'];
+                let optionsHtml = q.options.map((opt, j) =>
+                    `<div class="qcm-opt" onclick="selectAnswer(${i}, ${j}, this)">
+                    <span class="opt-letter">${letters[j]}</span>
+                    <span>${opt}</span>
+                </div>`
+                ).join('');
+
+                container.innerHTML += `
+                <div class="qcm-question" id="qcm-q-${i}">
+                    <span class="qcm-q-number">${i + 1}</span>
+                    <span class="qcm-q-text">${q.question}</span>
+                    <div class="qcm-options" id="qcm-opts-${i}">
+                        ${optionsHtml}
+                    </div>
+                    <div class="qcm-feedback" id="qcm-fb-${i}"></div>
+                </div>`;
+            });
+        }
+
+        function selectAnswer(qIndex, optIndex, el) {
+            const q = quizData[qIndex];
+            const opts = document.querySelectorAll(`#qcm-opts-${qIndex} .qcm-opt`);
+            const fb = document.getElementById(`qcm-fb-${qIndex}`);
+            const qCard = document.getElementById(`qcm-q-${qIndex}`);
+
+            // Already answered?
+            if (qCard.classList.contains('answered-correct') || qCard.classList.contains('answered-wrong')) return;
+
+            opts.forEach(opt => opt.style.pointerEvents = 'none');
+
+            answered++;
+
+            if (optIndex === q.correct) {
+                el.classList.add('correct');
+                qCard.classList.add('answered-correct');
+                score++;
+                fb.innerHTML = '✅ Correct! ' + q.explanation;
+                fb.className = 'qcm-feedback show correct';
+            } else {
+                el.classList.add('wrong');
+                opts[q.correct].classList.add('correct');
+                qCard.classList.add('answered-wrong');
+                fb.innerHTML = '❌ Wrong. ' + q.explanation;
+                fb.className = 'qcm-feedback show wrong';
+            }
+
+            updateScore();
+        }
+
+        function updateScore() {
+            const percent = Math.round((score / total) * 100);
+
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('wrongCount').textContent = answered - score;
+
+            const circle = document.getElementById('scoreCircle');
+            circle.style.background = `conic-gradient(#3ea6ff ${percent * 3.6}deg, #303030 ${percent * 3.6}deg)`;
+
+            document.getElementById('scorePercent').textContent = percent + '%';
+
+            const status = document.getElementById('scoreStatus');
+            if (answered === total) {
+                status.textContent = percent >= 70 ? '🎉 Great job!' : '📚 Keep practicing!';
+            } else {
+                status.textContent = `${answered} of ${total} answered`;
+            }
+        }
+
+        function resetQuiz() {
+            if (!confirm('Reset all answers?')) return;
+            score = 0;
+            answered = 0;
+            renderQuiz();
+            updateScore();
+        }
+
+        renderQuiz();
+    </script>
+
+</body>
+
+</html>
