@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Semantic Elements - CodingBooks</title>
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="style/tutorial.css">
+    <link rel="icon" type="image/png" href="../assets/image.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" title="Menu"><i class="fas fa-bars"></i></button>
+            <a href="../homepage.html" class="logo"><div class="logo-icon"><i class="fas fa-book-open"></i></div><div class="logo-text">Coding<span>Books</span></div></a>
+        </div>
+        <div class="nav-center">
+            <div class="search-results-wrapper"><div class="search-form"><div class="search-input-wrapper"><input type="text" class="search-input" id="navSearchInput" placeholder="Search topics..." autocomplete="off"></div><button class="search-btn" title="Search"><i class="fas fa-search"></i></button></div><div class="search-dropdown" id="navSearchDropdown"><ul id="navSearchResults"></ul></div></div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle" title="Search"><i class="fas fa-search"></i></button>
+            <div class="notification-wrapper">
+                <button class="nav-icon-btn" id="notificationsToggle" title="Notifications" aria-expanded="false" aria-controls="notificationsDropdown"><i class="fas fa-bell"></i><span class="notification-badge" id="notificationBadge">3</span></button>
+                <div class="notifications-dropdown" id="notificationsDropdown" aria-hidden="true">
+                    <div class="notifications-header"><div><div class="notifications-title">Notifications</div><div class="notifications-subtitle">3 unread updates</div></div><button class="notifications-mark-read" id="markAllNotificationsRead" type="button">Mark all as read</button></div>
+                    <div class="notifications-list" id="notificationsList">
+                        <button class="notification-item unread" type="button"><div class="notification-icon"><i class="fas fa-book"></i></div><div class="notification-content"><div class="notification-text">New lesson is available for this topic.</div><div class="notification-time">5 min ago</div></div><span class="notification-dot"></span></button>
+                        <button class="notification-item unread" type="button"><div class="notification-icon"><i class="fas fa-code"></i></div><div class="notification-content"><div class="notification-text">Practice exercise is ready to try.</div><div class="notification-time">1 hour ago</div></div><span class="notification-dot"></span></button>
+                        <button class="notification-item unread" type="button"><div class="notification-icon"><i class="fas fa-rocket"></i></div><div class="notification-content"><div class="notification-text">Your progress streak is growing.</div><div class="notification-time">Today</div></div><span class="notification-dot"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-wrapper"><div class="avatar" id="userAvatar" title="Profile">?</div><div class="profile-dropdown" id="profileDropdown"><div class="profile-header"><div class="avatar-large" id="userAvatarLarge">?</div><div class="profile-info"><div class="profile-name" id="userName">Loading...</div><div class="profile-email" id="userEmail">Loading...</div></div></div><div class="profile-divider"></div><a href="../profile.html" class="profile-item"><i class="fas fa-user"></i> My Profile</a><a href="#" class="profile-item logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a></div></div>
+        </div>
+    </nav>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header"><a href="../homepage.html" class="logo"><div class="logo-icon"><i class="fas fa-book-open"></i></div><div class="logo-text">Coding<span>Books</span></div></a><button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button></div>
+        <div class="sidebar-content">
+            <div class="sidebar-section"><div class="sidebar-label">Main</div><a href="../homepage.html" class="sidebar-link"><i class="fas fa-home"></i> Home</a><a href="../profile.html" class="sidebar-link"><i class="fas fa-user"></i> My Profile</a><a href="../about.html" class="sidebar-link"><i class="fas fa-info-circle"></i> About Us</a><a href="../contact.html" class="sidebar-link"><i class="fas fa-envelope"></i> Contact</a></div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-section"><div class="sidebar-label"><span class="label-dot" style="background:#e44d26;"></span> HTML</div><a href="html-intro.html" class="sidebar-link"><i class="fas fa-book"></i> Introduction</a><a href="html-elements.html" class="sidebar-link"><i class="fas fa-code"></i> Elements & Tags</a><a href="html-headings.html" class="sidebar-link"><i class="fas fa-heading"></i> Headings</a><a href="html-paragraphs.html" class="sidebar-link"><i class="fas fa-paragraph"></i> Paragraphs</a><a href="html-links.html" class="sidebar-link"><i class="fas fa-link"></i> Links</a><a href="html-forms.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Forms</a><a href="html-semantic.html" class="sidebar-link active"><i class="fas fa-sitemap"></i> Semantic HTML</a></div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-section"><div class="sidebar-label">More</div><a href="../paths/full-path.html" class="sidebar-link"><i class="fas fa-map"></i> Full Learning Path</a><a href="#" class="sidebar-link" id="sidebarThemeToggle"><i class="fas fa-moon"></i> Dark Mode <span class="sidebar-toggle-pill active" id="themePill"></span></a><a href="#" class="sidebar-link" id="sidebarLogout"><i class="fas fa-sign-out-alt"></i> Sign Out</a></div>
+        </div>
+        <div class="sidebar-footer"><div class="sidebar-footer-text">© 2025 CodingBooks</div></div>
+    </aside>
+    <div class="mobile-search-overlay" id="mobileSearchOverlay"><div class="mobile-search-top"><button class="mobile-back-btn" id="mobileSearchBack"><i class="fas fa-arrow-left"></i></button><div class="search-form" style="flex:1;"><div class="search-input-wrapper"><input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..." autocomplete="off"></div><button class="search-btn"><i class="fas fa-search"></i></button></div></div></div>
+    <div class="tutorial-container">
+        <div class="lesson-header">
+            <a class="close-btn" href="../homepage.html" aria-label="Back to home" title="Back to home">✕</a>
+            <div class="progress-wrap" aria-hidden="true">
+                <div class="progress-fill" id="progress-bar" style="width: 100%;"></div>
+            </div>
+            <span class="lesson-step-label">Step 7 / 7</span>
+        </div>
+        <nav class="breadcrumb"><a href="../homepage.html">Home</a><i class="fas fa-chevron-right"></i><span>🟧</span><i class="fas fa-chevron-right"></i><span class="current">HTML Semantic Elements</span></nav>
+        <div class="hero-card"><h1 class="tutorial-title">HTML Semantic Elements</h1><p class="tutorial-subtitle">Semantic elements describe the meaning of content, not just its appearance.</p><div class="badge-row"><span class="badge"><i class="fas fa-check"></i>Use header, nav, main, article, section, and footer.</span><span class="badge"><i class="fas fa-check"></i>Semantic HTML improves accessibility.</span><span class="badge"><i class="fas fa-check"></i>Search engines understand your structure better.</span></div></div>
+        <div class="content-grid">
+            <section class="lesson-card span-7"><h2 class="card-title">What you should know</h2><div class="step-list"><div class="step"><strong>Structure</strong><br>Semantic elements give your page a readable document outline.</div><div class="step"><strong>Tip</strong><br>Use div only when no semantic element fits.</div><div class="step"><strong>Practice</strong><br>Refactor a page layout from divs into semantic sections.</div></div></section>
+            <aside class="info-card span-5"><h2 class="card-title">Quick example</h2><pre class="code-block"><header>Header</header>
+<main>
+  <article>Article content</article>
+</main>
+<footer>Footer</footer></pre><p class="small-note" style="margin-top:12px;">Tip: use the sidebar to move through the learning path.</p></aside>
+            <section class="lesson-card span-6"><h2 class="card-title">Key points</h2><ul class="list"><li>Use header, nav, main, article, section, and footer.</li><li>Semantic HTML improves accessibility.</li><li>Search engines understand your structure better.</li></ul></section>
+            <section class="info-card span-6"><h2 class="card-title">Next steps</h2><p class="section-subtitle">Keep building by opening the exercises, video course, and learning path for this section.</p><div class="action-row"><a href="html-forms.html" class="action-btn secondary"><i class="fas fa-arrow-left"></i> Previous</a><a href="css-intro.html" class="action-btn primary">Next <i class="fas fa-arrow-right"></i></a></div></section>
+        </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-guard.js"></script>
+    <script src="../js/navbar.js"></script>
+
+</body>
+</html>

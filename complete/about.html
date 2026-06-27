@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CodingBooks</title>
+
+    <link rel="stylesheet" href="style/navbar.css">
+    <link rel="stylesheet" href="style/about.css">
+    <link rel="icon" type="image/png" href="assets/image.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" title="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="homepage.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <div class="search-results-wrapper">
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" id="navSearchInput" placeholder="Search topics..."
+                            autocomplete="off">
+                    </div>
+                    <button class="search-btn" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="search-dropdown" id="navSearchDropdown">
+                    <ul id="navSearchResults"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle" title="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="nav-icon-btn" title="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+
+            <div class="profile-wrapper">
+                <div class="avatar" id="userAvatar" title="Profile">?</div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-header">
+                        <div class="avatar-large" id="userAvatarLarge">?</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="userName">Loading...</div>
+                            <div class="profile-email" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <a href="profile.html" class="profile-item">
+                        <i class="fas fa-user"></i> My Profile
+                    </a>
+                    <a href="#" class="profile-item logout" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="homepage.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <div class="sidebar-label">Main</div>
+                <a href="homepage.html" class="sidebar-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="profile.html" class="sidebar-link">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+                <a href="about.html" class="sidebar-link active">
+                    <i class="fas fa-info-circle"></i> About Us
+                </a>
+                <a href="contact.html" class="sidebar-link">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#e44d26;"></span> HTML
+                </div>
+                <a href="tutorials/html-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="tutorials/html-elements.html" class="sidebar-link">
+                    <i class="fas fa-code"></i> Elements & Tags
+                </a>
+                <a href="tutorials/html-headings.html" class="sidebar-link">
+                    <i class="fas fa-heading"></i> Headings
+                </a>
+                <a href="tutorials/html-paragraphs.html" class="sidebar-link">
+                    <i class="fas fa-paragraph"></i> Paragraphs
+                </a>
+                <a href="tutorials/html-links.html" class="sidebar-link">
+                    <i class="fas fa-link"></i> Links
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">More</div>
+                <a href="#" class="sidebar-link" id="sidebarLogout">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </a>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-footer-text">© 2025 CodingBooks</div>
+        </div>
+    </aside>
+
+    <!-- Mobile Search -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="search-form" style="flex:1;">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..."
+                        autocomplete="off">
+                </div>
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Content -->
+    <div class="about-container">
+
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <div class="about-badge">
+                    <i class="fas fa-info-circle"></i> About CodingBooks
+                </div>
+                <h1 class="about-title">Empowering learners to build the web</h1>
+                <p class="about-subtitle">
+                    CodingBooks is a free, hands-on learning platform designed to
+                    help beginners and self-taught developers master web development
+                    through structured lessons, interactive examples, and real-world
+                    practice.
+                </p>
+            </div>
+            <div class="about-hero-stats">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-book"></i></div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Lessons</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-code"></i></div>
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Examples</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-globe"></i></div>
+                    <div class="stat-number">Free</div>
+                    <div class="stat-label">Forever</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="about-section">
+            <div class="section-head">
+                <span class="section-tag">Our Mission</span>
+                <h2 class="section-heading">Why CodingBooks exists</h2>
+            </div>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Learn by doing</h3>
+                    <p>
+                        Every lesson comes with an interactive code editor so you
+                        can experiment, run code, and see results instantly —
+                        not just read theory.
+                    </p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-path"></i></div>
+                    <h3>Structured paths</h3>
+                    <p>
+                        Follow clear, beginner-friendly learning paths that guide
+                        you step-by-step from your first HTML page to building
+                        full responsive websites.
+                    </p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Free for everyone</h3>
+                    <p>
+                        Quality education should not be locked behind a paywall.
+                        CodingBooks will always be free to use for any learner
+                        around the world.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You'll Learn -->
+        <section class="about-section alt-bg">
+            <div class="section-head">
+                <span class="section-tag">Curriculum</span>
+                <h2 class="section-heading">What you will learn</h2>
+            </div>
+            <div class="learn-grid">
+                <div class="learn-item">
+                    <div class="learn-bullet" style="background:#e44d26;">HTML</div>
+                    <div>
+                        <h4>Structure & Content</h4>
+                        <p>Headings, paragraphs, links, images, forms, semantic HTML and more.</p>
+                    </div>
+                </div>
+                <div class="learn-item">
+                    <div class="learn-bullet" style="background:#2965f1;">CSS</div>
+                    <div>
+                        <h4>Styling & Layout</h4>
+                        <p>Selectors, colors, typography, Flexbox, Grid, and responsive design.</p>
+                    </div>
+                </div>
+                <div class="learn-item">
+                    <div class="learn-bullet" style="background:#f7df1e; color:#333;">JS</div>
+                    <div>
+                        <h4>Interactivity & Logic</h4>
+                        <p>Variables, functions, DOM manipulation, events, and modern JavaScript.</p>
+                    </div>
+                </div>
+                <div class="learn-item">
+                    <div class="learn-bullet" style="background:#68a063;">Node</div>
+                    <div>
+                        <h4>Backend Basics</h4>
+                        <p>Servers, APIs, databases, and deploying full-stack applications.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team / Story -->
+        <section class="about-section">
+            <div class="section-head">
+                <span class="section-tag">Our Story</span>
+                <h2 class="section-heading">Built by learners, for learners</h2>
+            </div>
+            <div class="story-content">
+                <p>
+                    CodingBooks started as a simple idea: make web development
+                    education as clear and approachable as possible. Too many
+                    beginners get stuck on outdated tutorials, messy examples,
+                    or content that's hidden behind subscriptions.
+                </p>
+                <p>
+                    We built CodingBooks to fix that. Every page is designed
+                    to be short, visual, and immediately practical — so you
+                    spend your time learning, not searching.
+                </p>
+                <p>
+                    Whether you're writing your very first <code>&lt;h1&gt;</code>
+                    tag or building your tenth project, we're here to help you
+                    grow into a confident web developer.
+                </p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="about-cta">
+            <h2>Ready to start your journey?</h2>
+            <p>Jump into our free HTML course and build your first web page today.</p>
+            <div class="cta-buttons">
+                <a href="tutorials/html-intro.html" class="cta-btn primary">
+                    Start Learning <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="contact.html" class="cta-btn secondary">
+                    Contact Us <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </div>
+            <p class="footer-text">© 2025 CodingBooks. Learn web development the right way.</p>
+            <div class="footer-socials">
+                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Paragraphs - CodingBooks</title>
+
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="style/tutorial.css">
+    <link rel="icon" type="image/png" href="../assets/image.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" title="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <div class="search-results-wrapper">
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" id="navSearchInput" placeholder="Search topics..."
+                            autocomplete="off">
+                    </div>
+                    <button class="search-btn" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="search-dropdown" id="navSearchDropdown">
+                    <ul id="navSearchResults"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle" title="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <div class="notification-wrapper">
+                <button class="nav-icon-btn" id="notificationsToggle" title="Notifications" aria-expanded="false" aria-controls="notificationsDropdown">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge">3</span>
+                </button>
+
+                <div class="notifications-dropdown" id="notificationsDropdown" aria-hidden="true">
+                    <div class="notifications-header">
+                        <div>
+                            <div class="notifications-title">Notifications</div>
+                            <div class="notifications-subtitle">3 unread updates</div>
+                        </div>
+                        <button class="notifications-mark-read" id="markAllNotificationsRead" type="button">Mark all as read</button>
+                    </div>
+
+                    <div class="notifications-list" id="notificationsList">
+                        <button class="notification-item unread" type="button">
+                            <div class="notification-icon"><i class="fas fa-book"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-text">New HTML lesson is available: Semantic Elements.</div>
+                                <div class="notification-time">5 min ago</div>
+                            </div>
+                            <span class="notification-dot"></span>
+                        </button>
+
+                        <button class="notification-item unread" type="button">
+                            <div class="notification-icon"><i class="fas fa-code"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-text">CSS Box Model quiz was added to your learning path.</div>
+                                <div class="notification-time">1 hour ago</div>
+                            </div>
+                            <span class="notification-dot"></span>
+                        </button>
+
+                        <button class="notification-item unread" type="button">
+                            <div class="notification-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-text">Your JavaScript practice streak is up to 7 days.</div>
+                                <div class="notification-time">Today</div>
+                            </div>
+                            <span class="notification-dot"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <div class="avatar" id="userAvatar" title="Profile">?</div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-header">
+                        <div class="avatar-large" id="userAvatarLarge">?</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="userName">Loading...</div>
+                            <div class="profile-email" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <a href="../profile.html" class="profile-item">
+                        <i class="fas fa-user"></i> My Profile
+                    </a>
+                    <a href="#" class="profile-item logout" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <div class="sidebar-label">Main</div>
+                <a href="../homepage.html" class="sidebar-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="../profile.html" class="sidebar-link">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#e44d26;"></span> HTML
+                </div>
+                <a href="html-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="html-elements.html" class="sidebar-link">
+                    <i class="fas fa-code"></i> Elements & Tags
+                </a>
+                <a href="html-headings.html" class="sidebar-link">
+                    <i class="fas fa-heading"></i> Headings
+                </a>
+                <a href="html-paragraphs.html" class="sidebar-link active">
+                    <i class="fas fa-paragraph"></i> Paragraphs
+                </a>
+                <a href="html-links.html" class="sidebar-link">
+                    <i class="fas fa-link"></i> Links
+                </a>
+                <a href="html-forms.html" class="sidebar-link">
+                    <i class="fas fa-file-alt"></i> Forms
+                </a>
+                <a href="html-semantic.html" class="sidebar-link">
+                    <i class="fas fa-sitemap"></i> Semantic HTML
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#2965f1;"></span> CSS
+                </div>
+                <a href="css-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="css-selectors.html" class="sidebar-link">
+                    <i class="fas fa-palette"></i> Selectors
+                </a>
+                <a href="css-flexbox.html" class="sidebar-link">
+                    <i class="fas fa-columns"></i> Flexbox
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#f7df1e;"></span> JavaScript
+                </div>
+                <a href="js-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="js-variables.html" class="sidebar-link">
+                    <i class="fas fa-code"></i> Variables
+                </a>
+                <a href="js-functions.html" class="sidebar-link">
+                    <i class="fas fa-code"></i> Functions
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">More</div>
+                <a href="#" class="sidebar-link" id="sidebarLogout">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </a>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-footer-text">© 2025 CodingBooks</div>
+        </div>
+    </aside>
+
+    <!-- Mobile Search -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="search-form" style="flex:1;">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..."
+                        autocomplete="off">
+                </div>
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutorial Content -->
+    <div class="tutorial-container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="../homepage.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>HTML</span>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">HTML Paragraphs</span>
+        </nav>
+
+        <!-- Title & Subtitle -->
+        <h1 class="tutorial-title">HTML Paragraphs</h1>
+        <p class="tutorial-subtitle">
+            បន្ទាប់ពីរៀន មេរៀននេះរួចហើយប្អូននឹងអាច<br>
+            ▷ ប្រើប្រាស់ &lt;p&gt; tag ដើម្បីបង្កើត paragraph<br>
+            ▷ យល់ដឹងពីភាពខុសគ្នារវាង &lt;p&gt; និង &lt;br&gt;<br>
+            ▷ រៀបចំអត្ថបទ អោយមានភាពងាយអាន<br>
+            ▷ ប្រើប្រាស់ text formatting tags គ្រប់ប្រភេទ
+        </p>
+
+        <!-- Tutorial Explanation -->
+        <div class="tutorial-content">
+
+            <h2>
+                <span>អ្វីទៅជា</span>
+                <span class="special">HTML Paragraphs?</span>
+            </h2>
+
+            <p class="justify">
+                <span class="khmer">
+                    HTML Paragraph គឺជា block of text ដែលត្រូវវេទិការ browser
+                    បង្ហាញជាផ្នែកអត្ថបទដាច់ដោយឡែកពីគ្នា
+                    ដោយមានចន្លោះ (margin) ខាងលើ និងខាងក្រោម។
+                </span>
+                <br><br>
+
+                ▷ <span class="keyword">&lt;p&gt;</span>
+                <span class="khmer">
+                    tag ប្រើសម្រាប់រុំអត្ថបទ ហើយ browser
+                    នឹងបន្ថែម margin ដោយស្វ័យប្រវត្តិ
+                    ដើម្បីញែក paragraph ចេញពីគ្នា។
+                </span>
+                <br><br>
+
+                ▷ <span class="keyword">&lt;br&gt;</span>
+                <span class="khmer">
+                    tag គឺជា self-closing tag ប្រើសម្រាប់បំបែកបន្ទាត់
+                    ដោយមិនបង្កើត paragraph ថ្មី។
+                    គួរប្រើតែក្នុងករណីចាំបាច់ប៉ុណ្ណោះ។
+                </span>
+                <br><br>
+
+                ▷ <span class="en">
+                    Browsers automatically add space before and after each
+                    paragraph. You cannot control this with blank lines in
+                    your HTML — you need CSS for spacing.
+                </span>
+            </p>
+
+            <h2>ឧទាហរណ៍ &lt;p&gt; tag</h2>
+            <pre><code class="language-html">&lt;p&gt;This is the first paragraph of text.&lt;/p&gt;
+&lt;p&gt;This is the second paragraph of text.&lt;/p&gt;
+&lt;p&gt;Each paragraph is automatically spaced apart.&lt;/p&gt;</code></pre>
+
+            <h2>ភាពខុសគ្នា &lt;p&gt; vs &lt;br&gt;</h2>
+            <pre><code class="language-html">&lt;!-- Using paragraph tags --&gt;
+&lt;p&gt;First paragraph.&lt;/p&gt;
+&lt;p&gt;Second paragraph.&lt;/p&gt;
+
+&lt;!-- Using line break --&gt;
+&lt;p&gt;
+  First line.&lt;br&gt;
+  Second line in the same paragraph.
+&lt;/p&gt;</code></pre>
+
+            <h2>Text Formatting Tags</h2>
+            <pre><code class="language-html">&lt;p&gt;This is &lt;strong&gt;bold text&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This is &lt;em&gt;italic text&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;This is &lt;mark&gt;highlighted text&lt;/mark&gt;.&lt;/p&gt;
+&lt;p&gt;This is &lt;small&gt;smaller text&lt;/small&gt;.&lt;/p&gt;
+&lt;p&gt;This is &lt;del&gt;strikethrough text&lt;/del&gt;.&lt;/p&gt;
+&lt;p&gt;This is &lt;ins&gt;underlined text&lt;/ins&gt;.&lt;/p&gt;</code></pre>
+
+            <h2>ច្បាប់ល្អៗ (Best Practices)</h2>
+            <p class="justify">
+                <span class="khmer">
+                    ▷ ប្រើ <code>&lt;p&gt;</code> tags ដើម្បីរុំ paragraph
+                    នីមួយៗ — កុំប្រើ <code>&lt;br&gt;</code>
+                    ច្រើនដូចជា paragraph separator។
+                </span>
+                <br><br>
+                <span class="khmer">
+                    ▷ រក្សាអត្ថបទនៃ paragraph ឲ្យខ្លី និងពាក់ព័ន្ធ
+                    ដើម្បីងាយអានបំផុត។
+                </span>
+                <br><br>
+                <span class="khmer">
+                    ▷ ប្រើ CSS property ដូចជា <code>line-height</code>
+                    និង <code>margin</code> ដើម្បីគ្រប់គ្រង spacing
+                    ជំនួសការប្រើ <code>&lt;br&gt;</code> ច្រើន។
+                </span>
+            </p>
+
+        </div>
+
+        <!-- Interactive Lesson -->
+        <main class="lesson-main">
+
+            <!-- Lesson Header with Progress -->
+            <div class="lesson-header">
+                <button class="close-btn" type="button" onclick="closeLesson()" aria-label="Back to home" title="Back to home">✕</button>
+                <div class="progress-wrap" aria-hidden="true">
+                    <div class="progress-fill" id="progress-bar" style="width: 57.1428571429%;"></div>
+                </div>
+                <span class="lesson-step-label" id="step-label">Step 4 / 7</span>
+            </div>
+
+            <!-- Lesson Body -->
+            <div class="lesson-body" id="lesson-body">
+                <div class="lesson-title">HTML <span>Paragraphs</span></div>
+
+                <!-- Concept Box -->
+                <div class="concept-box">
+                    <h3>📖 Core Concept</h3>
+                    <p>
+                        The <code>&lt;p&gt;</code> tag defines a <strong>paragraph</strong>
+                        in HTML. Browsers automatically add a margin above and below
+                        each paragraph to create visual separation between blocks of text.
+                    </p>
+                    <p>
+                        The <code>&lt;br&gt;</code> tag inserts a single
+                        <strong>line break</strong> inside a paragraph without starting
+                        a new one. Unlike <code>&lt;p&gt;</code>, it is a
+                        <strong>self-closing tag</strong> — it has no closing tag.
+                    </p>
+                </div>
+
+                <!-- Tip Box -->
+                <div class="tip-box">
+                    <div class="tip-icon">💡</div>
+                    <div>
+                        <strong>Bugsy says:</strong>
+                        Try adding more &lt;p&gt; tags or use &lt;br&gt; inside a
+                        paragraph in the editor — see the difference live in the
+                        preview panel!
+                    </div>
+                </div>
+
+                <!-- Code Editor -->
+                <div class="editor-wrap">
+                    <div class="editor-topbar">
+                        <div class="e-dot r"></div>
+                        <div class="e-dot y"></div>
+                        <div class="e-dot g"></div>
+                        <div class="editor-tabs">
+                            <div class="e-tab active">index.html</div>
+                        </div>
+                        <button class="run-btn" onclick="runCode()">▶ Run Code</button>
+                    </div>
+
+                    <div class="editor-area">
+                        <div class="code-pane">
+                            <div class="line-nums" id="line-nums">
+                                <span>1</span><span>2</span><span>3</span>
+                                <span>4</span><span>5</span><span>6</span>
+                                <span>7</span><span>8</span><span>9</span>
+                                <span>10</span>
+                            </div>
+                            <textarea class="code-input" id="code-editor" spellcheck="false" oninput="updateLineNums()">&lt;h1&gt;My First Web Page&lt;/h1&gt;
+
+&lt;p&gt;This is the first paragraph. HTML paragraphs
+are defined with the p tag.&lt;/p&gt;
+
+&lt;p&gt;This is the second paragraph. Each paragraph
+starts on a new line automatically.&lt;/p&gt;
+
+&lt;p&gt;Line one.&lt;br&gt;Line two using a br tag.&lt;/p&gt;
+
+&lt;p&gt;This text is &lt;strong&gt;bold&lt;/strong&gt; and
+this is &lt;em&gt;italic&lt;/em&gt;.&lt;/p&gt;</textarea>
+                        </div>
+
+                        <div class="preview-pane">
+                            <div class="preview-label">🌐 Preview</div>
+                            <iframe id="preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz 1 -->
+                <div class="quiz-section" id="quiz-box">
+                    <div class="quiz-question" id="quiz-q">
+                        🧠 Which HTML tag is used to define a <em>paragraph</em>?
+                    </div>
+                    <div class="quiz-options" id="quiz-opts">
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;text&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;br&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, true)">&lt;p&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;para&gt;</div>
+                    </div>
+                </div>
+
+                <!-- Quiz 2 -->
+                <div class="quiz-section" style="margin-top: 24px;">
+                    <div class="quiz-question">
+                        🧠 What does the <code>&lt;br&gt;</code> tag do?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">
+                            Creates a new paragraph
+                        </div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, true)">
+                            Inserts a single line break
+                        </div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">
+                            Makes text bold
+                        </div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">
+                            Adds a horizontal line
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz 3 -->
+                <div class="quiz-section" style="margin-top: 24px;">
+                    <div class="quiz-question">
+                        🧠 Which tag makes text <strong>bold</strong>?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;italic&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;b1&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, true)">&lt;strong&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;mark&gt;</div>
+                    </div>
+                </div>
+
+                <!-- Quiz 4 -->
+                <div class="quiz-section" style="margin-top: 24px;">
+                    <div class="quiz-question">
+                        🧠 How does a browser handle multiple spaces or blank
+                        lines inside a &lt;p&gt; tag?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">
+                            It displays them all exactly as written
+                        </div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, true)">
+                            It collapses them into a single space
+                        </div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">
+                            It throws an error
+                        </div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">
+                            It removes the paragraph completely
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Navigation Buttons -->
+        <div class="tutorial-nav">
+            <a href="html-headings.html" class="prev-btn">
+                <i class="fas fa-arrow-left"></i> Previous: HTML Headings
+            </a>
+            <a href="html-links.html" class="next-btn">
+                Next: HTML Links <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Firebase & Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-guard.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="js/tutorial.js"></script>
+</body>
+
+</html>

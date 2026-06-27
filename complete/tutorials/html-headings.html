@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Headings - CodingBooks</title>
+
+    <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="style/tutorial.css">
+    <link rel="icon" type="image/png" href="../assets/image.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" title="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <div class="search-results-wrapper">
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" id="navSearchInput" placeholder="Search topics..."
+                            autocomplete="off">
+                    </div>
+                    <button class="search-btn" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="search-dropdown" id="navSearchDropdown">
+                    <ul id="navSearchResults"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle" title="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <div class="notification-wrapper">
+                <button class="nav-icon-btn" id="notificationsToggle" title="Notifications" aria-expanded="false" aria-controls="notificationsDropdown">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge">3</span>
+                </button>
+            
+                <div class="notifications-dropdown" id="notificationsDropdown" aria-hidden="true">
+                    <div class="notifications-header">
+                        <div>
+                            <div class="notifications-title">Notifications</div>
+                            <div class="notifications-subtitle">3 unread updates</div>
+                        </div>
+                        <button class="notifications-mark-read" id="markAllNotificationsRead" type="button">Mark all as read</button>
+                    </div>
+            
+                    <div class="notifications-list" id="notificationsList">
+                        <button class="notification-item unread" type="button">
+                            <div class="notification-icon"><i class="fas fa-book"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-text">New HTML lesson is available: Semantic Elements.</div>
+                                <div class="notification-time">5 min ago</div>
+                            </div>
+                            <span class="notification-dot"></span>
+                        </button>
+            
+                        <button class="notification-item unread" type="button">
+                            <div class="notification-icon"><i class="fas fa-code"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-text">CSS Box Model quiz was added to your learning path.</div>
+                                <div class="notification-time">1 hour ago</div>
+                            </div>
+                            <span class="notification-dot"></span>
+                        </button>
+            
+                        <button class="notification-item unread" type="button">
+                            <div class="notification-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-text">Your JavaScript practice streak is up to 7 days.</div>
+                                <div class="notification-time">Today</div>
+                            </div>
+                            <span class="notification-dot"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <div class="avatar" id="userAvatar" title="Profile">?</div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-header">
+                        <div class="avatar-large" id="userAvatarLarge">?</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="userName">Loading...</div>
+                            <div class="profile-email" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <a href="../profile.html" class="profile-item">
+                        <i class="fas fa-user"></i> My Profile
+                    </a>
+                    <a href="#" class="profile-item logout" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <div class="sidebar-label">Main</div>
+                <a href="../homepage.html" class="sidebar-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="../profile.html" class="sidebar-link">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#e44d26;"></span> HTML
+                </div>
+                <a href="html-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="html-elements.html" class="sidebar-link">
+                    <i class="fas fa-code"></i> Elements & Tags
+                </a>
+                <a href="html-headings.html" class="sidebar-link active">
+                    <i class="fas fa-heading"></i> Headings
+                </a>
+                <a href="html-paragraphs.html" class="sidebar-link">
+                    <i class="fas fa-paragraph"></i> Paragraphs
+                </a>
+                <a href="html-links.html" class="sidebar-link">
+                    <i class="fas fa-link"></i> Links
+                </a>
+                <a href="html-forms.html" class="sidebar-link">
+                    <i class="fas fa-file-alt"></i> Forms
+                </a>
+                <a href="html-semantic.html" class="sidebar-link">
+                    <i class="fas fa-sitemap"></i> Semantic HTML
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#2965f1;"></span> CSS
+                </div>
+                <a href="css-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="css-selectors.html" class="sidebar-link">
+                    <i class="fas fa-palette"></i> Selectors
+                </a>
+                <a href="css-flexbox.html" class="sidebar-link">
+                    <i class="fas fa-columns"></i> Flexbox
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">
+                    <span class="label-dot" style="background:#f7df1e;"></span> JavaScript
+                </div>
+                <a href="js-intro.html" class="sidebar-link">
+                    <i class="fas fa-book"></i> Introduction
+                </a>
+                <a href="js-variables.html" class="sidebar-link">
+                    <i class="fas fa-code"></i> Variables
+                </a>
+                <a href="js-functions.html" class="sidebar-link">
+                    <i class="fas fa-code"></i> Functions
+                </a>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">More</div>
+                <a href="#" class="sidebar-link" id="sidebarLogout">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </a>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-footer-text">© 2025 CodingBooks</div>
+        </div>
+    </aside>
+
+    <!-- Mobile Search -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="search-form" style="flex:1;">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..."
+                        autocomplete="off">
+                </div>
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutorial Content -->
+    <div class="tutorial-container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="../homepage.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>HTML</span>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">HTML Headings</span>
+        </nav>
+
+        <!-- Title & Subtitle -->
+        <h1 class="tutorial-title">HTML Headings</h1>
+        <p class="tutorial-subtitle">
+            បន្ទាប់ពីរៀន មេរៀននេះរួចហើយប្អូននឹងអាច<br>
+            ▷ ស្វែងយល់អំពី Heading Tags ទាំង 6 កម្រិត (h1 - h6)<br>
+            ▷ ប្រើប្រាស់ Headings ដើម្បីរៀបចំរចនាសម្ព័ន្ធទំព័រ<br>
+            ▷ យល់ដឹងអំពីសារៈសំខាន់របស់ Headings ក្នុង SEO និង Accessibility<br>
+            ▷ សរសេរ Headings ដែលមានលំដាប់ត្រឹមត្រូវ
+        </p>
+
+        <!-- Tutorial Explanation -->
+        <div class="tutorial-content">
+
+            <h2>
+                <span>អ្វីទៅជា</span>
+                <span class="special">HTML Headings?</span>
+            </h2>
+
+            <p class="justify">
+                <span class="khmer">
+                    HTML Headings គឺជា tags ដែលប្រើសម្រាប់កំណត់ចំណងជើង និងចំណងជើងរង នៅក្នុង Web Page។
+                    HTML មាន Heading Tags ចំនួន 6 កម្រិត ពី <code>&lt;h1&gt;</code> រហូតដល់ <code>&lt;h6&gt;</code>។
+                </span>
+                <br><br>
+
+                ▷ <span class="keyword">&lt;h1&gt;</span>
+                <span class="khmer">
+                    គឺជា heading ធំជាងគេ និងសំខាន់បំផុត។ គួរប្រើតែមួយគត់ក្នុង page មួយ។
+                </span>
+                <br><br>
+
+                ▷ <span class="keyword">&lt;h2&gt;</span> - <span class="keyword">&lt;h6&gt;</span>
+                <span class="khmer">
+                    គឺជា sub-headings ដែលមានទំហំតូចទៅៗ។ ប្រើដើម្បីបង្កើតរចនាសម្ព័ន្ធលំដាប់នៃមាតិកា។
+                </span>
+                <br><br>
+
+                ▷ <span class="en">
+                    Search engines use headings to understand and index the structure of your web pages.
+                    Screen readers also rely on headings to help users navigate content quickly.
+                </span>
+            </p>
+
+            <h2>កម្រិត Heading ទាំង 6</h2>
+            <pre><code class="language-html">&lt;h1&gt;Heading Level 1 - Main Title&lt;/h1&gt;
+&lt;h2&gt;Heading Level 2 - Section Title&lt;/h2&gt;
+&lt;h3&gt;Heading Level 3 - Sub Section&lt;/h3&gt;
+&lt;h4&gt;Heading Level 4 - Detail&lt;/h4&gt;
+&lt;h5&gt;Heading Level 5 - Sub Detail&lt;/h5&gt;
+&lt;h6&gt;Heading Level 6 - Smallest Heading&lt;/h6&gt;</code></pre>
+
+            <h2>ច្បាប់ល្អៗ (Best Practices)</h2>
+            <p class="justify">
+                <span class="khmer">
+                    ▷ គួរប្រើ <code>&lt;h1&gt;</code> តែមួយគត់ក្នុង page មួយ សម្រាប់ចំណងជើងចម្បង។
+                </span>
+                <br><br>
+                <span class="khmer">
+                    ▷ កុំរំលង heading level។ ឧទាហរណ៍ កុំលោតពី <code>&lt;h2&gt;</code> ទៅ <code>&lt;h4&gt;</code>
+                    ដោយគ្មាន <code>&lt;h3&gt;</code>។
+                </span>
+                <br><br>
+                <span class="khmer">
+                    ▷ កុំប្រើ heading tags គ្រាន់តែដើម្បីធ្វើអោយអក្សរធំ ឬដិត។ ប្រើ CSS ជំនួសវិញ។
+                </span>
+            </p>
+
+            <h2>ឧទាហរណ៍ នៃរចនាសម្ព័ន្ធត្រឹមត្រូវ</h2>
+            <pre><code class="language-html">&lt;h1&gt;My Blog&lt;/h1&gt;
+
+&lt;h2&gt;Latest Articles&lt;/h2&gt;
+  &lt;h3&gt;How to Learn HTML&lt;/h3&gt;
+  &lt;h3&gt;CSS Tips for Beginners&lt;/h3&gt;
+
+&lt;h2&gt;About Me&lt;/h2&gt;
+  &lt;h3&gt;My Experience&lt;/h3&gt;
+  &lt;h3&gt;Contact Info&lt;/h3&gt;</code></pre>
+
+        </div>
+
+        <!-- Interactive Lesson -->
+        <main class="lesson-main">
+
+            <!-- Lesson Header with Progress -->
+            <div class="lesson-header">
+                <button class="close-btn" type="button" onclick="closeLesson()" aria-label="Back to home" title="Back to home">✕</button>
+                <div class="progress-wrap" aria-hidden="true">
+                    <div class="progress-fill" id="progress-bar" style="width: 42.8571428571%;"></div>
+                </div>
+                <span class="lesson-step-label" id="step-label">Step 3 / 7</span>
+            </div>
+
+            <!-- Lesson Body -->
+            <div class="lesson-body" id="lesson-body">
+                <div class="lesson-title">HTML <span>Headings</span></div>
+
+                <!-- Concept Box -->
+                <div class="concept-box">
+                    <h3>📖 Core Concept</h3>
+                    <p>
+                        HTML provides six levels of headings: <code>&lt;h1&gt;</code>
+                        through <code>&lt;h6&gt;</code>. The <code>&lt;h1&gt;</code>
+                        tag defines the most important heading, while
+                        <code>&lt;h6&gt;</code> defines the least important.
+                    </p>
+                    <p>
+                        Headings create a <strong>hierarchy</strong> on your page.
+                        Think of them like a book outline — a title, chapters,
+                        sections, and sub-sections. This helps both users and
+                        search engines understand your content structure.
+                    </p>
+                </div>
+
+                <!-- Tip Box -->
+                <div class="tip-box">
+                    <div class="tip-icon">💡</div>
+                    <div>
+                        <strong>Bugsy says:</strong>
+                        Try changing the heading levels in the editor below.
+                        Notice how the size and importance change from h1 to h6!
+                    </div>
+                </div>
+
+                <!-- Code Editor -->
+                <div class="editor-wrap">
+                    <div class="editor-topbar">
+                        <div class="e-dot r"></div>
+                        <div class="e-dot y"></div>
+                        <div class="e-dot g"></div>
+                        <div class="editor-tabs">
+                            <div class="e-tab active">index.html</div>
+                        </div>
+                        <button class="run-btn" onclick="runCode()">▶ Run Code</button>
+                    </div>
+
+                    <div class="editor-area">
+                        <div class="code-pane">
+                            <div class="line-nums" id="line-nums">
+                                <span>1</span><span>2</span><span>3</span>
+                                <span>4</span><span>5</span><span>6</span>
+                                <span>7</span><span>8</span>
+                            </div>
+                            <textarea class="code-input" id="code-editor" spellcheck="false" oninput="updateLineNums()">&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+&lt;h2&gt;About Me&lt;/h2&gt;
+&lt;p&gt;I am learning HTML headings.&lt;/p&gt;
+&lt;h3&gt;My Hobbies&lt;/h3&gt;
+&lt;p&gt;Coding, reading, and gaming.&lt;/p&gt;
+&lt;h4&gt;Favorite Games&lt;/h4&gt;
+&lt;h5&gt;Online Games&lt;/h5&gt;
+&lt;h6&gt;This is the smallest heading&lt;/h6&gt;</textarea>
+                        </div>
+
+                        <div class="preview-pane">
+                            <div class="preview-label">🌐 Preview</div>
+                            <iframe id="preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-section" id="quiz-box">
+                    <div class="quiz-question" id="quiz-q">
+                        🧠 Which heading tag creates the <em>largest</em> heading on a page?
+                    </div>
+                    <div class="quiz-options" id="quiz-opts">
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;h6&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;heading&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, true)">&lt;h1&gt;</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;h3&gt;</div>
+                    </div>
+                </div>
+
+                <!-- Quiz 2 -->
+                <div class="quiz-section" id="quiz-box-2" style="margin-top: 24px;">
+                    <div class="quiz-question">
+                        🧠 How many heading levels does HTML provide?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">3</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, true)">6</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">10</div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">4</div>
+                    </div>
+                </div>
+
+                <!-- Quiz 3 -->
+                <div class="quiz-section" style="margin-top: 24px;">
+                    <div class="quiz-question">
+                        🧠 Which is the correct heading order?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;h1&gt; → &lt;h3&gt; → &lt;h6&gt;
+                        </div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, true)">&lt;h1&gt; → &lt;h2&gt; → &lt;h3&gt;
+                        </div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;h3&gt; → &lt;h1&gt; → &lt;h2&gt;
+                        </div>
+                        <div class="quiz-opt" onclick="checkAnswer(this, false)">&lt;h6&gt; → &lt;h1&gt; → &lt;h4&gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Navigation Buttons -->
+        <div class="tutorial-nav">
+            <a href="html-elements.html" class="prev-btn">
+                <i class="fas fa-arrow-left"></i> Previous: Elements & Tags
+            </a>
+            <a href="html-paragraphs.html" class="next-btn">
+                Next: HTML Paragraphs <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Firebase & Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-guard.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="js/tutorial.js"></script>
+</body>
+
+</html>

@@ -79,6 +79,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const avatar          = document.getElementById('userAvatar');
     const profileDropdown = document.getElementById('profileDropdown');
+    const notificationToggle   = document.getElementById('notificationsToggle');
+    const notificationDropdown = document.getElementById('notificationsDropdown');
+    const notificationBadge    = document.getElementById('notificationBadge');
+    const markAllReadBtn       = document.getElementById('markAllNotificationsRead');
+
+    function getUnreadNotifications() {
+        if (!notificationDropdown) return [];
+        return Array.from(notificationDropdown.querySelectorAll('.notification-item.unread'));
+    }
+
+    function updateNotificationBadge() {
+        if (!notificationBadge) return;
+        const unreadCount = getUnreadNotifications().length;
+        notificationBadge.textContent = String(unreadCount);
+        notificationBadge.classList.toggle('is-hidden', unreadCount === 0);
+
+        if (notificationDropdown) {
+            const subtitle = notificationDropdown.querySelector('.notifications-subtitle');
+            if (subtitle) {
+                subtitle.textContent = unreadCount === 0
+                    ? 'You are all caught up'
+                    : `${unreadCount} unread update${unreadCount === 1 ? '' : 's'}`;
+            }
+        }
+    }
+
+    function closeNotifications() {
+        if (!notificationDropdown) return;
+        notificationDropdown.classList.remove('active');
+        notificationDropdown.setAttribute('aria-hidden', 'true');
+        if (notificationToggle) notificationToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleNotifications() {
+        if (!notificationDropdown) return;
+        const isOpen = notificationDropdown.classList.contains('active');
+        if (isOpen) {
+            closeNotifications();
+        } else {
+            notificationDropdown.classList.add('active');
+            notificationDropdown.setAttribute('aria-hidden', 'false');
+            if (notificationToggle) notificationToggle.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    function markAllNotificationsRead() {
+        if (!notificationDropdown) return;
+        notificationDropdown.querySelectorAll('.notification-item.unread').forEach(item => {
+            item.classList.remove('unread');
+            item.classList.add('is-read');
+        });
+        updateNotificationBadge();
+    }
+
+    if (notificationToggle && notificationDropdown) {
+        notificationToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleNotifications();
+        });
+
+        notificationDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.notification-wrapper')) {
+                closeNotifications();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeNotifications();
+        });
+
+        if (markAllReadBtn) {
+            markAllReadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                markAllNotificationsRead();
+            });
+        }
+
+        notificationDropdown.querySelectorAll('.notification-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.remove('unread');
+                item.classList.add('is-read');
+                updateNotificationBadge();
+            });
+        });
+
+        updateNotificationBadge();
+    }
 
     if (avatar && profileDropdown) {
 

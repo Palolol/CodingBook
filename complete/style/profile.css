@@ -25,10 +25,10 @@
 
 .profile-top {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
-    margin-top: -60px;
+    padding: 24px 30px 0;
+    margin-top: 0;
 }
 
 .profile-avatar-big {

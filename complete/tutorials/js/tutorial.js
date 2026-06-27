@@ -50,6 +50,17 @@ function updateLineNums() {
 }
 
 
+function getQuizProgressPercent(el) {
+    const quizSection = el?.closest('.quiz-section');
+    if (!quizSection) return 50;
+
+    const quizSections = [...document.querySelectorAll('.quiz-section')];
+    const quizIndex = quizSections.indexOf(quizSection);
+    if (quizIndex < 0 || quizSections.length === 0) return 50;
+
+    return ((quizIndex + 1) / quizSections.length) * 100;
+}
+
 function checkAnswer(el, isCorrect) {
     const allOpts = document.querySelectorAll('.quiz-opt');
 
@@ -59,7 +70,7 @@ function checkAnswer(el, isCorrect) {
     if (isCorrect) {
         el.classList.add('correct');
         showFeedback('✅ Correct! Great job!', 'success');
-        updateProgress(50);
+        updateProgress(getQuizProgressPercent(el));
     } else {
         el.classList.add('wrong');
         showFeedback('❌ Not quite. Try again next time!', 'error');
@@ -115,14 +126,26 @@ function showFeedback(message, type) {
 }
 
 
-function updateProgress(percent) {
+function updateLessonHeader(percent, stepText) {
     const bar = document.getElementById('progress-bar');
-    if (bar) bar.style.width = percent + '%';
+    const label = document.getElementById('step-label');
+
+    if (bar) {
+        const safePercent = Math.max(0, Math.min(100, Number(percent) || 0));
+        bar.style.width = safePercent + '%';
+    }
+
+    if (label && typeof stepText === 'string' && stepText.trim()) {
+        label.textContent = stepText;
+    }
 }
 
+function updateProgress(percent, stepText) {
+    updateLessonHeader(percent, stepText);
+}
 
 function closeLesson() {
-    if (confirm('Return to home page?')) {
+    if (window.confirm('Return to home page?')) {
         window.location.href = '../homepage.html';
     }
 }
