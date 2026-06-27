@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Introduction - CodingBooks</title>
+    <link rel="icon" type="image/png" href="../assets/image.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="../style/navbar.css">
+        <link rel="stylesheet" href="style/tutorial.css">
+    <style>
+        /* ═══════════════════════════════════════
+           ROOT & RESET
+        ═══════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2965f1;
+            --primary-light: #5b8af5;
+            --primary-lighter: #eef2ff;
+            --primary-dark: #1a4dba;
+            --primary-grd: linear-gradient(135deg, #2965f1 0%, #1a4dba 100%);
+
+            --accent: #f59e0b;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --error: #ef4444;
+            --error-bg: #fee2e2;
+            --purple: #8b5cf6;
+            --purple-bg: #ede9fe;
+
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --code-bg: #0f172a;
+            --code-surface: #1e293b;
+
+            --tx-1: #0f172a;
+            --tx-2: #475569;
+            --tx-3: #94a3b8;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, .06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, .08);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, .09);
+            --shadow-xl: 0 24px 48px rgba(0, 0, 0, .10);
+            --shadow-glow: 0 0 40px rgba(41, 101, 241, .18);
+
+            --r-sm: 8px;
+            --r-md: 12px;
+            --r-lg: 16px;
+            --r-xl: 20px;
+            --r-2xl: 24px;
+            --r-full: 9999px;
+
+            --ease: cubic-bezier(.4, 0, .2, 1);
+            --ease-out: cubic-bezier(0, .55, .45, 1);
+            --spring: cubic-bezier(.34, 1.56, .64, 1);
+
+            --nav-h: 64px;
+            --sb-w: 272px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --code-bg: #020617;
+            --code-surface: #0f172a;
+            --tx-1: #f1f5f9;
+            --tx-2: #94a3b8;
+            --tx-3: #64748b;
+            --border: #334155;
+            --border-light: #1e293b;
+            --primary-lighter: #1e3656;
+            --success-bg: #064e3b;
+            --error-bg: #450a0a;
+            --purple-bg: #2e1065;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Khmer', sans-serif;
+            background: var(--bg);
+            color: var(--tx-1);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--tx-3);
+            border-radius: 4px
+        }
+
+        /* ═══════════════════════════════════════
+           READING PROGRESS
+        ═══════════════════════════════════════ */
+        #read-bar {
+            position: fixed;
+            top: var(--nav-h);
+            left: 0;
+            right: 0;
+            height: 3px;
+            z-index: 900;
+            background: var(--primary-grd);
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform .1s linear;
+        }
+
+        /* ═══════════════════════════════════════
+           SIDEBAR
+        ═══════════════════════════════════════ */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .45);
+            backdrop-filter: blur(4px);
+            z-index: 1400;
+        }
+
+        .sidebar-overlay.show {
+            display: block;
+            animation: fade .3s var(--ease)
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sb-w);
+            height: 100vh;
+            background: var(--card);
+            border-right: 1px solid var(--border);
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform .35s var(--ease);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .sidebar.open {
+            transform: translateX(0)
+        }
+
+        @media(min-width:1080px) {
+            .sidebar {
+                top: var(--nav-h);
+                height: calc(100vh - var(--nav-h));
+                transform: translateX(0);
+                box-shadow: none;
+            }
+
+            .sidebar-overlay {
+                display: none !important
+            }
+        }
+
+        .sb-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        @media(min-width:1080px) {
+            .sb-head {
+                display: none
+            }
+        }
+
+        .sb-close {
+            width: 34px;
+            height: 34px;
+            border: none;
+            background: none;
+            color: var(--tx-2);
+            cursor: pointer;
+            border-radius: var(--r-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            transition: background .15s, color .15s;
+        }
+
+        .sb-close:hover {
+            background: var(--border-light);
+            color: var(--error)
+        }
+
+        .sb-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 0
+        }
+
+        .sb-section {
+            padding: 0 12px;
+            margin-bottom: 6px
+        }
+
+        .sb-label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 12px;
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--tx-3);
+        }
+
+        .lb-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .sb-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 9px 12px;
+            border-radius: var(--r-sm);
+            text-decoration: none;
+            color: var(--tx-2);
+            font-size: 13.5px;
+            font-weight: 500;
+            transition: background .15s, color .15s;
+            margin-bottom: 2px;
+        }
+
+        .sb-link:hover {
+            background: var(--border-light);
+            color: var(--tx-1)
+        }
+
+        .sb-link.active {
+            background: var(--primary-lighter);
+            color: var(--primary);
+            font-weight: 600
+        }
+
+        .sb-link i {
+            width: 18px;
+            text-align: center;
+            font-size: 14px
+        }
+
+        .sb-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 10px 20px
+        }
+
+        .sb-progress {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .sb-prog-lbl {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--tx-3);
+            margin-bottom: 8px
+        }
+
+        .sb-prog-bar {
+            height: 5px;
+            background: var(--border-light);
+            border-radius: var(--r-full);
+            overflow: hidden;
+        }
+
+        .sb-prog-fill {
+            height: 100%;
+            width: 33%;
+            background: var(--primary-grd);
+            border-radius: var(--r-full);
+        }
+
+        .sb-prog-txt {
+            font-size: 11px;
+            color: var(--tx-3);
+            margin-top: 6px
+        }
+
+        /* ═══════════════════════════════════════
+           MAIN WRAPPER
+        ═══════════════════════════════════════ */
+        .page {
+            padding-top: var(--nav-h);
+            transition: margin-left .35s var(--ease);
+        }
+
+        @media(min-width:1080px) {
+            .page {
+                margin-left: var(--sb-w)
+            }
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 32px 24px 100px;
+        }
+
+        @media(max-width:600px) {
+            .container {
+                padding: 24px 16px 80px
+            }
+        }
+
+        /* ═══════════════════════════════════════
+           ANIMATIONS
+        ═══════════════════════════════════════ */
+        @keyframes fade {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(.94)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0
+            }
+
+            100% {
+                background-position: -200% 0
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(41, 101, 241, .35)
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(41, 101, 241, 0)
+            }
+        }
+
+        .anim-up {
+            animation: slideUp .5s var(--ease) both
+        }
+
+        .d1 {
+            animation-delay: .05s
+        }
+
+        .d2 {
+            animation-delay: .1s
+        }
+
+        .d3 {
+            animation-delay: .15s
+        }
+
+        .d4 {
+            animation-delay: .2s
+        }
+
+        .d5 {
+            animation-delay: .25s
+        }
+
+        .d6 {
+            animation-delay: .3s
+        }
+
+        .d7 {
+            animation-delay: .35s
+        }
+
+        /* ═══════════════════════════════════════
+           BREADCRUMB
+        ═══════════════════════════════════════ */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12.5px;
+            color: var(--tx-3);
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a {
+            color: var(--tx-3);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color .15s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary)
+        }
+
+        .breadcrumb .cur {
+            color: var(--tx-1);
+            font-weight: 600
+        }
+
+        .breadcrumb i {
+            font-size: 9px
+        }
+
+        /* ═══════════════════════════════════════
+           LESSON PROGRESS STRIP
+        ═══════════════════════════════════════ */
+        .prog-strip {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--r-xl);
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .prog-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .prog-top-left {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--tx-1)
+        }
+
+        .prog-top-right {
+            font-size: 12px;
+            color: var(--tx-3);
+            font-weight: 500
+        }
+
+        .prog-bar {
+            height: 7px;
+            background: var(--border-light);
+            border-radius: var(--r-full);
+            overflow: hidden;
+        }
+
+        .prog-fill {
+            height: 100%;
+            background: var(--primary-grd);
+            border-radius: var(--r-full);
+            transition: width .8s var(--ease);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prog-fill::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .3), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        .prog-dots {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 12px;
+        }
+
+        .p-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: background .2s, transform .2s;
+        }
+
+        .p-dot:hover {
+            transform: scale(1.3)
+        }
+
+        .p-dot.done {
+            background: var(--success)
+        }
+
+        .p-dot.cur {
+            background: var(--primary);
+            box-shadow: 0 0 0 3px rgba(41, 101, 241, .22);
+        }
+
+        /* ═══════════════════════════════════════
+           HERO
+        ═══════════════════════════════════════ */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--r-2xl);
+            padding: 36px 40px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-grd);
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(41, 101, 241, .07) 0%, transparent 70%);
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .hero-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: var(--r-lg);
+            background: var(--primary-grd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 16px rgba(41, 101, 241, .3);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: var(--r-full);
+            background: var(--primary-lighter);
+            color: var(--primary);
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: clamp(26px, 5vw, 34px);
+            font-weight: 800;
+            letter-spacing: -.5px;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            font-family: 'Noto Sans Khmer', 'Inter', sans-serif;
+        }
+
+        .hero-title .grd {
+            background: var(--primary-grd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            color: var(--tx-2);
+            font-size: 14.5px;
+            line-height: 1.9;
+            max-width: 560px;
+            font-family: 'Noto Sans Khmer', 'Inter', sans-serif;
+        }
+
+        .hero-sub .ck {
+            color: var(--success);
+            font-weight: 700
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12.5px;
+            color: var(--tx-3);
+            font-weight: 500;
+        }
+
+        .meta-item i {
+            font-size: 13px
+        }
+
+        @media(max-width:600px) {
+            .hero {
+                padding: 24px 20px
+            }
+        }
+
+        /* ═══════════════════════════════════════
+           CARDS (content sections)
+        ═══════════════════════════════════════ */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--r-xl);
+            padding: 28px 32px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow .25s var(--ease),
+                border-color .25s var(--ease);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(41, 101, 241, .15);
+        }
+
+        @media(max-width:600px) {
+            .card {
+                padding: 20px 18px;
+                border-radius: var(--r-lg)
+            }
+        }
+
+        .card-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .c-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            border-radius: var(--r-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+        }
+
+        .c-icon.blue {
+            background: var(--primary-lighter);
+            color: var(--primary)
+        }
+
+        .c-icon.green {
+            background: var(--success-bg);
+            color: var(--success)
+        }
+
+        .c-icon.orange {
+            background: #fff7ed;
+            color: var(--accent)
+        }
+
+        .c-icon.purple {
+            background: var(--purple-bg);
+            color: var(--purple)
+        }
+
+        [data-theme="dark"] .c-icon.orange {
+            background: #2c1a06
+        }
+
+        [data-theme="dark"] .c-icon.purple {
+            background: #1e1040
+        }
+
+        .c-title {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -.2px
+        }
+
+        .c-sub {
+            font-size: 12px;
+            color: var(--tx-3);
+            margin-top: 2px
+        }
+
+        /* ═══════════════════════════════════════
+           CONTENT TEXT
+        ═══════════════════════════════════════ */
+        .body-text {
+            color: var(--tx-2);
+            font-size: 14.5px;
+            line-height: 1.85;
+            font-family: 'Noto Sans Khmer', 'Inter', sans-serif;
+        }
+
+        .body-text+.body-text {
+            margin-top: 12px
+        }
+
+        .kw {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary-lighter);
+            color: var(--primary);
+            padding: 1px 9px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hl {
+            border-bottom: 2px solid var(--primary-light);
+            background: rgba(41, 101, 241, .06);
+            padding: 1px 0;
+        }
+
+        /* ═══════════════════════════════════════
+           FEATURE GRID
+        ═══════════════════════════════════════ */
+        .feat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .feat-card {
+            background: var(--border-light);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 14px 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            transition: background .2s, border-color .2s, transform .2s var(--spring);
+            cursor: default;
+        }
+
+        .feat-card:hover {
+            background: var(--primary-lighter);
+            border-color: rgba(41, 101, 241, .25);
+            transform: translateY(-3px);
+        }
+
+        .feat-emoji {
+            font-size: 19px;
+            line-height: 1;
+            flex-shrink: 0
+        }
+
+        .feat-txt {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--tx-2);
+            font-family: 'Noto Sans Khmer', 'Inter', sans-serif;
+        }
+
+        /* ═══════════════════════════════════════
+           CONCEPT BOX
+        ═══════════════════════════════════════ */
+        .concept {
+            background: var(--primary-lighter);
+            border: 1px solid rgba(41, 101, 241, .14);
+            border-radius: var(--r-lg);
+            padding: 20px 24px;
+            margin: 18px 0;
+        }
+
+        .concept h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .concept p {
+            color: var(--tx-2);
+            font-size: 13.5px;
+            line-height: 1.75;
+            margin-bottom: 6px;
+        }
+
+        .concept p:last-child {
+            margin-bottom: 0
+        }
+
+        .concept code {
+            background: rgba(41, 101, 241, .12);
+            color: var(--primary);
+            padding: 1px 7px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 600;
+        }
+
+        [data-theme="dark"] .concept code {
+            color: var(--primary-light)
+        }
+
+        /* ═══════════════════════════════════════
+           TIP BOX
+        ═══════════════════════════════════════ */
+        .tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            background: #fffbeb;
+            border: 1px solid rgba(245, 158, 11, .2);
+            border-radius: var(--r-lg);
+            padding: 16px 20px;
+            margin: 18px 0;
+        }
+
+        [data-theme="dark"] .tip {
+            background: #1c1506;
+            border-color: rgba(245, 158, 11, .15)
+        }
+
+        .tip-em {
+            font-size: 20px;
+            line-height: 1;
+            flex-shrink: 0
+        }
+
+        .tip-body {
+            font-size: 13.5px;
+            color: var(--tx-2);
+            line-height: 1.7
+        }
+
+        /* ═══════════════════════════════════════
+           CODE BLOCK (static)
+        ═══════════════════════════════════════ */
+        .code-blk {
+            background: var(--code-bg);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            margin: 16px 0;
+            border: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .code-blk-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 16px;
+            background: var(--code-surface);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .code-blk-lang {
+            font-size: 11.5px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--tx-3);
+        }
+
+        .code-blk pre {
+            padding: 18px 20px;
+            overflow-x: auto
+        }
+
+        .code-blk code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #e2e8f0;
+        }
+
+        /* tokens */
+        .t-sel {
+            color: #67e8f9
+        }
+
+        .t-prop {
+            color: #93c5fd
+        }
+
+        .t-val {
+            color: #86efac
+        }
+
+        .t-cmt {
+            color: #475569;
+            font-style: italic
+        }
+
+        .t-punc {
+            color: #64748b
+        }
+
+        /* copy btn */
+        .copy-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 6px;
+            font-size: 11.5px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--tx-3);
+            cursor: pointer;
+            transition: background .15s, color .15s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, .12);
+            color: #fff
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, .2);
+            color: var(--success);
+            border-color: rgba(16, 185, 129, .25);
+        }
+
+        /* ═══════════════════════════════════════
+           ANATOMY VISUAL
+        ═══════════════════════════════════════ */
+        .anatomy-wrap {
+            background: var(--border-light);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin: 18px 0;
+        }
+
+        .anatomy-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(13px, 2.5vw, 16px);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-start;
+        }
+
+        .a-line {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap
+        }
+
+        .a-chip {
+            padding: 3px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: default;
+            transition: transform .2s var(--spring);
+        }
+
+        .a-chip:hover {
+            transform: scale(1.08)
+        }
+
+        .a-sel {
+            background: rgba(103, 232, 249, .12);
+            color: #06b6d4;
+            border: 1px solid rgba(103, 232, 249, .25)
+        }
+
+        .a-prop {
+            background: rgba(147, 197, 253, .12);
+            color: #60a5fa;
+            border: 1px solid rgba(147, 197, 253, .25)
+        }
+
+        .a-val {
+            background: rgba(134, 239, 172, .12);
+            color: #34d399;
+            border: 1px solid rgba(134, 239, 172, .25)
+        }
+
+        .a-punc {
+            color: var(--tx-3);
+            font-size: 18px
+        }
+
+        .anatomy-legend {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .a-leg {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--tx-3);
+        }
+
+        .a-leg-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 3px
+        }
+
+        /* ═══════════════════════════════════════
+           CODE EDITOR
+        ═══════════════════════════════════════ */
+        .editor-wrap {
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            background: var(--code-bg);
+            box-shadow: var(--shadow-xl);
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .editor-bar {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 16px;
+            background: var(--code-surface);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .e-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%
+        }
+
+        .e-dot.r {
+            background: #ff5f57
+        }
+
+        .e-dot.y {
+            background: #febc2e
+        }
+
+        .e-dot.g {
+            background: #28c840
+        }
+
+        .editor-tabs {
+            display: flex;
+            gap: 2px;
+            margin-left: 10px;
+            flex: 1;
+        }
+
+        .e-tab {
+            padding: 5px 12px;
+            font-size: 11.5px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--tx-3);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .e-tab.on {
+            background: var(--code-bg);
+            color: #e2e8f0
+        }
+
+        .run-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--success);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+            transition: background .15s, transform .15s;
+        }
+
+        .run-btn:hover {
+            background: #059669;
+            transform: translateY(-1px)
+        }
+
+        .editor-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 300px;
+        }
+
+        @media(max-width:700px) {
+            .editor-body {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .code-pane {
+            display: flex;
+            border-right: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        @media(max-width:700px) {
+            .code-pane {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, .05);
+            }
+        }
+
+        .line-nums {
+            padding: 16px 0;
+            width: 42px;
+            text-align: right;
+            padding-right: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            line-height: 1.68;
+            color: rgba(148, 163, 184, .35);
+            user-select: none;
+            border-right: 1px solid rgba(255, 255, 255, .04);
+        }
+
+        .code-ta {
+            flex: 1;
+            padding: 16px;
+            background: transparent;
+            border: none;
+            color: #e2e8f0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            line-height: 1.68;
+            resize: none;
+            outline: none;
+            tab-size: 2;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .prev-pane {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .prev-label {
+            padding: 7px 14px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--tx-3);
+            background: var(--border-light);
+            border-bottom: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        #preview-frame {
+            flex: 1;
+            border: none;
+            width: 100%;
+            min-height: 250px;
+            background: #fff;
+        }
+
+        /* ═══════════════════════════════════════
+           INTERACTIVE DEMO
+        ═══════════════════════════════════════ */
+        .demo-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .demo-ctrl {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+            background: var(--border-light);
+        }
+
+        .ctrl-grp {
+            display: flex;
+            flex-direction: column;
+            gap: 5px
+        }
+
+        .ctrl-lbl {
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            color: var(--tx-3);
+        }
+
+        .ctrl-grp input[type=color] {
+            width: 38px;
+            height: 30px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        .ctrl-grp input[type=range] {
+            width: 110px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .demo-stage {
+            padding: 40px;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--border-light);
+        }
+
+        .demo-el {
+            padding: 20px 36px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            font-size: 17px;
+            border-radius: 8px;
+            transition: all .25s var(--ease);
+            text-align: center;
+            font-family: 'Noto Sans Khmer', 'Inter', sans-serif;
+        }
+
+        /* ═══════════════════════════════════════
+           QUIZ
+        ═══════════════════════════════════════ */
+        .quiz-wrap {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: var(--r-xl);
+            padding: 28px 32px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        @media(max-width:600px) {
+            .quiz-wrap {
+                padding: 20px 18px
+            }
+        }
+
+        .quiz-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .quiz-ico {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--r-md);
+            background: linear-gradient(135deg, var(--purple) 0%, #6d28d9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .quiz-badge {
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+            color: var(--purple);
+        }
+
+        .quiz-heading {
+            font-size: 17px;
+            font-weight: 700
+        }
+
+        .q-block {
+            margin-bottom: 26px
+        }
+
+        .q-block:last-of-type {
+            margin-bottom: 0
+        }
+
+        .q-num {
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .q-txt {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            line-height: 1.45;
+        }
+
+        .q-opts {
+            display: flex;
+            flex-direction: column;
+            gap: 9px
+        }
+
+        .q-opt {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 18px;
+            border: 2px solid var(--border);
+            border-radius: var(--r-md);
+            font-size: 13.5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: border-color .2s, background .2s, transform .2s var(--spring);
+            font-family: 'Noto Sans Khmer', 'Inter', sans-serif;
+        }
+
+        .q-opt::before {
+            content: '';
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            transition: border-color .15s, background .15s;
+        }
+
+        .q-opt:hover:not(.ok):not(.no) {
+            border-color: var(--primary);
+            background: var(--primary-lighter);
+            transform: translateX(4px);
+        }
+
+        .q-opt:hover:not(.ok):not(.no)::before {
+            border-color: var(--primary)
+        }
+
+        .q-opt.ok {
+            border-color: var(--success);
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .q-opt.ok::before {
+            background: var(--success);
+            border-color: var(--success);
+            content: '✓';
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .q-opt.no {
+            border-color: var(--error);
+            background: var(--error-bg);
+            color: var(--error);
+        }
+
+        .q-opt.no::before {
+            background: var(--error);
+            border-color: var(--error);
+            content: '✗';
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes wggle {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            20% {
+                transform: translateX(-8px)
+            }
+
+            40% {
+                transform: translateX(8px)
+            }
+
+            60% {
+                transform: translateX(-4px)
+            }
+
+            80% {
+                transform: translateX(4px)
+            }
+        }
+
+        @keyframes boing {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            25% {
+                transform: translateX(6px)
+            }
+
+            50% {
+                transform: translateX(-3px)
+            }
+
+            75% {
+                transform: translateX(2px)
+            }
+        }
+
+        .q-opt.ok {
+            animation: boing .45s var(--ease)
+        }
+
+        .q-opt.no {
+            animation: wggle .45s var(--ease)
+        }
+
+        .q-feedback {
+            display: none;
+            align-items: center;
+            gap: 9px;
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: var(--r-md);
+            font-size: 13.5px;
+            font-weight: 600;
+        }
+
+        .q-feedback.show {
+            display: flex;
+            animation: slideUp .3s var(--ease)
+        }
+
+        .q-feedback.ok {
+            background: var(--success-bg);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, .2)
+        }
+
+        .q-feedback.no {
+            background: var(--error-bg);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, .2)
+        }
+
+        /* ═══════════════════════════════════════
+           TUTORIAL NAV
+        ═══════════════════════════════════════ */
+        .tut-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 36px;
+        }
+
+        .t-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 22px;
+            border-radius: var(--r-lg);
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--tx-2);
+            transition: border-color .2s, color .2s,
+                box-shadow .2s, transform .2s var(--spring);
+            flex: 1;
+            max-width: 260px;
+        }
+
+        .t-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .t-btn.next {
+            justify-content: flex-end;
+            text-align: right;
+            margin-left: auto;
+            background: var(--primary-grd);
+            color: #fff;
+            border: none;
+        }
+
+        .t-btn.next:hover {
+            box-shadow: 0 6px 20px rgba(41, 101, 241, .35);
+            transform: translateY(-2px);
+        }
+
+        .t-btn-info {
+            display: flex;
+            flex-direction: column
+        }
+
+        .t-btn-lbl {
+            font-size: 10.5px;
+            font-weight: 600;
+            opacity: .7;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .t-btn-name {
+            font-size: 14px;
+            font-weight: 700
+        }
+
+        @media(max-width:500px) {
+            .tut-nav {
+                flex-direction: column
+            }
+
+            .t-btn,
+            .t-btn.next {
+                max-width: 100%
+            }
+        }
+
+        /* ═══════════════════════════════════════
+           SCROLL-TO-TOP
+        ═══════════════════════════════════════ */
+        #scrollTop {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--r-md);
+            background: var(--primary-grd);
+            color: #fff;
+            border: none;
+            font-size: 17px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(41, 101, 241, .4);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: opacity .25s, visibility .25s, transform .25s var(--spring);
+            z-index: 200;
+        }
+
+        #scrollTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #scrollTop:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(41, 101, 241, .45)
+        }
+
+        /* ═══════════════════════════════════════
+           PAGE FOOTER
+        ═══════════════════════════════════════ */
+        .page-footer {
+            text-align: center;
+            padding: 36px 0 0;
+            color: var(--tx-3);
+            font-size: 12.5px;
+        }
+
+        .page-footer a {
+            color: var(--primary);
+            text-decoration: none
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Reading progress -->
+    <div id="read-bar"></div>
+
+    <!-- ═══ NAVBAR (your existing navbar.css handles this) ═══ -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+        </div>
+        <div class="nav-center">
+            <div class="search-results-wrapper">
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" id="navSearchInput" placeholder="Search topics..."
+                            autocomplete="off">
+                    </div>
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-dropdown" id="navSearchDropdown">
+                    <ul id="navSearchResults"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-icon-btn mobile-search-btn" id="mobileSearchToggle">
+                <i class="fas fa-search"></i>
+            </button>
+
+            <!-- Theme toggle (new) -->
+            <button class="nav-icon-btn" id="themeToggle" title="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <div class="notification-wrapper">
+                <button class="nav-icon-btn" id="notificationsToggle">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge">3</span>
+                </button>
+                <div class="notifications-dropdown" id="notificationsDropdown" aria-hidden="true">
+                    <div class="notifications-header">
+                        <div>
+                            <div class="notifications-title">Notifications</div>
+                            <div class="notifications-subtitle">3 unread updates</div>
+                        </div>
+                        <button class="notifications-mark-read" id="markAllNotificationsRead">
+                            Mark all as read
+                        </button>
+                    </div>
+                    <div class="notifications-list" id="notificationsList">
+                        <button class="notification-item unread" type="button">
+                            <div class="notification-icon"><i class="fas fa-book"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-text">New HTML lesson: Semantic Elements.</div>
+                                <div class="notification-time">5 min ago</div>
+                            </div>
+                            <span class="notification-dot"></span>
+                        </button>
+                        <button class="notification-item unread" type="button">
+                            <div class="notification-icon"><i class="fas fa-code"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-text">CSS Box Model quiz added to your path.</div>
+                                <div class="notification-time">1 hour ago</div>
+                            </div>
+                            <span class="notification-dot"></span>
+                        </button>
+                        <button class="notification-item unread" type="button">
+                            <div class="notification-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-text">JS streak is up to 7 days! 🔥</div>
+                                <div class="notification-time">Today</div>
+                            </div>
+                            <span class="notification-dot"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <div class="avatar" id="userAvatar">?</div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-header">
+                        <div class="avatar-large" id="userAvatarLarge">?</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="userName">Loading...</div>
+                            <div class="profile-email" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <a href="../profile.html" class="profile-item">
+                        <i class="fas fa-user"></i> My Profile
+                    </a>
+                    <a href="#" class="profile-item logout" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sb-head">
+            <a href="../homepage.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <div class="logo-text">Coding<span>Books</span></div>
+            </a>
+            <button class="sb-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sb-body">
+            <div class="sb-section">
+                <div class="sb-label">Main</div>
+                <a href="../homepage.html" class="sb-link"><i class="fas fa-home"></i> Home</a>
+            </div>
+            <div class="sb-divider"></div>
+            <div class="sb-section">
+                <div class="sb-label">
+                    <span class="lb-dot" style="background:#e44d26"></span> HTML
+                </div>
+                <a href="#" class="sb-link"><i class="fas fa-code"></i> HTML Basics</a>
+                <a href="#" class="sb-link"><i class="fas fa-layer-group"></i> Elements & Tags</a>
+                <a href="#" class="sb-link"><i class="fas fa-th-list"></i> Forms & Tables</a>
+            </div>
+            <div class="sb-divider"></div>
+            <div class="sb-section">
+                <div class="sb-label">
+                    <span class="lb-dot" style="background:#2965f1"></span> CSS
+                </div>
+                <a href="css-intro.html" class="sb-link active">
+                    <i class="fas fa-paint-brush"></i> Introduction
+                </a>
+                <a href="css-selectors.html" class="sb-link">
+                    <i class="fas fa-crosshairs"></i> Selectors
+                </a>
+                <a href="css-flexbox.html" class="sb-link">
+                    <i class="fas fa-columns"></i> Flexbox
+                </a>
+                <a href="#" class="sb-link"><i class="fas fa-th"></i> Grid Layout</a>
+                <a href="#" class="sb-link"><i class="fas fa-mobile-alt"></i> Responsive</a>
+            </div>
+            <div class="sb-divider"></div>
+            <div class="sb-section">
+                <div class="sb-label">
+                    <span class="lb-dot" style="background:#f7df1e"></span> JavaScript
+                </div>
+                <a href="#" class="sb-link"><i class="fas fa-bolt"></i> JS Basics</a>
+                <a href="#" class="sb-link"><i class="fas fa-sitemap"></i> DOM</a>
+            </div>
+        </div>
+        <div class="sb-progress">
+            <div class="sb-prog-lbl">Course Progress</div>
+            <div class="sb-prog-bar">
+                <div class="sb-prog-fill"></div>
+            </div>
+            <div class="sb-prog-txt">1 of 3 CSS lessons completed</div>
+        </div>
+    </aside>
+
+    <!-- ═══ MOBILE SEARCH ═══ -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-top">
+            <button class="mobile-back-btn" id="mobileSearchBack">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="search-form" style="flex:1">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" id="mobileNavSearchInput" placeholder="Search..."
+                        autocomplete="off">
+                </div>
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ PAGE ═══ -->
+    <div class="page">
+        <div class="container">
+
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb anim-up">
+                <a href="../homepage.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>CSS</span>
+                <i class="fas fa-chevron-right"></i>
+                <span class="cur">CSS Introduction</span>
+            </nav>
+
+            <!-- Lesson progress strip -->
+            <div class="prog-strip anim-up d1">
+                <div class="prog-top">
+                    <div class="prog-top-left">📘 Lesson 1 of 3</div>
+                    <div class="prog-top-right" id="stepLabel">Step 1 / 5</div>
+                </div>
+                <div class="prog-bar">
+                    <div class="prog-fill" id="progFill" style="width:20%"></div>
+                </div>
+                <div class="prog-dots">
+                    <div class="p-dot cur" data-s="1"></div>
+                    <div class="p-dot" data-s="2"></div>
+                    <div class="p-dot" data-s="3"></div>
+                    <div class="p-dot" data-s="4"></div>
+                    <div class="p-dot" data-s="5"></div>
+                </div>
+            </div>
+
+            <!-- Hero -->
+            <div class="hero anim-up d2">
+                <div class="hero-glow"></div>
+                <div class="hero-icon"><i class="fas fa-paint-brush"></i></div>
+                <div class="hero-badge"><i class="fas fa-graduation-cap"></i>&ensp;Beginner</div>
+                <h1 class="hero-title">
+                    ការណែនាំអំពី <span class="grd">CSS</span>
+                </h1>
+                <p class="hero-sub">
+                    <span class="ck">✓</span> ស្វែងយល់អំពី CSS<br>
+                    <span class="ck">✓</span> ស្គាល់ syntax នៃ CSS<br>
+                    <span class="ck">✓</span> ប្រើ CSS ដើម្បីផ្លាស់ប្តូររូបរាងវេបសាយ
+                </p>
+                <div class="hero-meta">
+                    <div class="meta-item"><i class="fas fa-clock"></i> 15 min</div>
+                    <div class="meta-item"><i class="fas fa-signal"></i> Beginner</div>
+                    <div class="meta-item"><i class="fas fa-eye"></i> 2.4k views</div>
+                </div>
+            </div>
+
+            <!-- ── Section 1: What is CSS ── -->
+            <div class="card anim-up d3" id="s-what">
+                <div class="card-head">
+                    <div class="c-icon blue"><i class="fas fa-info-circle"></i></div>
+                    <div>
+                        <div class="c-title">អ្វីទៅជា CSS?</div>
+                        <div class="c-sub">What is CSS?</div>
+                    </div>
+                </div>
+
+                <p class="body-text">
+                    <span class="kw">CSS</span> មកពីពាក្យ
+                    <strong>Cascading Style Sheets</strong>
+                    ប្រើសម្រាប់ផ្តល់រូបរាង (style) ដល់ HTML elements។
+                </p>
+                <p class="body-text" style="margin-top:10px">
+                    CSS អនុញ្ញាតឱ្យអ្នកគ្រប់គ្រង
+                    <span class="hl">ពណ៌</span>,
+                    <span class="hl">font</span>,
+                    <span class="hl">ទំហំ</span> និង
+                    <span class="hl">layout</span> នៃវេបសាយ។
+                </p>
+
+                <div class="feat-grid">
+                    <div class="feat-card">
+                        <div class="feat-emoji">🎨</div>
+                        <div class="feat-txt">គ្រប់គ្រងពណ៌ និង typography</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-emoji">📐</div>
+                        <div class="feat-txt">រៀបចំ layout ដោយ Flexbox / Grid</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-emoji">📱</div>
+                        <div class="feat-txt">បង្កើត responsive design</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-emoji">✨</div>
+                        <div class="feat-txt">Animation & transitions</div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-em">💡</div>
+                    <div class="tip-body">
+                        <strong>Did you know?</strong> CSS was first proposed by Håkon Wium Lie in 1994.
+                        Without CSS, every website would look like a plain text document!
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Section 2: Syntax ── -->
+            <div class="card anim-up d4" id="s-syntax">
+                <div class="card-head">
+                    <div class="c-icon green"><i class="fas fa-code"></i></div>
+                    <div>
+                        <div class="c-title">CSS Syntax</div>
+                        <div class="c-sub">The building blocks of CSS</div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3>📖 Core Concept</h3>
+                    <p>
+                        CSS uses <strong>selectors</strong> to target HTML elements
+                        and apply styles to them.
+                    </p>
+                    <p>
+                        Each rule has a <code>property</code> and a <code>value</code>
+                        separated by a colon, ending with a semicolon <code>;</code>
+                    </p>
+                </div>
+
+                <div class="code-blk">
+                    <div class="code-blk-head">
+                        <span class="code-blk-lang">CSS</span>
+                        <button class="copy-btn" onclick="copyStatic(this)">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code><span class="t-cmt">/* CSS Rule Structure */</span>
+<span class="t-sel">selector</span> <span class="t-punc">{</span>
+    <span class="t-prop">property</span><span class="t-punc">:</span> <span class="t-val">value</span><span class="t-punc">;</span>
+<span class="t-punc">}</span>
+
+<span class="t-cmt">/* Real Example */</span>
+<span class="t-sel">h1</span> <span class="t-punc">{</span>
+    <span class="t-prop">color</span><span class="t-punc">:</span> <span class="t-val">#2965f1</span><span class="t-punc">;</span>
+    <span class="t-prop">font-size</span><span class="t-punc">:</span> <span class="t-val">32px</span><span class="t-punc">;</span>
+    <span class="t-prop">font-weight</span><span class="t-punc">:</span> <span class="t-val">bold</span><span class="t-punc">;</span>
+<span class="t-punc">}</span></code></pre>
+                </div>
+            </div>
+
+            <!-- ── Section 3: Visual Anatomy ── -->
+            <div class="card anim-up d5" id="s-anatomy">
+                <div class="card-head">
+                    <div class="c-icon orange"><i class="fas fa-eye"></i></div>
+                    <div>
+                        <div class="c-title">Visual Anatomy</div>
+                        <div class="c-sub">Understanding the CSS rule structure</div>
+                    </div>
+                </div>
+
+                <div class="anatomy-wrap">
+                    <div class="anatomy-code">
+                        <div class="a-line">
+                            <span class="a-chip a-sel">h1</span>
+                            <span class="a-punc">{</span>
+                        </div>
+                        <div class="a-line" style="padding-left:24px">
+                            <span class="a-chip a-prop">color</span>
+                            <span class="a-punc" style="font-size:14px">:</span>
+                            <span class="a-chip a-val">#2965f1</span>
+                            <span class="a-punc" style="font-size:14px">;</span>
+                        </div>
+                        <div class="a-line" style="padding-left:24px">
+                            <span class="a-chip a-prop">font-size</span>
+                            <span class="a-punc" style="font-size:14px">:</span>
+                            <span class="a-chip a-val">32px</span>
+                            <span class="a-punc" style="font-size:14px">;</span>
+                        </div>
+                        <div class="a-line">
+                            <span class="a-punc">}</span>
+                        </div>
+                    </div>
+                    <div class="anatomy-legend">
+                        <div class="a-leg">
+                            <div class="a-leg-dot" style="background:#06b6d4"></div> Selector
+                        </div>
+                        <div class="a-leg">
+                            <div class="a-leg-dot" style="background:#60a5fa"></div> Property
+                        </div>
+                        <div class="a-leg">
+                            <div class="a-leg-dot" style="background:#34d399"></div> Value
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Section 4: Try it ── -->
+            <div class="card anim-up d6" id="s-try">
+                <div class="card-head">
+                    <div class="c-icon purple"><i class="fas fa-laptop-code"></i></div>
+                    <div>
+                        <div class="c-title">Try It Yourself</div>
+                        <div class="c-sub">Edit the code — see the result instantly</div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-em">🎨</div>
+                    <div class="tip-body">
+                        <strong>Designer Tip:</strong> Use consistent spacing and semantic colors
+                        for professional results. Try editing the code below!
+                    </div>
+                </div>
+
+                <div class="editor-wrap">
+                    <div class="editor-bar">
+                        <div class="e-dot r"></div>
+                        <div class="e-dot y"></div>
+                        <div class="e-dot g"></div>
+                        <div class="editor-tabs">
+                            <div class="e-tab on">style.html</div>
+                        </div>
+                        <button class="copy-btn" onclick="copyEditor()">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <button class="run-btn" onclick="runCode()">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                    </div>
+                    <div class="editor-body">
+                        <div class="code-pane">
+                            <div class="line-nums" id="lineNums"></div>
+                            <textarea class="code-ta" id="codeEditor" spellcheck="false" oninput="updateLines()">&lt;style&gt;
+  h1 {
+    color: #2965f1;
+    font-family: sans-serif;
+  }
+  p {
+    color: #555;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .box {
+    background: #f0f4ff;
+    padding: 24px;
+    border-radius: 12px;
+    border: 2px solid #dde6ff;
+  }
+&lt;/style&gt;
+
+&lt;div class="box"&gt;
+  &lt;h1&gt;Hello CSS! 🎨&lt;/h1&gt;
+  &lt;p&gt;Styled beautifully with CSS&lt;/p&gt;
+&lt;/div&gt;</textarea>
+                        </div>
+                        <div class="prev-pane">
+                            <div class="prev-label">🌐 Live Preview</div>
+                            <iframe id="previewFrame" sandbox="allow-scripts allow-same-origin"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Section 5: Interactive Demo ── -->
+            <div class="card anim-up d7" id="s-demo">
+                <div class="card-head">
+                    <div class="c-icon purple"><i class="fas fa-sliders-h"></i></div>
+                    <div>
+                        <div class="c-title">Interactive Demo</div>
+                        <div class="c-sub">Adjust CSS properties in real-time</div>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <div class="demo-ctrl">
+                        <div class="ctrl-grp">
+                            <label class="ctrl-lbl">Background</label>
+                            <input type="color" id="dBg" value="#2965f1" oninput="liveDemo()">
+                        </div>
+                        <div class="ctrl-grp">
+                            <label class="ctrl-lbl">Text</label>
+                            <input type="color" id="dTx" value="#ffffff" oninput="liveDemo()">
+                        </div>
+                        <div class="ctrl-grp">
+                            <label class="ctrl-lbl">
+                                Font size <strong id="fzVal">18</strong>px
+                            </label>
+                            <input type="range" id="dFz" min="12" max="40" value="18" oninput="liveDemo()">
+                        </div>
+                        <div class="ctrl-grp">
+                            <label class="ctrl-lbl">
+                                Radius <strong id="rrVal">8</strong>px
+                            </label>
+                            <input type="range" id="dRr" min="0" max="50" value="8" oninput="liveDemo()">
+                        </div>
+                        <div class="ctrl-grp">
+                            <label class="ctrl-lbl">
+                                Padding <strong id="pdVal">20</strong>px
+                            </label>
+                            <input type="range" id="dPd" min="8" max="60" value="20" oninput="liveDemo()">
+                        </div>
+                    </div>
+                    <div class="demo-stage">
+                        <div class="demo-el" id="demoEl">Hello CSS! 🎨</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Quiz ── -->
+            <div class="quiz-wrap anim-up" id="s-quiz">
+                <div class="quiz-head">
+                    <div class="quiz-ico"><i class="fas fa-brain"></i></div>
+                    <div>
+                        <div class="quiz-badge">Knowledge Check</div>
+                        <div class="quiz-heading">Test Your Understanding</div>
+                    </div>
+                </div>
+
+                <!-- Q1 -->
+                <div class="q-block">
+                    <div class="q-num">Question 1</div>
+                    <div class="q-txt">What does CSS stand for?</div>
+                    <div class="q-opts" id="q1">
+                        <div class="q-opt" onclick="ans(this,false,'q1','f1')">
+                            Computer Style Sheet
+                        </div>
+                        <div class="q-opt" onclick="ans(this,true,'q1','f1')">
+                            Cascading Style Sheets
+                        </div>
+                        <div class="q-opt" onclick="ans(this,false,'q1','f1')">
+                            Creative Style System
+                        </div>
+                        <div class="q-opt" onclick="ans(this,false,'q1','f1')">
+                            Coded Style Source
+                        </div>
+                    </div>
+                    <div class="q-feedback" id="f1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="q-block">
+                    <div class="q-num">Question 2</div>
+                    <div class="q-txt">Which CSS property changes text color?</div>
+                    <div class="q-opts" id="q2">
+                        <div class="q-opt" onclick="ans(this,false,'q2','f2')">text-color</div>
+                        <div class="q-opt" onclick="ans(this,false,'q2','f2')">font-color</div>
+                        <div class="q-opt" onclick="ans(this,true,'q2','f2')">color</div>
+                        <div class="q-opt" onclick="ans(this,false,'q2','f2')">text-style</div>
+                    </div>
+                    <div class="q-feedback" id="f2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="q-block">
+                    <div class="q-num">Question 3</div>
+                    <div class="q-txt">What character ends a CSS declaration?</div>
+                    <div class="q-opts" id="q3">
+                        <div class="q-opt" onclick="ans(this,false,'q3','f3')">Colon ( : )</div>
+                        <div class="q-opt" onclick="ans(this,true,'q3','f3')">Semicolon ( ; )</div>
+                        <div class="q-opt" onclick="ans(this,false,'q3','f3')">Period ( . )</div>
+                        <div class="q-opt" onclick="ans(this,false,'q3','f3')">Comma ( , )</div>
+                    </div>
+                    <div class="q-feedback" id="f3"></div>
+                </div>
+            </div>
+
+            <!-- Tutorial nav -->
+            <div class="tut-nav anim-up">
+                <a href="../homepage.html" class="t-btn prev">
+                    <i class="fas fa-arrow-left"></i>
+                    <div class="t-btn-info">
+                        <span class="t-btn-lbl">Previous</span>
+                        <span class="t-btn-name">Home</span>
+                    </div>
+                </a>
+                <a href="css-selectors.html" class="t-btn next">
+                    <div class="t-btn-info">
+                        <span class="t-btn-lbl">Next Lesson</span>
+                        <span class="t-btn-name">CSS Selectors</span>
+                    </div>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="page-footer">
+                Made with ❤️ by <a href="#">CodingBooks</a> &nbsp;•&nbsp; Happy coding!
+            </div>
+
+        </div><!-- /container -->
+    </div><!-- /page -->
+
+    <!-- Scroll-to-top -->
+    <button id="scrollTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Firebase scripts (keep yours) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-guard.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="js/tutorial.js"></script>
+
+    <script>
+        /* ════════════════════════════════════════
+           THEME
+        ════════════════════════════════════════ */
+        const themeBtn = document.getElementById('themeToggle');
+        const applyTheme = t => {
+            document.documentElement.setAttribute('data-theme', t);
+            themeBtn.querySelector('i').className =
+                t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', t);
+        };
+        applyTheme(localStorage.getItem('theme') || 'light');
+        themeBtn.addEventListener('click', () => {
+            applyTheme(
+                document.documentElement.getAttribute('data-theme') === 'dark'
+                    ? 'light' : 'dark'
+            );
+        });
+
+        /* ════════════════════════════════════════
+           SIDEBAR
+        ════════════════════════════════════════ */
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const openSB = () => { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; };
+        const closeSB = () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; };
+        document.getElementById('hamburgerBtn').addEventListener('click', openSB);
+        document.getElementById('sidebarClose').addEventListener('click', closeSB);
+        overlay.addEventListener('click', closeSB);
+
+        /* ════════════════════════════════════════
+           READING PROGRESS + SCROLL-TOP
+        ════════════════════════════════════════ */
+        const readBar = document.getElementById('read-bar');
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
+            readBar.style.transform = `scaleX(${pct})`;
+            scrollTopBtn.classList.toggle('show', window.scrollY > 400);
+        });
+        scrollTopBtn.addEventListener('click', () =>
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        );
+
+        /* ════════════════════════════════════════
+           CODE EDITOR
+        ════════════════════════════════════════ */
+        const ta = document.getElementById('codeEditor');
+        const lnEl = document.getElementById('lineNums');
+        const iframe = document.getElementById('previewFrame');
+
+        function updateLines() {
+            const n = ta.value.split('\n').length;
+            lnEl.textContent = Array.from({ length: n }, (_, i) => i + 1).join('\n');
+        }
+
+        function runCode() {
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(`<!DOCTYPE html><html><head>
+        <meta charset="UTF-8">
+        <style>body{font-family:'Inter',sans-serif;padding:16px;margin:0}</style>
+        </head><body>${ta.value}</body></html>`);
+            doc.close();
+        }
+
+        ta.addEventListener('keydown', e => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const s = ta.selectionStart;
+                ta.value = ta.value.slice(0, s) + '  ' + ta.value.slice(ta.selectionEnd);
+                ta.selectionStart = ta.selectionEnd = s + 2;
+                updateLines();
+            }
+        });
+
+        updateLines();
+        setTimeout(runCode, 400);
+
+        /* ════════════════════════════════════════
+           COPY HELPERS
+        ════════════════════════════════════════ */
+        function flash(btn, text) {
+            btn.classList.add('copied');
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = `<i class="fas fa-copy"></i> ${text}`;
+            }, 2000);
+        }
+        function copyStatic(btn) {
+            const code = btn.closest('.code-blk').querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => flash(btn, 'Copy'));
+        }
+        function copyEditor() {
+            const btn = event.currentTarget;
+            navigator.clipboard.writeText(ta.value).then(() => flash(btn, 'Copy'));
+        }
+
+        /* ════════════════════════════════════════
+           LIVE DEMO
+        ════════════════════════════════════════ */
+        function liveDemo() {
+            const el = document.getElementById('demoEl');
+            const fz = document.getElementById('dFz').value;
+            const rr = document.getElementById('dRr').value;
+            const pd = document.getElementById('dPd').value;
+            el.style.cssText = `
+        background:${document.getElementById('dBg').value};
+        color:${document.getElementById('dTx').value};
+        font-size:${fz}px;
+        border-radius:${rr}px;
+        padding:${pd}px ${+pd + 16}px;
+        font-weight:700;
+        transition:all .25s ease;
+        text-align:center;
+    `;
+            document.getElementById('fzVal').textContent = fz;
+            document.getElementById('rrVal').textContent = rr;
+            document.getElementById('pdVal').textContent = pd;
+        }
+
+        /* ════════════════════════════════════════
+           QUIZ
+        ════════════════════════════════════════ */
+        const done = {};
+        let step = 1;
+
+        function ans(el, correct, qId, fId) {
+            if (done[qId]) return;
+            done[qId] = true;
+            el.classList.add(correct ? 'ok' : 'no');
+
+            const fb = document.getElementById(fId);
+            fb.className = `q-feedback show ${correct ? 'ok' : 'no'}`;
+            fb.innerHTML = correct
+                ? '<i class="fas fa-check-circle"></i> Correct! Great job! 🎉'
+                : '<i class="fas fa-times-circle"></i> Not quite — review the concept above.';
+
+            document.querySelectorAll(`#${qId} .q-opt`)
+                .forEach(o => o.style.pointerEvents = 'none');
+
+            if (correct) advanceStep();
+        }
+
+        function advanceStep() {
+            step = Math.min(step + 1, 5);
+            document.getElementById('progFill').style.width = (step / 5 * 100) + '%';
+            document.getElementById('stepLabel').textContent = `Step ${step} / 5`;
+            document.querySelectorAll('.p-dot').forEach((d, i) => {
+                d.classList.toggle('done', i + 1 < step);
+                d.classList.toggle('cur', i + 1 === step);
+            });
+        }
+
+        /* ════════════════════════════════════════
+           NOTIFICATIONS (basic toggle)
+        ════════════════════════════════════════ */
+        const ntBtn = document.getElementById('notificationsToggle');
+        const ntDrop = document.getElementById('notificationsDropdown');
+        const prAvt = document.getElementById('userAvatar');
+        const prDrop = document.getElementById('profileDropdown');
+
+        ntBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            ntDrop.classList.toggle('show');
+            prDrop?.classList.remove('show');
+        });
+        prAvt?.addEventListener('click', e => {
+            e.stopPropagation();
+            prDrop.classList.toggle('show');
+            ntDrop.classList.remove('show');
+        });
+        document.addEventListener('click', () => {
+            ntDrop.classList.remove('show');
+            prDrop?.classList.remove('show');
+        });
+        [ntDrop, prDrop].forEach(d => d?.addEventListener('click', e => e.stopPropagation()));
+
+        document.getElementById('markAllNotificationsRead')?.addEventListener('click', () => {
+            document.querySelectorAll('.notification-item.unread').forEach(i => i.classList.remove('unread'));
+            document.querySelectorAll('.notification-dot').forEach(d => d.remove());
+            document.getElementById('notificationBadge').style.display = 'none';
+            document.querySelector('.notifications-subtitle').textContent = 'All caught up!';
+        });
+
+        /* ════════════════════════════════════════
+           MOBILE SEARCH
+        ════════════════════════════════════════ */
+        document.getElementById('mobileSearchToggle')?.addEventListener('click', () => {
+            document.getElementById('mobileSearchOverlay').classList.add('show');
+            setTimeout(() => document.getElementById('mobileNavSearchInput').focus(), 100);
+        });
+        document.getElementById('mobileSearchBack')?.addEventListener('click', () => {
+            document.getElementById('mobileSearchOverlay').classList.remove('show');
+        });
+    </script>
+</body>
+
+</html>
