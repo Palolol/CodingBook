@@ -25,8 +25,8 @@ async function getUserProfile(uid) {
 }
 
 async function updateUserProfile(uid, data) {
-    await fbDB.collection(USERS_COLLECTION).doc(uid).update({
+    await fbDB.collection(USERS_COLLECTION).doc(uid).set({
         ...data,
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
+    }, { merge: true });
 }
