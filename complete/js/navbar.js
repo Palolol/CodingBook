@@ -40,17 +40,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Resolve a URL against the current page so root-relative paths like
-    // "/test/qcm.html" work on GitHub Pages (where the site lives under
-    // /CodingBook/) AND on a localhost dev server. Works at any folder depth.
+    // Resolve navigation targets against the app root (the folder that contains
+    // the deployed site, e.g. /CodingBook/complete/ on GitHub Pages) instead of
+    // the current page folder. This keeps search results working from nested
+    // pages like /tutorials/*.html.
+    function getAppBasePath() {
+        const pathname = window.location.pathname;
+        const marker = '/complete/';
+        const markerIndex = pathname.indexOf(marker);
+        if (markerIndex !== -1) {
+            return pathname.slice(0, markerIndex + marker.length);
+        }
+
+        const lastSlash = pathname.lastIndexOf('/');
+        return lastSlash >= 0 ? pathname.slice(0, lastSlash + 1) : '/';
+    }
+
     function resolveUrl(url) {
         if (!url || url === '#') return url;
-        if (!url.startsWith('/')) return url;            // already relative or absolute http(s)
-        // Strip leading "/" and resolve against the folder containing the current page.
-        var here = window.location.pathname;            // e.g. /CodingBook/test/qcm.html
-        var lastSlash = here.lastIndexOf('/');
-        var base = lastSlash >= 0 ? here.slice(0, lastSlash + 1) : '/';
-        return base + url.slice(1);
+        if (/^(?:[a-z]+:)?\/\//i.test(url) || url.startsWith('mailto:') || url.startsWith('tel:')) {
+            return url;
+        }
+
+        const base = window.location.origin + getAppBasePath();
+        if (url.startsWith('/')) {
+            return new URL(url.slice(1), base).href;
+        }
+
+        return new URL(url, base).href;
     }
 
     if (sidebarLogout) {
